@@ -1,0 +1,377 @@
+
+@font-face {
+  font-family: "Bookman Old Style Regular";
+  src: url("Bookman Old Style Regular.ttf") format("tff");
+  }
+  body{font-family: "Bookman Old Style Regular";}
+  
+  html *{font-family: "Bookman Old Style Regular";}
+  
+  .content{/*background: url('../images/logo_trans.png') no-repeat center fixed; */  }
+  
+  .brand {display:inline; padding: 2px; margin: 5px;}
+  .brand img{width: auto; height: 60px;}
+  .dashboard{padding: 15px;}
+
+  .login{background: url('../images/bg3.jpg');    background-position: center; 
+    background-repeat: no-repeat;
+    background-size: cover; 
+ }
+  #login{
+            padding:10%;
+            overflow: hidden;
+  }
+  #login_form{margin: 0 auto;  background-color:rgba(0, 0, 0, 0.3); color: #FFF; border:1px solid #FFF; border-radius:5px; padding:5%; width:50%; text-align: center;}
+  
+  
+  /*
+  1.1 Header Area
+  ***************************************************/
+  /*Bootstrap Reset*/
+  .navbar-nav > li > a {
+      padding-top: 0;
+      padding-bottom: 0;
+  }
+  nav.mainmenu {
+      background-color: #d8d8d8;
+      font-family: "Bookman Old Style Regular";
+      font-weight:400;
+      font-size:12px;
+      margin-bottom: 0;
+      border: 1px #000;
+      border-radius: 7px;
+  }
+  .navbar-nav > li:last-child > a {
+      padding-right: 0px;
+      margin-right: 0px;
+  }
+  .dropdown-menu {
+      padding: 0px 0; 
+      margin: 0 0 0; 
+      border: 0px solid transition !important;
+      border: 0px solid rgba(0,0,0,.15);  
+      border-radius: 0px;
+      -webkit-box-shadow: none !important;
+      box-shadow: none !important;
+  
+  }
+  /*=-====Main Menu=====*/
+  /*.navbar-nav .open .dropdown-menu > li > a {padding: 16px 15px 16px 25px;
+  }
+  .header_bottom { background: #0071ba }
+  .header_area .header_bottom .mainmenu a , .navbar-default .navbar-nav > li > a {
+      color: #fff;
+      font-size: 12px;
+      text-transform: capitalize;
+      padding:10px;
+      
+  }
+  .header_area .mainmenu .active a,
+  .header_area .mainmenu .active a:focus,
+  .header_area .mainmenu .active a:hover,
+  .header_area .mainmenu li a:hover,
+  .header_area .mainmenu li a:focus ,
+  .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+      color: #0071ba;
+      background: #54c6d4;
+      outline: 0;
+  }
+  /*-----./ Main Menu-----*/
+  .navbar-header .navbar-toggle input[type='button']{color: #FFF;}
+  .navbar-default .navbar-toggle { border-color: #FFF; } /*Toggle Button*/
+  .navbar-default .navbar-toggle .icon-bar { background-color: #FFF; color: #000; } /*Toggle Button*/
+  
+  /*==========Sub Menu=v==========*/
+  .mainmenu .collapse ul > li:hover > a{background: #FFF;}
+  .mainmenu .collapse ul ul > li:hover > a, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus, .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover{background: #CBEAF0;}
+  .mainmenu .collapse ul ul ul > li:hover > a{background: #CBEAF0;}
+  
+  .mainmenu .collapse ul ul, .mainmenu .collapse ul ul.dropdown-menu{background:#98D7D1;}
+  .mainmenu .collapse ul ul ul, .mainmenu .collapse ul ul ul.dropdown-menu{background:#98D7E1}
+  .mainmenu .collapse ul ul ul ul, .mainmenu .collapse ul ul ul ul.dropdown-menu{background:#98D7F1}
+  .mainmenu .collapse a {color: #000;}
+  /******************************Drop-down menu work on hover**********************************/
+  .mainmenu{background: none;border: 0 solid;margin: 0;padding: 0;min-height:20px}
+  @media only screen and (min-width: 767px) {
+  .mainmenu .collapse ul li{position:relative;}
+  .mainmenu .collapse ul li:hover> ul{display:block}
+  .mainmenu .collapse ul ul{position:absolute;top:100%;left:0;min-width:250px;display:none}
+  /*******/
+  .mainmenu .collapse ul ul li{position:relative}
+  .mainmenu .collapse ul ul li:hover> ul{display:block}
+  .mainmenu .collapse ul ul ul{position:absolute;top:0;left:100%;min-width:250px;display:none}
+  /*******/
+  .mainmenu .collapse ul ul ul li{position:relative}
+  .mainmenu .collapse ul ul ul li:hover ul{display:block}
+  .mainmenu .collapse ul ul ul ul{position:absolute;top:0;left:-100%;min-width:250px;display:none;z-index:1}
+  
+  }*/
+
+  /*------ dark menu */
+  .bs-dark.navbar-inverse {
+    background-color: #222;
+    border-color: #080808;
+  }
+  .bs-dark .navbar-img {padding:5px 6px !important;}
+  .bs-dark .navbar-img img {width:40px;}
+  .bs-dark .dropdown-menu {
+    min-width: 200px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    background-color: #000;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(0, 0, 0, .15);
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+  }
+  
+  .bs-dark .dropdown-menu .divider {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+  }
+  .bs-dark .dropdown-menu > li > a {
+    padding: 6px 20px;
+    color: rgba(255,255,255,0.80);
+  }
+  .bs-dark .dropdown-menu > li > a:hover,
+  .bs-dark .dropdown-menu > li > a:focus {
+    color: rgba(255,255,255,0.70);
+    text-decoration: none;
+    background-color: transparent;
+  }
+  .bs-dark .dropdown-menu > .active > a,
+  .bs-dark .dropdown-menu > .active > a:hover,
+  .bs-dark .dropdown-menu > .active > a:focus {
+    color: rgba(255,255,255,0.70);
+    text-decoration: none;
+    background-color: transparent;
+    outline: 0;
+  }
+  
+  .bs-dark .navbar-form {
+    margin:0;
+    margin-top: 5px;
+    padding:8px 0px;
+  }
+   
+  .bs-dark .navbar-form .search-box {
+    border:0px;
+    height:35px;
+    outline: none;
+    width:320px;
+    padding-right: 3px;
+    padding-left: 15px;
+    margin:4px;
+    -webkit-border-radius: 22px;
+    -moz-border-radius: 22px;
+    border-radius: 22px;
+  }
+   
+  .bs-dark .navbar-form button {
+    border: 0;
+    background: none;
+    padding: 2px 5px;
+    margin-top: 2px;
+    position: relative;
+    left: -34px;
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+  }
+   
+  .bs-dark .search-box:focus + button {
+    z-index: 3;   
+  }
+  
+  @media (min-width: 768px) {
+      .bs-dark .dropdown:hover {background-color: #000;}
+    .bs-dark .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+    .bs-dark .navbar-form {
+      padding:0px;
+    }	
+    .bs-dark .navbar-form .search-box {
+      width:260px;
+      height:32px;
+    }
+  
+  }
+  
+  .card-header{background-color: #787878; color: #FFF; padding: 5px;  text-align: center; border-radius: 4px; margin: 5px 0 5px 0;}
+  .card-header h4{font-size: 25px;  font-family: "Bookman Old Style Regular";}
+  .card-body{border: 1px solid #000; padding: 10px; border-radius: 5px; margin-bottom: 5px; font-family: "Bookman Old Style Regular";}
+  
+  table{border: 1px solid #d8d8d8; margin: 5px;}
+  
+  
+  
+  //---------- tabs
+  .season_tabs {
+    position: relative;   
+    
+    
+    margin: 25px 0;
+    
+  }
+  .season_tab {
+    float: left;  
+    clear: both;
+    width: 286px;
+  }
+  .season_tab label {
+      background: #eee;
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-left: -1px;
+      font-size: 21px;
+      vertical-align: middle;
+      position: relative;
+      left: 1px;
+      width: 264px;
+      height: 68px;
+      display: table-cell;
+  }
+  .season_tab [type=radio] {
+    display: none;   
+  }
+  .season_content {
+    position: absolute;
+    top: 0;
+    left: 286px;
+    background: white;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+   }
+  .season_content span {
+    animation: 0.5s ease-out 0s 1 slideInFromTop; 
+  }
+  [type=radio]:checked ~ label {
+    background: white;
+    border-bottom: 2px solid #8bc34a;
+    z-index: 2;
+  }
+  [type=radio]:checked ~ label ~ .season_content {
+    z-index: 1;
+  }
+  
+  
+  #data-table_paginate a {border: 1px solid #d8d8d8; padding: 2px 8px 2px 8px; cursor: pointer;}
+  #data-table_paginate a:active {background: #000; color: #FFF;}
+  #data-table_info {display:inline; border: 1px solid #d8d8d8; width:20%; float: left; font-weight: 700;}
+  
+  .small_fonts{size: A4;}
+  
+  .card1{background:#d5e1df; color:#000; border:1px solid;padding:2px; margin:2px; box-shadow:5px 5px 5px #d8d8d8;}
+  .card1:hover{background:#d6cbd3; border:1px solid; text-decoration:underline;}
+  
+
+  /*---  switch ---*/
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  
+  /*-- radio switch*/
+  .switch-field {
+    display: flex;
+    margin-bottom: 36px;
+    overflow: hidden;
+  }
+  
+  .switch-field input {
+    position: absolute !important;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden;
+  }
+  
+  .switch-field label {
+    background-color: #e4e4e4;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    line-height: 1;
+    text-align: center;
+    padding: 8px 16px;
+    margin-right: -1px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+    transition: all 0.1s ease-in-out;
+  }
+  
+  .switch-field label:hover {
+    cursor: pointer;
+  }
+  
+  .switch-field input:checked + label {
+    background-color: #a5dc86;
+    box-shadow: none;
+  }
+  
+  .switch-field label:first-of-type {
+    border-radius: 4px 0 0 4px;
+  }
+  
+  .switch-field label:last-of-type {
+    border-radius: 0 4px 4px 0;
+  }
