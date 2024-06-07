@@ -25,6 +25,7 @@
 						//	$user = array_unique($user0);
 							foreach($user as $k=>$value)
 							{
+							    if($user[$k]['meta_value2']=='3'){continue;}
 								echo "<option value='".$user[$k]['meta_value2']."'>".$user[$k]['meta_value1']."</option>";
 							}
 					?>
@@ -60,7 +61,7 @@
 		</form>
 
 	</div>
-
+<hr>
 	<div class="row">
 		<div class="col-sm-12">
 			<table class="table" id="data-table">
@@ -68,27 +69,37 @@
 					<tr>
 						<th>S.No.</th>
 						<th>Name</th>
+						<th>Employee Code</th>
 						<th>Password</th>
 						<th>Type</th>
 						<th>Contact</th>
 						<th>Email</th>
 						<th>Branch</th>
+						<th>Utility</th>
 					</tr>
 				</thead>
 				<tbody>
-					<?php $allbranch = $admin->get_alluser(); 
+					<?php $allbranch = $admin->get_alluser_ofc(); 
 					$counter =1;
 					foreach ($allbranch as $k => $value) {
+					    
+					                if($allbranch[$k]['utype']=='1'){$utype="Admin"; $emp='BIA';} 
+						            if($allbranch[$k]['utype']=='2'){$utype="Teacher"; $emp='BIT';} 
+            						if($allbranch[$k]['utype']=='1'){$utype="Accounts"; $emp='BIAC';}
+            						if($allbranch[$k]['utype']=='1'){$utype="Back Office"; $emp='BIB';}
+            			
 						?>
+						
 					<tr id="<?php echo $allbranch[$k]['id'];?>">
 						<td><?php echo $counter++;?></td>
 						<td><?php echo $allbranch[$k]['uname'];?></td>
+						<td><?php echo $emp.'/'.$allbranch[$k]['id'];?></td>
 						<td><?php echo $allbranch[$k]['upass'];?></td>
-						<td><?php echo $allbranch[$k]['utype'];?></td>
+						<td><?php echo $utype;?></td>
 						<td><?php echo $allbranch[$k]['phone'];?></td>
 						<td><?php echo $allbranch[$k]['email'];?></td>
 						<th>
-							<input type="button" name="room" onclick="show_page_model('index.php?action=nocss_pages&page=admin_branch_addroom&id=<?php echo $allbranch[$k]['id'].'&type=admin';?>')" data-toggle="modal" data-target="#myModal"  class="btn btn-xs btn-info" value="Add">
+							<input type="button" name="room" onclick="show_page_model('index.php?action=nocss_pages&page=admin_edit_user&id=<?php echo $allbranch[$k]['id'].'&type=admin';?>')" data-toggle="modal" data-target="#myModal"  class="btn btn-xs btn-warning" value="Edit">
 						</th>
 						<td><input type="button" onclick="deleteme('admin','delete_user','<?php echo $allbranch[$k]['id'];?>')" class="btn btn-xs btn-danger" value="Delete"></td>
 

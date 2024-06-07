@@ -14,13 +14,13 @@
 
 
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <script>tinymce.init({selector:'textarea'});</script>
 
 <script type="text/javascript" src="<?php echo $base_url;?>theme/js/menu.js"></script>
 
-<script type="text/javascript" src="<?php echo $base_url;?>theme/js/function.js"></script>
+
 
 
 

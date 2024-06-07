@@ -28,7 +28,7 @@
 
                         <div class="form-group row">
 
-                          <label class="col-sm-3 col-form-label">Date</label>
+                          <label class="col-sm-3 col-form-label">Date <span class='text-danger'>*</span></label>
 
                           <div class="col-sm-9">
 
@@ -44,7 +44,7 @@
 
                         <div class="form-group row">
 
-                          <label class="col-sm-3 col-form-label">Name</label>
+                          <label class="col-sm-3 col-form-label">Name <span class='text-danger'>*</span></label>
 
                           <div class="col-sm-9">
 
@@ -68,11 +68,11 @@
 
                         <div class="form-group row">
 
-                          <label class="col-sm-3 col-form-label">Course</label>
+                          <label class="col-sm-3 col-form-label">Course <span class='text-danger'>*</span></label>
 
                           <div class="col-sm-9">
 
-                           <select class="form-control" id="courseid" name="course_name" onchange="get_details('course_name','courseid','subject')">
+                           <select class="form-control" id="courseid" name="course_name" onchange="get_details('course_name','courseid','subject')" required>
 
                               <option disabled="" selected="">-- Select Course --</option>
 
@@ -100,11 +100,11 @@
 
                         <div class="form-group row">
 
-                          <label class="col-sm-3 col-form-label">Subject</label>
+                          <label class="col-sm-3 col-form-label">Subject <span class='text-danger'>*</span></label>
 
                           <div class="col-sm-9">
 
-                            <select class="form-control" name="subject[]" id="subject" multiple='multiple'>
+                            <select class="form-control" name="subject[]" id="subject" multiple='multiple' required>
 
                              <option disabled="">-- Select ---</option>
 
@@ -130,11 +130,11 @@
 
                             <div class="form-group row">
 
-                              <label class="col-sm-3 col-form-label">School / College</label>
+                              <label class="col-sm-3 col-form-label">School / College <span class='text-danger'>*</span></label>
 
                               <div class="col-sm-9">
 
-                                    <input type="text" class="form-control" name="school" id="membershipRadios1" value="">
+                                    <input type="text" class="form-control" name="school" id="membershipRadios1" value="" required>
 
                               </div>
 
@@ -152,7 +152,7 @@
 
                             <div class="col-sm-9">
 
-                              <input type="text" name="xper" class="form-control" required/>
+                              <input type="text" name="xper" class="form-control" />
 
                             </div>
 
@@ -166,11 +166,11 @@
 
                           <div class="form-group row">
 
-                            <label class="col-sm-3 col-form-label">XII %</label>
+                            <label class="col-sm-3 col-form-label">XII % </label>
 
                             <div class="col-sm-9">
 
-                              <input type="text" name="xiiper" class="form-control" required/>
+                              <input type="text" name="xiiper" class="form-control" />
 
                             </div>
 
@@ -194,7 +194,7 @@
 
                         <div class="form-group row">
 
-                          <label class="col-sm-3 col-form-label">DOB</label>
+                          <label class="col-sm-3 col-form-label">DOB <span class='text-danger'>*</span></label>
 
                           <div class="col-sm-9">
 
@@ -210,7 +210,7 @@
 
                         <div class="form-group row">
 
-                          <label class="col-sm-3 col-form-label">Medium</label>
+                          <label class="col-sm-3 col-form-label">Medium </label>
 
                           <div class="col-sm-9">
 
@@ -240,11 +240,11 @@
 
                         <div class="form-group row">
 
-                          <label class="col-sm-3 col-form-label">Reference</label>
+                          <label class="col-sm-3 col-form-label">Reference </label>
 
                           <div class="col-sm-9">
 
-                            <select name="reference" class="form-control" required>
+                            <select name="reference" class="form-control" >
 
                               <option disabled="disabled" style="font-weight: bold;" selected="selected">-- Select --</option>
 
@@ -312,7 +312,7 @@
 
                          <div class="form-group row">
 
-                          <label class="col-sm-3 col-form-label">Contact</label>
+                          <label class="col-sm-3 col-form-label">Contact <span class='text-danger'>*</span></label>
 
                           <div class="col-sm-9">
 

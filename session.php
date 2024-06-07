@@ -3,8 +3,10 @@
 	/*session_save_path('/opt/alt/php74/var/lib/php/session');
     ini_set('session.gc_probability', 1);
 	*/
+	
+	date_default_timezone_set('Asia/Kolkata');
 	$base_url="https://www.bhavishaclasses.com/";
-
+    error_reporting(0);
 	session_start();
 	//create a new function to check if the session variable member_id is on set
 	function logged_in() {

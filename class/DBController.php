@@ -34,7 +34,7 @@ class DBController {
 
         date_default_timezone_set('Asia/Calcutta');
 
-     //error_reporting(0);
+     error_reporting(0);
 
 
 
@@ -83,19 +83,8 @@ class DBController {
 
     function runBaseQuery($query) {
 
-
-
-        
-
-
-
 		$result = $this->conn->query($query);   
-
-
-
         //if($result->num_rows > 0) {
-
-
 
 		if (! empty($result)) {
 
@@ -142,14 +131,11 @@ class DBController {
 
 
         $result = $this->conn->query($query);   
-
-
-
         $user = mysqli_fetch_array($result);
-
-
-
 		return $user[0];
+		
+		//$user = mysqli_fetch_row($result);
+		//return $user;
 
 
 

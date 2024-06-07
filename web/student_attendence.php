@@ -29,6 +29,8 @@
                             $sname=$sname[0]['subject'];
                             
                             $minutes=$result[$k]['duration'].' Minutes';
+                            
+                            $teachername = $admin->getone_user($result[$k]['teacherid']);
                             ?>
                             <div class="col-sm-3" style="  padding:10px;">
                                 <div style="text-align:left; padding-left:10px; border:2px solid #d8d8d8; border-radius:2px;">
@@ -38,7 +40,8 @@
                                     <?php echo '<b>Course</b> : '.$cname;?><br>
                                     <?php echo '<b>Subject</b> : '.$sname;?><br>
                                     <?php echo '<b>Time</b> : '.$result[$k]['timing'];?> To <?php $time2 = strtotime(''.$time.' + '.$result[$k]['duration'].' minute'); echo date("H:i:s", $time2);?><br>
-                                    <?php echo '<b>Duration</b> : '.$minutes.' Minutes';?>
+                                    <?php echo '<b>Duration</b> : '.$minutes.' Minutes';?><br>
+                                    <?php echo '<b>Teacher</b> : '.$teachername[0]['uname'];?>
                                     </a>
                                  </div>   
                             </div>    

@@ -9,31 +9,40 @@
               <div class="card">
                 <div class="card-body">
                   <div id="msgcreate_student"></div>
+                  
+                  <?php if(isset($_GET['leadid'])){?>
                   <form action="<?php echo $base_url.'index.php?action=student&query=create_student&leadid='.$_GET['leadid'];?>" method="post" name="create_student" id="create_student" class="form-sample">
+                  <?php }else{?>    
+                  <form action="<?php echo $base_url.'index.php?action=student&query=create_student';?>" method="post" name="create_student" id="create_student" class="form-sample">
+                    <?php }?>      
+                      
                     <input type="hidden" value="demo" name="status">
                     
 
                     <?php
-                    if($_GET['status']=='not_available')
+                    if(isset($_GET['status']))
                     {
-                      echo "<div class='alert alert-danger'>This user has been already added or the contact details has been already availble.</div>";
-                    }
-                    elseif($_GET['status']=='failed')
-                    {
-                      echo "<div class='alert alert-danger'>Something went wrong!! Please try again...</div>";
-                    }
-                    elseif($_GET['status']=='success')
-                    {
-                      echo "<div class='alert alert-success'>Student added successfully. Student yet not received any login id but can be a part of a demo class.</div>";
-                    }
-                    else{}                    
+                        if($_GET['status']=='not_available')
+                        {
+                          echo "<div class='alert alert-danger'>This user has been already added or the contact details has been already availble.</div>";
+                        }
+                        elseif($_GET['status']=='failed')
+                        {
+                          echo "<div class='alert alert-danger'>Something went wrong!! Please try again...</div>";
+                        }
+                        elseif($_GET['status']=='success')
+                        {
+                          echo "<div class='alert alert-success'>Student added successfully. Student yet not received any login id but can be a part of a demo class.</div>";
+                        }
+                        else{}                    
+                    }    
 
                      ?>
                     <hr>
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Date Of Joining</label>
+                          <label class="col-sm-3 col-form-label">Date Of Joining <span class='text-danger'>*</span></label>
                           <div class="col-sm-9">
                             <input type="date" name="jdate" class="form-control"  value="" required/>
                           </div>
@@ -41,7 +50,7 @@
                       </div>
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Name</label>
+                          <label class="col-sm-3 col-form-label">Name <span class='text-danger'>*</span></label>
                           <div class="col-sm-9">
                             <input type="text" class="form-control" name="uname" value="" required>
                           </div>
@@ -55,7 +64,7 @@
                    <div class="row">
                       <div class="col-md-3">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Father Name</label>
+                          <label class="col-sm-3 col-form-label">Father Name <span class='text-danger'>*</span></label>
                           <div class="col-sm-9">
                             <input name="fname" type="text" value="" class="form-control" required/>
                           </div>
@@ -63,7 +72,7 @@
                       </div>
                       <div class="col-md-3">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Father Contact</label>
+                          <label class="col-sm-3 col-form-label">Father Contact <span class='text-danger'>*</span></label>
                           <div class="col-sm-9">
                             <input name="fcontact" type="text" value="" class="form-control" required/>
                           </div>
@@ -71,7 +80,7 @@
                       </div>
                       <div class="col-md-3">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Mother Name</label>
+                          <label class="col-sm-3 col-form-label">Mother Name <span class='text-danger'>*</span></label>
                           <div class="col-sm-9">                            
                             <input name="mname" type="text" value="" class="form-control" required/>
                           </div>
@@ -91,7 +100,7 @@
                    <div class="row">
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Father Occupation</label>
+                          <label class="col-sm-3 col-form-label">Father Occupation <span class='text-danger'>*</span></label>
                           <div class="col-sm-9">
                             <input name="focc" type="text" value="" class="form-control" required/>
                           </div>
@@ -112,7 +121,7 @@
                    <div class="row">
                       <div class="col-md-12">
                         <div class="form-group row">
-                          <label class="col-sm-2 col-form-label">Address</label>
+                          <label class="col-sm-2 col-form-label">Address <span class='text-danger'>*</span></label>
                           <div class="col-sm-10">
                             <input name="address" type="text" value="" class="form-control" required/>
                           </div>
@@ -125,9 +134,9 @@
                     <div class="row">
                       <div class="col-md-4">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Course</label>
+                          <label class="col-sm-3 col-form-label">Course <span class='text-danger'>*</span></label>
                           <div class="col-sm-9">
-                           <select class="form-control" id="courseid" name="course" onchange="get_details('course_name','courseid','subject')">
+                           <select class="form-control" id="courseid" name="course" onchange="get_details('course_name','courseid','subject')" required>
                               <option disabled="" selected="">-- Select Course --</option>
                               <?php $allcourses = $course->viewall();  foreach ($allcourses as $key => $value) {?>
                               <option value="<?php echo $allcourses[$key]['id'];?>">
@@ -141,11 +150,11 @@
 
                       <div class="col-md-4">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Subject
+                          <label class="col-sm-3 col-form-label">Subject <span class='text-danger'>*</span>
                               <small style="color:red; display: block;">Ctrl + A to Select All</small>
                           </label>
                           <div class="col-sm-9">
-                            <select class="form-control" name="subject[]" id="subject" multiple="multiple">
+                            <select class="form-control" name="subject[]" id="subject" multiple="multiple" requried>
                              <option disabled="">-- Select ---</option>
                             </select>
                           </div>
@@ -154,9 +163,9 @@
 
                       <div class="col-md-4">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Batch</label>
+                          <label class="col-sm-3 col-form-label">Batch <span class='text-danger'>*</span></label>
                           <div class="col-sm-9">
-                            <select class="form-control" id="batchid" name="batchid" >
+                            <select class="form-control" id="batchid" name="batchid" required>
                               <option disabled="" selected="">-- Select Batch --</option>
                               <?php $batch = $teacher->get_all_batches($_SESSION['syear'],$_SESSION['branch']);  foreach ($batch as $key => $value) {?>
                               <option value="<?php echo $batch[$key]['id'];?>">
@@ -232,7 +241,7 @@
                     <div class="row">
                           <div class="col-md-6">
                             <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">School</label>
+                              <label class="col-sm-3 col-form-label">School <span class='text-danger'>*</span></label>
                               <div class="col-sm-9">
                                     <input type="text" class="form-control" name="school" id="membershipRadios1" value="">
                               </div>
@@ -263,7 +272,7 @@
                       
                       <div class="col-md-6">
                          <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Contact</label>
+                          <label class="col-sm-3 col-form-label">Contact <span class='text-danger'>*</span></label>
                           <div class="col-sm-9">
                             <input type="text" name="contact" class="form-control" value="" required/>
                           </div>
@@ -273,7 +282,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Email</label>
                           <div class="col-sm-9">
-                            <input type="email" name="email" class="form-control" value="" required/>
+                            <input type="email" name="email" class="form-control" value="" />
                           </div>
                         </div>
                       </div>
@@ -283,7 +292,7 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">DOB</label>
+                          <label class="col-sm-3 col-form-label">DOB <span class='text-danger'>*</span></label>
                           <div class="col-sm-9">
                             <input type="date" name="dob" class="form-control" value="" required/>
                           </div>
@@ -306,7 +315,7 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Reference</label>
+                          <label class="col-sm-3 col-form-label">Reference <span class='text-danger'>*</span></label>
                           <div class="col-sm-9">
                             <select name="reference" class="form-control" required>
                               <option disabled="disabled" style="font-weight: bold;" selected="selected">-- Select --</option>
@@ -345,7 +354,7 @@
                          <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Branch</label>
                           <div class="col-sm-9">
-                            <select name="branch" onchange="get_branch_details('branch','demo','class_schedule')" class="form-control" id="branch" >
+                            <select name="branch" onchange="get_branch_details('branch','demo','class_schedule')" class="form-control" id="branch" required>
                               <option>-- Select --</option>
                               <?php $branch = $admin->get_allbranch(); 
 
@@ -395,7 +404,7 @@
                         <div class="form-group row">
                         <div class="col-sm-6"></div>
                           <div class="col-sm-3"><input type="reset" class="btn btn-info btn-lg" value="Reset"></div>
-                          <div class="col-sm-3"><input type="button" onclick="student_form_check()" class="btn btn-success btn-lg" value="Varify" id="submit_check"></div>
+                          <div class="col-sm-3"><input type="button" onclick="form_submit3('create_student')" class="btn btn-success btn-lg" value="Varify" id="submit_check"></div>
                           
                         </div>
                       </div>

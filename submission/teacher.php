@@ -5,6 +5,7 @@ if($_REQUEST['page']=='all_batch')
 
 {?>
 
+
 <table class="table" id="data-table">
 
 				<thead>
@@ -108,6 +109,8 @@ if($_REQUEST['page']=='all_classes')
 						<th>Batch</th>
 
 						<th>Course</th>
+						
+						<th>Subject</th>
 
 						<th>Teacher</th>
 
@@ -145,7 +148,9 @@ if($_REQUEST['page']=='all_classes')
 
 								<td><?php $batch=$teacher->get_one_batch($classes[$k]['batchid']); echo $batch[0]['batch_name'] ?></td>
 
-								<td><?php $course0=$course->get_one($classes[$k]['courseid'],'id'); echo $course0[0]['course_name']; echo " >> ";  $subject0=$course->get_one($classes[$k]['subjectid'],'id'); echo $subject0[0]['subject'];?></td>
+								<td><?php $course0=$course->get_one($classes[$k]['courseid'],'id'); echo $course0[0]['course_name'];  ?></td>
+								
+								<td><?php $subject0=$course->get_one($classes[$k]['subjectid'],'id'); echo $subject0[0]['subject'];?></td>
 
 								<td><?php $teacher_name  = $admin->getone_user($classes[$k]['teacherid']); echo $teacher_name[0]['uname'];?></td>
 
@@ -175,7 +180,16 @@ if($_REQUEST['page']=='all_classes')
 
 					
 
-								<td><i class="fa fa-trash" onclick="deleteme('teacher','delete_class','<?php echo $classes[$k]['id'];?>')"></i> <i class="fa fa-pencil" onclick="show_page_model('index.php?action=nocss_pages&page=teacher_class_edit&id=<?php echo $classes[$k]['id'];?>')" data-toggle="modal" data-target="#myModal"></i> </td>
+								<td><i class="fa fa-trash" onclick="deleteme('teacher','delete_class','<?php echo $classes[$k]['id'];?>')"></i> 
+								
+								
+								<!--<i class="fa fa-pencil" onclick="show_page_model('index.php?action=nocss_pages&page=teacher_class_edit&id=<?php echo $classes[$k]['id'];?>')" data-toggle="modal" data-target="#myModal"></i> -->
+								
+								<i class="fa fa-pencil" onclick="javascript:window.open('<?php echo $base_url;?>index.php?action=nocss_pages&page=teacher_class_edit&id=<?php echo $classes[$k]['id'];?>','Edit Class','width=500,height=700')"></i>
+								
+								
+								
+								</td>
 
 							</tr>
 
@@ -201,7 +215,7 @@ if($_REQUEST['page']=='class_list')
 
 <input type='button' name='class_list_btn' class="btn btn-primary btn-xs" value='Download List' onclick="fnExcelReport('class_list')"/>
 
-<table class='table' id='class_list'>
+<table class='table table-bordered' id='class_list'>
 
 	<thead>
 
@@ -650,3 +664,4 @@ if($_REQUEST['page']=='student_report')
 <?php include('../web/footer.php');
 
 ?>
+

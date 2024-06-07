@@ -9,8 +9,13 @@
                             <canvas id="myChart4" style="width:100%;max-width:700px"></canvas>
                           </div>
 
-                          <div class="col-sm-6">
+                        <div class="col-sm-6">
                             <h4>Question Bank</h4>
+                            <canvas id="myChart3" style="width:100%;max-width:700px"></canvas>
+                          </div>
+                          
+                          <div class="col-sm-6">
+                            <h4>Success Rate</h4>
                             <canvas id="myChart1" style="width:100%;max-width:700px"></canvas>
                           </div>
                         
@@ -21,10 +26,7 @@
                           </div>
                         
 
-                        <div class="col-sm-6">
-                            <h4>Success Rate</h4>
-                            <canvas id="myChart3" style="width:100%;max-width:700px"></canvas>
-                          </div>
+                        
 
                         <div class="col-sm-6">
                             <h4>Exam Status</h4>
@@ -66,9 +68,10 @@ new Chart("myChart", {
 </script>
 
 <!-- chart 1-->
+
 <script>
-var xValues = [50,60,70,80,90,100,110,120,130,140,150];
-var yValues = [7,8,8,9,9,9,10,11,14,14,15];
+var xValues = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+var yValues = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 
 new Chart("myChart1", {
   type: "line",
@@ -121,11 +124,28 @@ new Chart("myChart2", {
 
 
 <!-- chart 3--->
+<?php 
+$allsubject=$course->viewall();
+$cname=array();
+$sno=array();
+$colorcode=array();
+foreach($allsubject as $key => $value)
+{
+    array_push($cname,$allsubject[$key]['course_name']);
+    $subject=$course->get_one($allsubject[$key]['id'],'course_name');
+    $count=COUNT($subject);
+    array_push($sno,$count);
+    
+    $color='#'.str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT);
+    array_push($colorcode,$color);
+    
+}
 
+?>
 <script>
-var xValues = ["2017", "2018", "2019", "2020", "2021"];
-var yValues = [28, 31, 44, 49, 55];
-var barColors = ["red", "green","blue","orange","brown"];
+var xValues = ["<?php echo implode('","',$cname); ?>"];
+var yValues = [<?php echo implode(',',$sno); ?>];
+var barColors = ["<?php echo implode('","',$colorcode); ?>"];
 
 new Chart("myChart3", {
   type: "bar",
@@ -153,21 +173,20 @@ $students=array();
 $color_rand=array();
 foreach($student_count as $k => $value){
   $batch_name = $teacher->get_one_batch($student_count[$k]['batchid']);
-  $batch_name = $batch_name[0]['batch_name'];
+  $batch_name0 = $batch_name[0]['batch_name'];
 
   array_push($students,$student_count[$k]['count']);
-  array_push($batchid,$student_count[$k]['batchid']);  
+  array_push($batchid,$batch_name0);  
   
-  array_push($color_rand,mt_rand( 0, 0xDDD ));  
+ $color='#'.str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT);
+    array_push($color_rand,$color);
 }
   
 ?>    
 <script>
-var xValues = [<?php echo implode(",",$batchid);?>];
+var xValues = ['<?php echo implode("','",$batchid);?>'];
 var yValues = [<?php echo implode(",", $students);?>];
-var barColors =  [
-  <?php echo implode(",", $color_rand);?>
-];
+var barColors =  ["<?php echo implode('","',$color_rand); ?>"];
 
 new Chart("myChart4", {
   type: "pie",
@@ -188,9 +207,11 @@ new Chart("myChart4", {
 </script>
 
 
+<!--- mychart 5---->
+
 <script>
-var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-var yValues = [55, 49, 44, 24, 15];
+var xValues = ['India','Singapore','France'];
+var yValues = ['23','25','20'];
 var barColors = [
   "#b91d47",
   "#00aba9",

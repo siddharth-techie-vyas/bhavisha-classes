@@ -9,7 +9,11 @@ ul li{margin-top:10px; display:block;}
 </div>
 
 
+
 <div class="card-body">
+<div class="content">
+<div class="row">
+    
 
 
                 
@@ -25,7 +29,8 @@ ul li{margin-top:10px; display:block;}
                     $counter=1;
                     
                     //- get batch name 
-                    $batch_name = $teacher->get_batch_details($result[0]['batchid']);
+                    $batch_details=$teacher->get_batch_from_class($class_id);
+                    $batch_name = $teacher->get_batch_details($batch_details[0]['batchid']);
                     $branch_name = $admin->get_branch_one($result[0]['branch']);
                     
                     //- get class details

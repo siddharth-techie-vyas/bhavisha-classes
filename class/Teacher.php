@@ -38,7 +38,7 @@ class Teacher {
 
     function get_one_batch($id)
     {
-        $query="select * from batch where id = '$id' ";
+       $query="select * from batch where id = '$id' ";
        $result = $this->db_handle->runBaseQuery($query);
        return $result; 
     }
@@ -163,7 +163,29 @@ class Teacher {
 
     function get_list_class($branchid,$teacher,$duration)
     {
-        $query="select * from class_schedule where branchid ='$branchid' OR teacherid='$teacherid' OR duration='$duration' Order by timing";
+        //$query="select * from class_schedule where branchid ='$branchid' OR teacherid='$teacherid' OR duration='$duration' Order by timing";
+         
+         
+         
+        $dataarray=array("branchid"=>$branchid,"teacherid "=>$teacher,"duration"=>$duration);
+        
+        $data=array_filter($dataarray);
+       
+       
+        $output = implode(', ', array_map(
+            function ($v, $k) { return sprintf("%s='%s'", $k, $v); },
+            $data,
+            array_keys($data)
+        ));
+        
+        $output = str_replace(","," AND ",$output);
+
+        if(empty($output))
+        { $query = "select * from `class_schedule`  "; }
+        else
+        {$query = "select * from `class_schedule` where $output  ";}
+        
+        
         $result = $this->db_handle->runBaseQuery($query);
         return $result;
     }
@@ -220,6 +242,14 @@ class Teacher {
         return $result;
     }
     
+
+    function get_batch_from_class($id)
+    {
+        $query="select * from class_schedule where id = '$id' ";
+        $result = $this->db_handle->runBaseQuery($query);
+        return $result;
+    }    
+
     function get_class_student($id)
     {
         $query="select * from class_schedule where id = '$id' ";
@@ -320,7 +350,7 @@ class Teacher {
 
     function get_all_student_batch_nonbatch($course,$session)
     {
-        $query0="select * from student where syear = '$session' AND course='$course' OR course2='$course2' OR course='' OR course2=''   ";
+        $query0="select * from student where syear = '$session' AND course='$course' OR course2='$course' OR course='' OR course2=''   ";
         $result0 = $this->db_handle->runBaseQuery($query0);
         return $result0;
     }

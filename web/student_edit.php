@@ -296,7 +296,7 @@
 
                             <select class="form-control" id="batchid" name="batchid" >
 
-                              <option disabled="" selected="">-- Select Batch --</option>
+                              <option  selected="">-- Select Batch --</option>
 
                               <?php $batch = $teacher->get_all_batches($_SESSION['syear'],$_SESSION['branch']);  foreach ($batch as $key => $value) {?>
 
@@ -332,7 +332,7 @@
 
                            <select class="form-control" id="course2" name="course2" onchange="get_details2('course_name','course2','subject','subject2')">
 
-                              <option disabled="" selected="">-- Select Course --</option>
+                              <option  selected="">-- Select Course --</option>
 
                               <?php $allcourses = $course->viewall();  foreach ($allcourses as $key => $value) {?>
 
@@ -396,7 +396,7 @@
 
                             <select class="form-control" id="batchid2" name="batchid2" >
 
-                              <option disabled="" selected="">-- Select Batch --</option>
+                              <option selected="">-- Select Batch --</option>
 
                               <?php $batch = $teacher->get_all_batches($_SESSION['syear'],$_SESSION['branch']);  foreach ($batch as $key => $value) {?>
 

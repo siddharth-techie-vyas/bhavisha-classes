@@ -230,6 +230,19 @@ class Accounts {
             return $query; 
     }	
 
-
+    function add_course_other_fee($course,$fee_type,$amount,$preference)
+    { 
+        print_r($course);
+         $course_ids = implode(',',$course);
+         
+         $query = "insert into acc_fee_other(course,fee_type,amount,preference) Values ('$course_ids','$fee_type','$amount','$preference')" ;
+         $result = $this->db_handle->runBaseQuery($query);
+         if($result)
+                {
+                    echo "<div class='alert alert-success'>Fee Type Added Successfully !!!</div>";
+                }
+            else
+                {echo "<div class='alert alert-danger'>Something went wrong !!! Please try again !!!</div>";}
+    }
 	
 }

@@ -122,7 +122,7 @@
                         <td><?php echo $allcourses[$key]['course_name'];?></td>
                         <td><?php echo $allcourses[$key]['fee'];?></td>
                         <td>
-                            <form id="sort<?php echo $allcourses[$key]['id'];?>" name="sort<?php echo $allcourses[$key]['id'];?>" action="<?php echo $base_url.'index.php?action=course&query=sort_set'?>" method="post">
+                            <!--<form id="sort<?php echo $allcourses[$key]['id'];?>" name="sort<?php echo $allcourses[$key]['id'];?>" action="<?php echo $base_url.'index.php?action=course&query=sort_set'?>" method="post">
                             <input type="hidden" name="id" value="<?php echo $allcourses[$key]['id'];?>" />   
                             <select name="sort" onchange="form_submit3('sort<?php echo $allcourses[$key]['id'];?>')">
                                 <option value="0">0</option>
@@ -135,7 +135,7 @@
                                     }
                                 ?>
                             </select>
-                            </form>
+                            </form>-->
                             <span id="msgsort<?php echo $allcourses[$key]['id'];?>"></span>
                             
                         </td>

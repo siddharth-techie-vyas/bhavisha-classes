@@ -3,41 +3,54 @@ var base_url = 'https://www.bhavishaclasses.com/';
 var loading_img = base_url+'theme/images/loading.gif';
 function form_submit(x) 
 {
- // -- form by id   
-//alert(x);
- var form = $("#"+x);
- //alert(form.serialize);
+ /*
+        //alert(x);
+         var form = $("#"+x);
+        //alert(form.serialize);
 		$('#msg'+x).html("<div class='alert alert-warning'>Please Wait ... </div>");
-        form.hide(800);
+        //form.hide(800);
 		$.ajax({
            type: "POST",
            url: $("#"+x).attr("action"),
            data: form.serialize(),
-           success: function(data)
+           success: function(result)
            {
-               //$('#data_'+x).html("<img src='+loading_img+'>");
-               $('#msg'+x).focus(); 
+               $('#data_'+x).html("<img src='+loading_img+'>");
                $('#msg'+x).html('');  
-               $('#msg'+x).html(data);  
-                
-               $(function() {
-	   					 setTimeout(function() 
-	   					 {
-	        			 	$('#msg'+x).html("")
-	    				 }, 4500);
-                            form.show(800);
-					});
+               $('#msg'+x).html(result);  
                form.reset();
+               location.reload();
            }
-        });  
+        });  */
+        
+            let form = $("#"+x);
+            let url = form.attr('action');
+            $('#msg'+x).html("<div class='alert alert-warning'>Please Wait ... </div>");
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: form.serialize(),
+                success: function(result) {
+	        			 	$('#msg'+x).html(result);
+                            form.trigger("reset");
+                            setTimeout(function() 
+    	   					 {
+    	        			 	location.reload()
+    	    				 }, 2500);
+                },
+                /*error: function(data) {
+                     alert(data);
+                }*/
+            });
+        
 }
 
 
 //== this will hide the form and show a msg only
 function form_submit2(x) 
 {
- // -- form by id   
-//alert(x);
+ 
+ //alert(x);
  var form = $("#"+x);
  //alert(form.serialize);
         $('#msg'+x).html("Please Wait !");
@@ -46,38 +59,49 @@ function form_submit2(x)
            type: "POST",
            url: $("#"+x).attr("action"),
            data: form.serialize(),
-           success: function(data)
+           success: function(result)
            {
-               $('#msg'+x).html(data);  
+               $('#msg'+x).html(result);  
                 form.reset();
            }
         });  
-}
+ }       
 
 function form_submit3(x) 
 {
+    
  // -- form by id   
-//alert(x);
- var form = $("#"+x);
- //alert(form.serialize);
-		$('#msg'+x).html("Please Wait...");
-        $.ajax({
-           type: "POST",
-           url: $("#"+x).attr("action"),
-           data: form.serialize(),
-           success: function(data)
-           {
-               $('#msg'+x).html(data);  
-               $(function() {
-	   					 setTimeout(function() 
-	   					 {
-	        			 	$('#msg'+x).html("")
-	    				 }, 4500);
-                            
-					});
-               
-           }
-        });  
+// let form = $("#"+x);
+//             let url = form.attr('action');
+//             $('#msg'+x).html("<div class='alert alert-warning'>Please Wait ... </div>");
+//             $.ajax({
+//                 type: "POST",
+//                 url: url,
+//                 data: form.serialize(),
+//                 success: function(data) {
+// 	        			 	$('#msg'+x).html(data);
+// 	        			 },
+//                 error: function(data) {
+//                      alert(data);
+//                 }
+//             });
+
+let form = $("#"+x);
+		$.ajax({
+            type:"POST",
+            url:form.attr('action'),
+            data:form.serialize(),
+            beforeSend:function(){
+                $('#msg'+x).html("Please Wait....");
+            },success:function(response){   
+                //alert(response);
+                $('#msg'+x).html(response); 
+                $('#msg'+x).fadeOut(1000);                
+            }
+        });
+
+
+
 }
 
 
@@ -136,7 +160,8 @@ function deleteme(h,i,j)
            success: function(data)
            {
                //alert(base_url+'index.php?action='+h+'&query='+i+'&id='+j);
-               $('#'+j).hide(750); 
+               //$('#'+j).toggle(750); 
+               location.reload();
               // alert(base_url+'index.php?action='+h+'&delete='+i+'&id='+j);
            }
        }); 

@@ -14,7 +14,7 @@ class Courses {
 		$chk = "select * from courses where course_name = '$name'";
 		$result = $this->db_handle->runSingleQuery($chk);
 		
-		if(count($result) > 0)
+		if($result)
 		{
 			echo "<div class='alert alert-info'>Course is already added !!!</div>";
 			return false;
@@ -44,7 +44,7 @@ class Courses {
 		{
 			//return false;
 			echo "<div class='alert alert-info'>Subject and course combination is already exist !!!</div>";
-			return false;
+			
 		}
 		else
 		{	
@@ -572,14 +572,13 @@ class Courses {
         return $result;
 	}
 
-    function sort_update($id,$sort)
-    {
-       echo $query = "update courses SET sort='$sort' where id='$id'";
-		$result = $this->db_handle->runBaseQuery($query);
-		if($result)
-		{echo "<i class='fa fa-check'></i> Updated";}
-		else
-		{echo "<i class='fa fa-xmark'></i> Something Went Wrong";}
-    }
+    //function sort_update($id,$sort)
+    //{
+	//	$result = $this->db_handle->runBaseQuery($query);
+		//if($result)
+	//	{echo "<i class='fa fa-check'></i> Updated";}
+	//	else
+	//	{echo "<i class='fa fa-xmark'></i> Something Went Wrong";}
+    //}
 }
 ?>

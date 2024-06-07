@@ -107,9 +107,20 @@
 
                           </td>
 
-                          <td><?php  $sname  = $course->get_one($view[$k]['subject'],'id'); 
+                          <td><?php  //$sname  = $course->get_one($view[$k]['subject'],'id'); 
 
-                          echo $sname[0]['subject'];?></td>
+                          //echo $sname[0]['subject'];
+                          
+                          $cid = explode(",", $view[$k]['subject']);
+                          //print_r($cid);
+                          
+                          for($i=0;$i<=COUNT($cid);$i++)
+                          {
+                              $course_name=$course->get_one($cid[$i],'id');
+                              echo $course_name[0]['subject'].'</br>';
+                          }
+                          
+                          ?></td>
 
                           <td><?php $branch = $admin->get_branch_one($view[$k]['branch']) ; echo $branch[0]['branch_name'];?></td>
 

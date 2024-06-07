@@ -14,12 +14,26 @@ class Student {
 	   $subject2 = implode(',',$subject2);
 
 	   
-		 $query = "insert into student(uname,fname,mname,focc,mocc,address,email,contact,fcontact,mcontact,course,course2,subject,subject2,status,school,xper,xiiper,reference,dob,medium,jdate,branch,democlass,batchid,batchid2,syear,grace_period)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        $paramType = "sssssssssssssssssssssssssiii";
-        $paramValue = array($uname,$fname,$mname,$focc,$mocc,$address,$email,$contact,$fcontact,$mcontact,$course,$course2,$subject,$subject2,$status,$school,$xper,$xiiper,$reference,$dob,$medium,$jdate,$branch,$democlass,$batchid,$batchid2,$syear,$grace_period);
-        $insertId = $this->db_handle->insert($query, $paramType, $paramValue);
-        //exit();
-        return $insertId;
+		 echo $query = "insert into student(uname,fname,mname,focc,mocc,address,email,contact,fcontact,mcontact,course,course2,subject,subject2,status,school,xper,xiiper,reference,dob,medium,jdate,branch,democlass,batchid,batchid2,syear,grace_period)VALUES('$uname','$fname','$mname','$focc','$mocc','$address','$email','$contact','$fcontact','$mcontact','$course','$course2','$subject','$subject2','$status','$school','$xper','$xiiper','$reference','$dob','$medium','$jdate','$branch','$democlass','$batchid','$batchid2','$syear','$grace_period')";
+        $insertId = $this->db_handle->runSingleQuery($query);
+        
+        if(!$insertId)
+	 				{ 
+	 					// change status of lead to demo
+	 					if(isset($_GET['leadid']))
+	 					{$status_changed = $leads->change_status($_GET['leadid'],'demo');}
+
+	 					echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=lead_proceedsuccess&leadid=".$_GET['leadid']."&status=success';</script>";
+	 					//echo "<div class='alert alert-success'>Student Added Successfully !!!</div>";
+	 				}
+	 				else
+	 				{ //echo "<script>window.location.href=".$base_url."index.php?action=dashboard&page=lead_proceedsuccess&leadid=".$_GET['leadid']."&status=failed';</script>";
+	 				
+	 				    echo "<div class='alert alert-danger'>Something went wrong !!!</div>";
+	 				}
+	 				
+	 				
+        //return $insertId;
 	}
 
 
@@ -54,16 +68,18 @@ class Student {
 
 	
 
-	function check_availability($uname,$email,$contact)
+	function check_availability($email,$contact)
 	{
-		$query="select * from student where uname='$uname' OR email='$email' OR contact='$contact' ";
+		//$query="select * from student where  email='$email' OR contact='$contact' ";
+		$query="select * from student where  contact='$contact' ";
 		$result = $this->db_handle->runBaseQuery($query);
+		$result = COUNT($result);
         return $result;
 	}
 
 	function viewall($syear,$branch)
 	{
-		$query = "select * from student where syear = '$syear' AND branch='$branch' Order by id DESC";
+		 $query = "select * from student where syear = '$syear' AND branch='$branch' Order by id DESC";
 		$result = $this->db_handle->runBaseQuery($query);
         return $result;
 	}

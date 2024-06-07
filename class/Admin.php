@@ -48,23 +48,13 @@ class Admin {
         return $result;
     }
 
-	function edit_user($uname,$utype,$upass,$customer,$accounting,$factory,$inventory,$id)
+	function edit_user($uname,$upass,$utype,$email,$contact,$branch,$id)
 	{
-		//-- permission 
-		if($customer=='')
-		{$customer=0;}
-		if($accounting=='')
-		{$accounting=0;}
-		if($inventory=='')
-		{$inventory=0;}
-		if($factory=='')
-		{$factory=0;}
-
-		$query = "Update tbluser SET uname=?,upass=?,utype=?,inventory=?,customer=?,accounting=?,factory=? where id=? ";
-        $paramType = "sssiiiii";
-        $paramValue = array($uname,$upass,$utype,$inventory,$customer,$accounting,$factory,$id);
-        $insertId = $this->db_handle->update($query, $paramType, $paramValue);
-        return $insertId;
+	    
+	    	
+		$query = "Update tbluser SET uname='$uname',upass='$upass',utype='$utype',email='$email',phone='$contact',branchid='$branch' where id='$id' ";
+        $result = $this->db_handle->runSingleQuery($query);
+        return $result;	
 	}
 
 	function delete_user($id)
@@ -77,6 +67,13 @@ class Admin {
 	function get_alluser()
 	{
 		$query="select * from tbluser";
+		$result = $this->db_handle->runBaseQuery($query);
+        return $result;
+	}
+	
+	function get_alluser_ofc()
+	{
+		$query="select * from tbluser where utype != '3' ";
 		$result = $this->db_handle->runBaseQuery($query);
         return $result;
 	}

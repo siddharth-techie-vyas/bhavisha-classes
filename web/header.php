@@ -3,13 +3,16 @@
 <html>
 
 <head>
-<?php include('../session.php'); ?>
+
 
 <title>Bhavisha ERP</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet" type="text/css" href="<?php echo $base_url;?>theme/css/menu.css<?php echo "?ver=".rand();?>">
 <link rel="stylesheet" type="text/css" href="<?php echo $base_url;?>theme/plugins/fontawesome/css/all.css">
 <link rel="stylesheet" type="text/css" href="<?php echo $base_url;?>theme/css/bootstrap-3.3.2.min.css">
-<link rel="stylesheet" href="<?php echo $base_url;?>theme/css/prettify.min.css">
+
 
 <!--------- data table------>
 <link rel="stylesheet" type="text/css" href="<?php echo $base_url;?>theme/plugins/datatable/dataTables.bootstrap4.min.css">
@@ -50,8 +53,11 @@
 <script type="text/javascript" src="<?php echo $base_url;?>theme/js/Chart.js"></script>
 
 <!-- jquery and bootstrap------>
+
+
 <script src="<?php echo $base_url;?>theme/js/jquery-2.1.3.min.js"></script>
 <script src="<?php echo $base_url;?>theme/js/bootstrap-3.3.2.min.js"></script>
+<script  src="<?php echo $base_url;?>theme/js/function.js"></script>
 
 <!--- multiselect-->
 <script type="text/javascript" src="<?php echo $base_url;?>theme/js/bootstrap-multiselect.js"></script>

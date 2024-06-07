@@ -7,8 +7,10 @@
   
   html *{font-family: "Bookman Old Style Regular";}
   
-  .content{/*background: url('../images/logo_trans.png') no-repeat center fixed; */  }
-  
+  .content{/*background: url('../images/logo_trans.png') no-repeat center fixed; */  
+margin:0 1% 0 1%;
+}
+  .card-header{margin:0 1% 0 1%;}
   .brand {display:inline; padding: 2px; margin: 5px;}
   .brand img{width: auto; height: 60px;}
   .dashboard{padding: 15px;}

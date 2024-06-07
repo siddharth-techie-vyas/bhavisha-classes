@@ -1,6 +1,13 @@
 <?php 
 	$class0=$teacher->get_one_class($_GET['id']);
 ?>
+
+<link rel="stylesheet" type="text/css" href="<?php echo $base_url;?>theme/css/menu.css?ver=1808815273">
+<link rel="stylesheet" type="text/css" href="<?php echo $base_url;?>theme/plugins/fontawesome/css/all.css">
+<link rel="stylesheet" type="text/css" href="<?php echo $base_url;?>theme/css/bootstrap-3.3.2.min.css">
+
+
+
 <div class="card-header"><h4>Edit A Class</h4></div>
 <div class="card-body">
 
@@ -87,7 +94,33 @@
 
 			<div class="col-sm-6">
 				<label>Time</label>
-				<input type="time" class="form-control" name="timing" value="<?php echo $class0[0]['timing'];?>">
+				<input type="time" id="datetime" class="form-control" name="timing" value="<?php echo $class0[0]['timing'];?>">
+				
+				
+				
+				<!--<select class='form-control-sm' name='hh'>
+				    <?php for($i=0;$i<=12;$i++)
+				    {
+				        echo "<option>".$i."</option>";
+				    }
+				    
+				    ?>
+				</select>
+				
+				<select class='form-control-sm' name='ii'>
+				    <?php for($i=0;$i<=36;$i++)
+				    {
+				        echo "<option>".$i."</option>";
+				    }
+				    
+				    ?>
+				</select>
+				
+				<select class='form-control-sm' name='hh'>
+				    <option>AM</option>
+				    <option>PM</option>
+				</select>-->
+				
 			</div>	
 
 			<div class="col-sm-6">
@@ -119,3 +152,10 @@
 
 	</div>
 </div>
+
+
+
+<script src="https://www.bhavishaclasses.com/theme/js/jquery-2.1.3.min.js"></script>
+<script src="https://www.bhavishaclasses.com/theme/js/bootstrap-3.3.2.min.js"></script>
+<script  src="https://www.bhavishaclasses.com/theme/js/function.js"></script>
+ 

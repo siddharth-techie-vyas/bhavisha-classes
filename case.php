@@ -662,6 +662,17 @@ break;
  				{echo "<div class='alert alert-danger'>Something went wrong !! Please try again later !!</div>";}
  					
  			}
+ 			
+ 			if($_GET['utility']=='edit_user')
+ 			{
+ 				$edit=$admin->edit_user($_POST['uname'],$_POST['upass'],$_POST['utype'],$_POST['email'],$_POST['contact'],$_POST['branch'],$_POST['id']);
+ 				if(!$edit)
+ 				{echo "<div class='alert alert-success'>User Edit Successfully</div>";}
+ 				else
+ 				{echo "<div class='alert alert-danger'>Something went wrong !! Please try again later !!</div>";}
+ 					
+ 			}
+ 			
  			if($_GET['query']=='delete_user')
  			{
  				$delete = $admin->delete_user($_GET['id']);
@@ -797,26 +808,31 @@ break;
  			if($_GET['query']=='create_student')
  			{
 
- 				$check=$student->check_availability($_POST['uname'],$_POST['email'],$_POST['contact']);
- 				if(count($check)>0)
+ 			   $check=$student->check_availability($_POST['email'],$_POST['contact']);
+ 				
+ 			    //print_r($_POST);
+ 				
+ 				if($check>0)
  				{
- 					
- 				echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=lead_proceedsuccess&leadid=".$_GET['leadid']."&status=not_available';</script>";	
+ 				    echo "<div class='alert alert-info'>Email or Contact Number is already available.</div>";
+ 			//	echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=lead_proceedsuccess&leadid=".$_GET['leadid']."&status=not_available&count=$check';</script>";	
  				}
 				elseif($_POST['course'] == $_POST['course2'])
 				 {
-				 echo "<script>alert('Course 1 and Course 2 Cannot Be same);</script>";
-				 echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=student_createnew&status=not_available';</script>";
+				 echo "<div class='alert alert-info'>Course 1 and Course 2 Cannot Be same.</div>";
+				// echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=student_createnew&status=not_available';</script>";
 				 }
-				 elseif($_POST['subject'] == $_POST['subject2'])
+				 
+				 /*elseif($_POST['subject'] == $_POST['subject2'])
 				 {
-					echo "<script>alert('subject 1 and Subject 2 Cannot Be same);</script>";
-					echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=student_createnew&status=not_available';</script>";
-				 }
-				 elseif($_POST['bacthid'] == $_POST['batchid2'])
+					echo "<div class='alert alert-info'>Subject 1 and Subject 2 Cannot Be same.</div>";
+				 	echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=student_createnew&status=not_available';</script>";
+				 }*/
+				 
+				 elseif($_POST['batchid'] == $_POST['batchid2'])
 				 {
-					echo "<script>alert('subject 1 and Subject 2 Cannot Be same);</script>";
-					echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=student_createnew&status=not_available';</script>";
+					echo "<div class='alert alert-info'>Batch 1 and Batch 2 Cannot Be same.</div>";
+				//	echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=student_createnew&status=not_available';</script>";
 				 }
 				 
 		  
@@ -824,16 +840,8 @@ break;
  				else
  				{	
 	 				$save=$student->create_student($_POST['uname'],$_POST['fname'],$_POST['mname'],$_POST['focc'],$_POST['mocc'],$_POST['address'],$_POST['email'],$_POST['contact'],$_POST['fcontact'],$_POST['mcontact'],$_POST['course'],$_POST['course2'],$_POST['subject'],$_POST['subject2'],$_POST['status'],$_POST['school'],$_POST['xper'],$_POST['xiiper'],$_POST['reference'],$_POST['dob'],$_POST['medium'],$_POST['jdate'],$_POST['branch'],$_POST['democlass'],$_POST['batchid'],$_POST['batchid2'],$_POST['syear'],$_POST['grace_period']);
-					if($save)
-	 				{ 
-	 					// change status of lead to demo
-	 					if(isset($_GET['leadid']))
-	 					{$status_changed = $leads->change_status($_GET['leadid'],'demo');}
-
-	 					echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=lead_proceedsuccess&leadid=".$_GET['leadid']."&status=success';</script>";
-	 				}
-	 				else
-	 				{ echo "<script>window.location.href=".$base_url."index.php?action=dashboard&page=lead_proceedsuccess&leadid=".$_GET['leadid']."&status=failed';</script>";}
+	 				
+					
 	 			}
  			}
 
@@ -964,7 +972,14 @@ break;
 			if($_POST['submit']=='1') {echo "<b class='text-success'>Approved</b>";}
 			else{echo "<b class='text-danger'>Rejected</b>";}
 		}
-
+		
+		
+        if($_GET['query']=='add_course_other_fee')
+		{
+		    $course_ids=implode(",",$_POST['course']);
+			$accounts->add_course_other_fee($course_ids,$_POST['fee_type'],$_POST['amount'],$_POST['preference']);
+		}
+		
 		if($_GET['query']=='add_transaction_type')
 		{
 			$accounts->add_transaction_type($_POST['tid'],$_POST['type_name'],$_POST['type_transaction']);

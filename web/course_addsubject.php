@@ -96,9 +96,9 @@
 
                          
 
-                          <div class="col-sm-6"><input type="button" onclick="form_submit('create_subject')" class="btn btn-success btn-md" value="Save"></div>
+                          <div class="col-sm-2"><input type="button" onclick="form_submit2('create_subject')" class="btn btn-success btn-md" value="Save"></div>
 
-                          <div class="col-sm-6"><input type="reset" class="btn btn-info btn-md" value="Reset"></div> 
+                          <div class="col-sm-2"><input type="reset" class="btn btn-info btn-md" value="Reset"></div> 
 
                         </div>
 
