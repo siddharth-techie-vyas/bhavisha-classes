@@ -1,5 +1,5 @@
 //var base_url = window.location.origin;
-var base_url = 'https://www.bhavishaclasses.com/';
+var base_url = 'http://localhost/mysoftware/bhavisha-classes/';
 var loading_img = base_url+'theme/images/loading.gif';
 function form_submit(x) 
 {

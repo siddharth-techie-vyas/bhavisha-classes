@@ -3,17 +3,17 @@
   font-family: "Bookman Old Style Regular";
   src: url("Bookman Old Style Regular.ttf") format("tff");
   }
-  body{font-family: "Bookman Old Style Regular";}
+  body{font-family: "Bookman Old Style Regular"; padding:0 1% 0 1%;}
   
   html *{font-family: "Bookman Old Style Regular";}
   
   .content{/*background: url('../images/logo_trans.png') no-repeat center fixed; */  
-margin:0 1% 0 1%;
+margin:2%;
 }
   .card-header{margin:0 1% 0 1%;}
   .brand {display:inline; padding: 2px; margin: 5px;}
   .brand img{width: auto; height: 60px;}
-  .dashboard{padding: 15px;}
+  .dashboard{padding: 25px;}
 
   .login{background: url('../images/bg3.jpg');    background-position: center; 
     background-repeat: no-repeat;

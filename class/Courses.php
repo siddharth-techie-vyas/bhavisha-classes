@@ -38,9 +38,9 @@ class Courses {
 	function create_subject($name,$subject,$fee)
 	{
 		$chk = "select * from courses where course_name = '$name' AND subject='$subject'";
-		$result = $this->db_handle->runSingleQuery($chk);
+		$result = $this->db_handle->runBaseQuery($chk);
 		
-		if(count($result) > 0)
+		if($result)
 		{
 			//return false;
 			echo "<div class='alert alert-info'>Subject and course combination is already exist !!!</div>";
@@ -64,7 +64,7 @@ class Courses {
 
 	function create_chapter($course,$subject,$chapter)
 	{
-		echo $chk = "select * from courses where chapter = '$chapter' AND subject='$subject' AND course_name = '$course'";
+		$chk = "select * from courses where chapter = '$chapter' AND subject='$subject' AND course_name = '$course'";
 		$result = $this->db_handle->runSingleQuery($chk);
 		
 		if(count($result) > 0)

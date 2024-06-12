@@ -3,9 +3,45 @@
     <h4>Student Attendence</h4>
 </div>
 
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+        <form name="filer_class" id="filter_class" action="">
+
+        <div class="col-sm-3">
+		<label>Course</label>
+		<select name="course_name" class="form-control">
+			<option>-- Select --</select>
+		</select>
+	</div>
+	<div class="col-sm-3">
+		<label>Faculty</label>
+		<select name="teacherid" class="form-control">
+			<option>-- Select --</select>
+		</select>
+
+	</div>
+	<div class="col-sm-3">
+		<label>Duration</label>
+		<select name="duration" class="form-control">
+			<option>-- Select --</select>
+		</select>
+
+	</div>
+	<div class="col-sm-3"><br>
+		<input type="button" onclick="form_result('filter_class')" name="submit" value="Search" class="btn btn-sm btn-primary"/>
+	</div>
+	</form>
+
+
+        </div>
+    </div>
+</div>
+
+
 
 <div class="card-body">
-<div class="content">
+<div>
 <div class="row">
                     <div class="col-sm-12">
                     <?php $counter=1; $result = $teacher->get_list_by_teacher_id($_SESSION['branch'], $_SESSION['uid']); 

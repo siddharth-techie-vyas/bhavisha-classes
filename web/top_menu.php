@@ -47,19 +47,19 @@ display:block; }
 }
 </style>
 
-    <div class="row">
-<div class="brand pull-left">
-<img src="<?php echo $base_url.'theme/images/logo.png'?>">
-</div>
+<div class="row">
+    <div class="brand pull-left">
+        <img src="<?php echo $base_url.'theme/images/logo.png'?>">
+    </div>
 
-<div class="pull-right">
-<span class="btn btn-primary btn-xs">Welcome <?php echo $_SESSION['uname']; ?></span>&nbsp;
+    <div class="pull-right">
+        <span class="btn btn-primary btn-xs">Welcome <?php echo $_SESSION['uname']; ?></span>&nbsp;
 
-<span class="btn btn-danger btn-xs">Branch : <?php $branch0 = $admin->get_branch_one($_SESSION['branch']); echo $branch0[0]['branch_name']; ?></span>&nbsp;
+        <span class="btn btn-danger btn-xs">Branch : <?php $branch0 = $admin->get_branch_one($_SESSION['branch']); echo $branch0[0]['branch_name']; ?></span>&nbsp;
 
-<span class="btn btn-success btn-xs">Session : <?php $session0=$admin->get_session_year_one($_SESSION['syear']); echo $session0[0]['syear'];?></span>
-<h4><?php echo date("d / M / Y g:i a");?></h4>
-</div>
+        <span class="btn btn-success btn-xs">Session : <?php $session0=$admin->get_session_year_one($_SESSION['syear']); echo $session0[0]['syear'];?></span>
+        <h4><?php echo date("d / M / Y g:i a");?></h4>
+    </div>
 
 </div>
     <!------------- Navbar -------------->

@@ -94,14 +94,37 @@ if($_REQUEST['page']=='all_classes')
 
 ?>
 
+<div class='row'>
+	<form name="filer_class" id="filter_class" action="">
+	<div class="col-sm-3">
+		<label>Course</label>
+		<select name="course_name" class="form-control">
+			<option>-- Select --</select>
+		</select>
+	</div>
+	<div class="col-sm-3">
+		<label>Faculty</label>
+		<select name="teacherid" class="form-control">
+			<option>-- Select --</select>
+		</select>
 
+	</div>
+	<div class="col-sm-3">
+		<label>Duration</label>
+		<select name="duration" class="form-control">
+			<option>-- Select --</select>
+		</select>
 
-			<table class="table" id="data-table">
-
+	</div>
+	<div class="col-sm-3"><br>
+		<input type="button" onclick="form_result('filter_class')" name="submit" value="Search" class="btn btn-sm btn-primary"/>
+	</div>
+	</form>
+</div>
+<div id="msgfilter_class">
+			<table class="table table-bordered table-responsive">
 				<thead>
-
 					<tr>
-
 						<th>S.No.</th>
 
 						<th>Branch</th>
@@ -198,7 +221,7 @@ if($_REQUEST['page']=='all_classes')
 				</tbody>
 
 			</table>
-
+	</div>
 
 
 
