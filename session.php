@@ -3,6 +3,7 @@
 	/*session_save_path('/opt/alt/php74/var/lib/php/session');
     ini_set('session.gc_probability', 1);
 	*/
+
 	
 	date_default_timezone_set('Asia/Kolkata');
 	//$base_url="http://localhost/mysoftware/bhavisha-classes/";
