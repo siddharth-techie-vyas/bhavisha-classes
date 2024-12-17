@@ -79,7 +79,7 @@ ul li{margin-top:10px; display:block;}
                     }
                     ?>
                 
-                <div class='col-sm-8' style="padding:5px; margin:15px; overflow-x: scroll;" id='attendence_page'></div> 
+                <div class='col-sm-8' style="margin:15px; overflow-x: scroll;" id='attendence_page'></div> 
                     
                 
                 

@@ -6,30 +6,53 @@
 <div class="card">
     <div class="card-body">
         <div class="row">
-        <form name="filer_class" id="filter_class" action="">
+        <form name="filer_class" id="filter_class" method="" action="<?php echo $base_url.'submission/teacher.php?page=get_student_attendence_filter';?>">
 
         <div class="col-sm-3">
 		<label>Course</label>
-		<select name="course_name" class="form-control">
-			<option>-- Select --</select>
-		</select>
+		 <select class="form-control" id="courseid" name="course_name" onchange="get_details('course_name','courseid','subject')">
+                              <option disabled="" selected="">-- Select Course --</option>
+                              <?php $allcourses = $course->viewall();  foreach ($allcourses as $key => $value) {?>
+                              <option value="<?php echo $allcourses[$key]['id'];?>">
+                                <?php echo $allcourses[$key]['course_name'];?>
+                              </option>  
+                            <?php }?>
+                            </select>
 	</div>
 	<div class="col-sm-3">
 		<label>Faculty</label>
-		<select name="teacherid" class="form-control">
-			<option>-- Select --</select>
-		</select>
+		<select name="teacher"  class="form-control" >
+					<option>-- Select --</option>
+					<?php $faculty = $admin->getonetype_user('2');  
+
+						//	$user = array_unique($user0);
+							foreach($faculty as $k=>$value)
+							{
+								echo "<option value='".$faculty[$k]['id']."'>".$faculty[$k]['uname']."</option>";
+							}
+					?>
+				</select>
+
 
 	</div>
 	<div class="col-sm-3">
 		<label>Duration</label>
-		<select name="duration" class="form-control">
-			<option>-- Select --</select>
-		</select>
+		<select class="form-control" name="duration">
+					<option disabled="disabled" selected="selected">--Select--</option>
+					<?php $duration = $admin->getonetype_meta_data('class_duration');  
+
+						//	$user = array_unique($user0);
+							foreach($duration as $k=>$value)
+							{
+								echo "<option value='".$duration[$k]['meta_value2']."'>".$duration[$k]['meta_value1']." Minutes </option>";
+							}
+					?>
+				</select>
 
 	</div>
 	<div class="col-sm-3"><br>
 		<input type="button" onclick="form_result('filter_class')" name="submit" value="Search" class="btn btn-sm btn-primary"/>
+        <input type="reset" name="reset" value="Reset" class="btn btn-sm btn-warning"/>
 	</div>
 	</form>
 
@@ -43,7 +66,7 @@
 <div class="card-body">
 <div>
 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12" id='msgfilter_class'>
                     <?php $counter=1; $result = $teacher->get_list_by_teacher_id($_SESSION['branch'], $_SESSION['uid']); 
 
                         if(empty($result))

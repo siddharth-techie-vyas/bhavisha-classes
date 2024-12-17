@@ -85,8 +85,8 @@
 					    
 					                if($allbranch[$k]['utype']=='1'){$utype="Admin"; $emp='BIA';} 
 						            if($allbranch[$k]['utype']=='2'){$utype="Teacher"; $emp='BIT';} 
-            						if($allbranch[$k]['utype']=='1'){$utype="Accounts"; $emp='BIAC';}
-            						if($allbranch[$k]['utype']=='1'){$utype="Back Office"; $emp='BIB';}
+            						if($allbranch[$k]['utype']=='4'){$utype="Accounts"; $emp='BIAC';}
+            						if($allbranch[$k]['utype']=='5'){$utype="Back Office"; $emp='BIB';}
             			
 						?>
 						

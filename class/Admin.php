@@ -253,6 +253,45 @@ class Admin {
         return $result;
 	}
 
+    //-------- holidays
+    function add_holiday($date,$holiday)
+    {
+        $query = "insert into holidays(holiday_date,holiday)VALUES(?,?)";
+        $paramType = "ss";
+        $paramValue = array($date,$holiday);
+        $insertId = $this->db_handle->insert($query, $paramType, $paramValue);
+        return $insertId;        
+    }
+    function delete_holiday($id)
+    {
+        $query="delete from holidays where id='$id' ";
+		$result = $this->db_handle->runSingleQuery($query);
+        return $result;	
+    }
+    function get_holiday_this_month($month)
+    {
+        $query="select * from holidays where holiday_date LIKE '$month%'";
+		$result = $this->db_handle->runBaseQuery($query);
+        return $result; 
+    }
+    
+    function upload_files($pic)
+	{
+		$a=$pic;
+		$filename = $a['name'];
+		$tempname = $a["tmp_name"];
+		
 
+        //-- rename file
+        $temp = explode(".", $filename);
+        $newfilename = round(microtime(true)) . '.' . end($temp);
+        $folder = "./theme/images/". $newfilename;
+    
+		if (move_uploaded_file($tempname, $folder)) {
+			return $newfilename;
+		} else {
+			return 0;
+		}
+	}
 }
 

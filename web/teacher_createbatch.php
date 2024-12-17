@@ -56,11 +56,17 @@
 
 	</div>
 <hr>
+</div>
+
+<div class="card">
+	<div class="card-body">
 	<div class="row">
 		<div class="col-sm-12" id='data_batch'>
 		</div>
 	</div>
+</div>
 
+</div>
 <!-- Initialize the plugin: -->
 <script type="text/javascript">
     $(document).ready(function() {

@@ -5,8 +5,9 @@
 	*/
 	
 	date_default_timezone_set('Asia/Kolkata');
-	$base_url="http://localhost/mysoftware/bhavisha-classes/";
-    error_reporting(0);
+	//$base_url="http://localhost/mysoftware/bhavisha-classes/";
+	$base_url="https://www.bhavishaclasses.com/";
+   // error_reporting(0);
 	session_start();
 	//create a new function to check if the session variable member_id is on set
 	function logged_in() {

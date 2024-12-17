@@ -254,47 +254,15 @@ case "course":
 
 			if($_GET['query']=='create_handmade_notes_add_file')
  			{
-				$allowedExts = array("pdf", "doc", "docx");
-				$temp = explode(".", $_FILES["topic_file"]["name"]);
-				$extension = end($temp);
-				if (($_FILES["file"]["type"] == "application/pdf")
-				|| ($_FILES["file"]["type"] == "application/doc")
-				|| ($_FILES["file"]["type"] == "application/docx")
-				&& ($_FILES["file"]["size"] < 2000000)
-				&& in_array($extension, $allowedExts))
-				{
-				if ($_FILES["file"]["error"] > 0)
-					{
-					echo "Return Code: " . $_FILES["topic_file"]["error"] . "<br>";
-					}
-				else
-					{
-					echo "Upload: " . $_FILES["topic_file"]["name"] . "<br>";
-					echo "Type: " . $_FILES["topic_file"]["type"] . "<br>";
-					echo "Size: " . ($_FILES["topic_file"]["size"] / 1024) . " kB<br>";
-					echo "Temp file: " . $_FILES["topic_file"]["tmp_name"] . "<br>";
-
-					if (file_exists("../theme/images/" . $_FILES["topic_file"]["name"]))
-					{
-					echo $_FILES["topic_file"]["name"] . " already exists. ";
-					}
-					else
-					{
-					move_uploaded_file($_FILES["topic_file"]["tmp_name"],
-					"upload/" . $_FILES["topic_file"]["name"]);
-					echo "Stored in: " . "../theme/images/" . $_FILES["file"]["name"];
-					}
-					}
-				}
-				else
-				{
-				echo "Invalid file";
-				}
-
-
-
-				$save = $course->create_handmade_notes_add_file($_POST['hid'],$_FILES["topic_file"]["name"]); 
-
+ 	    	    $file = $admin->upload_files($_FILES["topic_file"]);
+ 	    	    
+ 	    	    if(!empty($file))
+			    {   
+			        $course->create_handmade_notes_add_file($_POST['hid'],$file);
+			        echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=course_homemade_notes_add&id=".$_POST['hid']."&status=success';</script>";
+			    }
+			    else
+			    {	echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=course_homemade_notes_add&id=".$_POST['hid']."&status=danger';</script>";}
 			}
 
 			if($_GET['query']=='delete_handmade_notes')
@@ -556,6 +524,10 @@ case "course":
  			{
  			    $sort_update = $course->sort_update($_POST['id'],$_POST['sort']);
  			}
+ 			
+ 			//--- delete hand made notes 
+ 			if($_GET['query']=='delete_handmade_detail_one')
+ 			{ $delete = $course->delete_handmade($_GET['id']);}
  }		
 break;
 //================= L E A D S
@@ -647,10 +619,21 @@ break;
  				{echo "<div class='alert alert-success'>Edited Successfully</div>";}
  				else
  				{echo "<div class='alert alert-danger'>Something went wrong !! Please try again later !!</div>";}
- 				 			}
-
-
-
+ 			}
+            //====== holidays
+            if($_GET['query']=='add-holiday')
+            {
+                $save=$admin->add_holiday($_POST['date'],$_POST['holiday']);
+				if($save)
+				{echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=teacher_holidays&status=1';</script>";}
+				else
+				{echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=teacher_holidays&status=2';</script>";}    
+            }
+            
+            if($_GET['query']=='delete_holiday')
+ 			{
+ 				$delete = $admin->delete_holiday($_GET['id']);
+ 			}    
  			
  			//=============== user
  			if($_GET['utility']=='create_user')
@@ -743,10 +726,23 @@ break;
 				$id_array = $_POST['student_id'];
 				$ids =  implode(",",$id_array);
 				
-				$save=$teacher->student_attendence($ids,$_POST['batch'],$_POST['teacherid'],$_POST['subjectid'],$_POST['classid'],$_POST['chapterid'],$_POST['topicid'],$_POST['remark']);
+				$save=$teacher->student_attendence($ids,$_POST['batch'],$_POST['teacherid'],$_POST['subjectid'],$_POST['classid'],$_POST['chapterid'],$_POST['topicid'],$_POST['remark'],$_POST['date']);
 				
 
 			}	
+			
+			if($_GET['query']=='student_edit_attendence')
+ 			{
+				$id_array = $_POST['student_id'];
+				$ids =  implode(",",$id_array);
+				$save=$teacher->student_edit_attendence($ids,$_POST['attid']);
+				if($save)
+				{echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=student_edit_attendence&status=1';</script>";}
+				else
+				{echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=student_edit_attendence&status=2';</script>";}
+				
+
+			}
 
  			if($_GET['query']=='create_batch')
  			{
@@ -795,6 +791,17 @@ break;
  			{
  				$delete=$teacher->delete_batch($_GET['id']);
  			}
+ 			
+ 			if($_GET['query']=='close_batch')
+ 			{
+					$id = $_POST['id'];
+ 			        $close_date = $_POST['close_date'];
+ 			        if(!empty($close_date))
+ 			        {$save = $teacher->close_batch($id,$close_date); }
+ 			        else
+ 			        {echo "<div class='alert alert-info'>Close date should not be blank !!!</div>";}
+					
+			}
 
  			
  		}
@@ -958,6 +965,11 @@ break;
 					 			    else
 					 			    {echo "<div class='alert alert-danger'>Something went wrong, Please try again later !!!</div>";}
 						        }	
+ 			}
+ 			
+ 			if($_GET['query']=='delete')
+ 			{
+ 			    $student->delete($_GET['id']);
  			}
  		}
 

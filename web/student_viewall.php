@@ -57,13 +57,17 @@
 
                       <th>Name</th>
 
-                      <th>Course Name</th>
+                      <th>Course 1</th>
 
-                      <th>Subject</th>
+                      <th>Subject 1</th>
+                      
+                      <th>Course 2</th>
+
+                      <th>Subject 2</th>
 
                       <th>Branch</th>
-                      <th>Batch</th>
-
+                      <th>Batch 1</th>
+                        <th>Batch 2</th>
                       <th>Contact</th>
 
                       <th>User ID</th>
@@ -101,6 +105,7 @@
                           if($view[$k]['ex_student']=='1'){echo ' <span class="btn btn-xs btn-info">EX</span>';}
                           ?></td>
 
+                            <!--- course 1-->
                           <td><?php  $cname  = $course->get_one($view[$k]['course'],'id'); 
 
                           echo $cname[0]['course_name'];?>
@@ -121,10 +126,30 @@
                           }
                           
                           ?></td>
+                          
+                          <!--- course 2-->
+                          <td><?php  $cname2  = $course->get_one($view[$k]['course2'],'id'); 
+
+                          echo $cname2[0]['course_name'];?>
+
+                          </td>
+
+                          <td><?php 
+                          
+                          $cid2 = explode(",", $view[$k]['subject2']);
+                          
+                          for($i=0;$i<=COUNT($cid2);$i++)
+                          {
+                              $course_name2=$course->get_one($cid2[$i],'id');
+                              echo $course_name2[0]['subject'].'</br>';
+                          }
+                          
+                          ?></td>
 
                           <td><?php $branch = $admin->get_branch_one($view[$k]['branch']) ; echo $branch[0]['branch_name'];?></td>
 
                           <td><?php $batch = $teacher->get_one_batch($view[$k]['batchid']) ; echo $batch[0]['batch_name'];?></td>
+                          <td><?php $batch2 = $teacher->get_one_batch($view[$k]['batchid2']) ; echo $batch2[0]['batch_name'];?></td>
 
                           <td><?php echo $view[$k]['contact'];?><br><?php echo $view[$k]['email'];?></td>
 
@@ -144,7 +169,7 @@
 
                             <ul class="dropdown-menu">
 
-                              <li> <a href=""  onclick="deleteme('student','delete','<?php echo $view[$k]['id']; ?>')">Delete</a> </li>
+                              <li> <a href="#"  onclick="deleteme('student','delete','<?php echo $view[$k]['id']; ?>')">Delete</a> </li>
 
                               
 

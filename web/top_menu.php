@@ -138,6 +138,9 @@ display:block; }
 <li><a href="<?php echo $base_url.'index.php?action=dashboard&page=student_createnew'; ?>">Create New</a></li>
 <li><a href="<?php echo $base_url.'index.php?action=dashboard&page=student_createex'; ?>">Enroll Exsting</a></li>
 <li><a href="<?php echo $base_url.'index.php?action=dashboard&page=student_attendence'; ?>">Attendence</a></li>
+<?php if($_SESSION['utype']=='1') {?>
+<li><a href="<?php echo $base_url.'index.php?action=dashboard&page=student_edit_attendence'; ?>">Edit / View Attendence</a></li>
+<?php } ?>
 </ul>
 </li>
 <?php }?>
@@ -173,6 +176,7 @@ display:block; }
 <li><a href="<?php echo $base_url.'index.php?action=dashboard&page=teacher_createbatch'; ?>">Create a Batch</a></li>
 <li><a href="<?php echo $base_url.'index.php?action=dashboard&page=teacher_createclass'; ?>">Create a Class</a></li>
 <li><a href="<?php echo $base_url.'index.php?action=dashboard&page=teacher_class_list'; ?>">View Class List</a></li>
+<li><a href="<?php echo $base_url.'index.php?action=dashboard&page=teacher_result_announce'; ?>">Declare result</a></li>
 <li><a href="<?php echo $base_url.'index.php?action=dashboard&page=calender'; ?>">View Schedule</a></li>
 <li><a href="<?php echo $base_url.'index.php?action=dashboard&page=teacher_holidays'; ?>">Holidays</a></li>
 

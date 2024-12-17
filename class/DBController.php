@@ -11,7 +11,7 @@ class DBController {
 
 
 
-    private $user = "u610044665_bha_user";
+  private $user = "u610044665_bha_user";
 
 
 
@@ -34,7 +34,7 @@ class DBController {
 
         date_default_timezone_set('Asia/Calcutta');
 
-     error_reporting(0);
+   // error_reporting(0);
 
 
 

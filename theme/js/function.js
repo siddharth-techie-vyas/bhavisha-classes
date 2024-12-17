@@ -1,6 +1,29 @@
 //var base_url = window.location.origin;
-var base_url = 'http://localhost/mysoftware/bhavisha-classes/';
+var base_url = 'https://www.bhavishaclasses.com/';
 var loading_img = base_url+'theme/images/loading.gif';
+
+//-- disable datepicker for previous dates
+/*$(function(){
+    var dtToday = new Date();
+    
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    
+    var maxDate = year + '-' + month + '-' + day;
+
+    // or instead:
+    // var maxDate = dtToday.toISOString().substr(0, 10);
+
+    
+    $('#date-next').attr('min', maxDate);
+});*/
+
+
 function form_submit(x) 
 {
  /*
@@ -160,7 +183,7 @@ function deleteme(h,i,j)
            success: function(data)
            {
                //alert(base_url+'index.php?action='+h+'&query='+i+'&id='+j);
-               //$('#'+j).toggle(750); 
+               $('#'+j).toggle(750); 
                location.reload();
               // alert(base_url+'index.php?action='+h+'&delete='+i+'&id='+j);
            }

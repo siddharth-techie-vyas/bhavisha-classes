@@ -33,18 +33,18 @@
                             </select>
                       </div>
 
-                      <div class="col-md-3">
-                          <label>Chapter Name</label>
-                            <select class="form-control js-example-basic-multiple w-100" name="chapter" id="chapter">
+                      <!--<div class="col-md-3">-->
+                      <!--    <label>Chapter Name</label>-->
+                      <!--      <select class="form-control js-example-basic-multiple w-100" name="chapter" id="chapter">-->
                             
-                             <option disabled="" selected="">-- Select Course --</option>
-                              <?php $allchapter = $course->viewall_chapter();  foreach ($allchapter as $key => $value) {?>
-                              <option value="<?php echo $allchapter[$key]['id'];?>">
-                                <?php echo $allchapter[$key]['chapter'];?>
-                              </option> 
-                              <?php }?>
-                            </select>
-                      </div>
+                      <!--       <option disabled="" selected="">-- Select Course --</option>-->
+                      <!--        <?php $allchapter = $course->viewall_chapter();  foreach ($allchapter as $key => $value) {?>-->
+                      <!--        <option value="<?php echo $allchapter[$key]['id'];?>">-->
+                      <!--          <?php echo $allchapter[$key]['chapter'];?>-->
+                      <!--        </option> -->
+                      <!--        <?php }?>-->
+                      <!--      </select>-->
+                      <!--</div>-->
 
 
                       <div class="col-md-1">

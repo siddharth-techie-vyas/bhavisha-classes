@@ -35,7 +35,8 @@
                         <th>Image</th>
                         <th>Student Name</th>
                         <th>Joining Date</th>
-                        <th>Current Primary Batch</th>
+                        <th>Primary Batch</th>
+                        <th>Secondary Batch</th>
                         <th>Course 1</th>
                         <th>Batch 1</th>
                         <th>Course 2</th>
@@ -60,9 +61,15 @@
                         echo "<td>".date("d-m-Y", strtotime($batch_stu[$row]['jdate']))."</td>";
                         
                         echo "<td>";
-                         //-- get alltoted batch name
+                         //-- get alltoted primary batch name
                             $batch_name = $teacher->get_one_batch($batch_stu[$row]['batchid']);
                             echo $batch_name[0]['batch_name'];
+                        echo "</td>";
+                        
+                        echo "<td>";
+                         //-- get alltoted secondary batch name
+                            $batch_name2 = $teacher->get_one_batch($batch_stu[$row]['batchid2']);
+                            echo $batch_name2[0]['batch_name'];
                         echo "</td>";
                         
                         

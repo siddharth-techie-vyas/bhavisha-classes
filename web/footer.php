@@ -155,6 +155,8 @@ $('.select2').select2();
   </div>
 </div>
 
+
+<div class='text-center col-sm-12'>Developed & Maintained by <a href="https://www.prodhyogiki.com" target="_blank">Prodhyogiki</a></div>
 </body>
 
 </html>

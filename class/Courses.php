@@ -209,7 +209,7 @@ class Courses {
 
 	function viewall_questions($tid,$qtype)
 	{
-		$query = "select * from questions where topic = '$tid' and qtype='$qtype' Order by sort DESC";
+		$query = "select * from questions where topic = '$tid' and qtype='$qtype' Order by id DESC";
 		$result = $this->db_handle->runBaseQuery($query);
         return $result;
 	}
@@ -436,7 +436,7 @@ class Courses {
 
 	function get_assessment_details_papers($id)
 	{
-		$query = "select * from assessment_pdf where id = $id";
+	echo	$query = "select * from assessment_pdf where id = $id";
 		$result = $this->db_handle->runBaseQuery($query);
 		return $result;
 	}
@@ -560,17 +560,23 @@ class Courses {
 	{
 			$query = "insert into handmade_notes_detail(hid,file_upload)VALUES(?,?)";
 	        $paramType = "is";
-	        $paramValue = array($$hid,$file);
+	        $paramValue = array($hid,$file);
 	        $insertId = $this->db_handle->insert($query, $paramType, $paramValue);
 	       	return $insertId;
 	}
-
 	function get_one_handmade_notes_content($hid)
 	{
 		 $query = "select * from handmade_notes_detail where hid='$hid'";
 		$result = $this->db_handle->runBaseQuery($query);
         return $result;
 	}
+
+    function delete_handmade($id)
+    {
+        $query = "delete from handmade_notes_details where id = '$id'";
+		$result = $this->db_handle->runSingleQuery($query);
+        return $result;        
+    }
 
     //function sort_update($id,$sort)
     //{

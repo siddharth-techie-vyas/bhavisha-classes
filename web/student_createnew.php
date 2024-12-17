@@ -137,7 +137,7 @@
                           <label class="col-sm-3 col-form-label">Course <span class='text-danger'>*</span></label>
                           <div class="col-sm-9">
                            <select class="form-control" id="courseid" name="course" onchange="get_details('course_name','courseid','subject')" required>
-                              <option disabled="" selected="">-- Select Course --</option>
+                              <option  selected="">-- Select Course --</option>
                               <?php $allcourses = $course->viewall();  foreach ($allcourses as $key => $value) {?>
                               <option value="<?php echo $allcourses[$key]['id'];?>">
                                 <?php echo $allcourses[$key]['course_name'];?>
@@ -166,7 +166,7 @@
                           <label class="col-sm-3 col-form-label">Batch <span class='text-danger'>*</span></label>
                           <div class="col-sm-9">
                             <select class="form-control" id="batchid" name="batchid" required>
-                              <option disabled="" selected="">-- Select Batch --</option>
+                              <option  selected="">-- Select Batch --</option>
                               <?php $batch = $teacher->get_all_batches($_SESSION['syear'],$_SESSION['branch']);  foreach ($batch as $key => $value) {?>
                               <option value="<?php echo $batch[$key]['id'];?>">
                                 <?php echo $batch[$key]['batch_name'];?>
@@ -187,7 +187,7 @@
                           <label class="col-sm-3 col-form-label">Course 2</label>
                           <div class="col-sm-9">
                            <select class="form-control" id="course2" name="course2"  onchange="get_details2('course_name','course2','subject','subject2')">
-                              <option disabled="" selected="">-- Select Course --</option>
+                              <option selected="">-- Select Course --</option>
                               <?php $allcourses = $course->viewall();  foreach ($allcourses as $key => $value) {?>
                               <option value="<?php echo $allcourses[$key]['id'];?>">
                                 <?php echo $allcourses[$key]['course_name'];?>
@@ -223,7 +223,7 @@
                           <label class="col-sm-3 col-form-label">Batch 2</label>
                           <div class="col-sm-9">
                             <select class="form-control"  name="batchid2" >
-                              <option disabled="" selected="">-- Select Batch --</option>
+                              <option selected="">-- Select Batch --</option>
                               <?php $batch = $teacher->get_all_batches($_SESSION['syear'],$_SESSION['branch']);  foreach ($batch as $key => $value) {?>
                               <option value="<?php echo $batch[$key]['id'];?>">
                                 <?php echo $batch[$key]['batch_name'];?>
@@ -404,7 +404,7 @@
                         <div class="form-group row">
                         <div class="col-sm-6"></div>
                           <div class="col-sm-3"><input type="reset" class="btn btn-info btn-lg" value="Reset"></div>
-                          <div class="col-sm-3"><input type="button" onclick="form_submit3('create_student')" class="btn btn-success btn-lg" value="Varify" id="submit_check"></div>
+                          <div class="col-sm-3"><input type="button" onclick="form_submit('create_student')" class="btn btn-success btn-lg" value="Varify" id="submit_check"></div>
                           
                         </div>
                       </div>

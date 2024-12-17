@@ -10,7 +10,7 @@ class Teacher {
 
     function get_all_classes($syear,$branchid)
     {
-        $query="select * from class_schedule where branchid='$branchid' AND syear='$syear' Order by id DESC";
+        $query="select * from class_schedule where branchid='$branchid' AND syear='$syear' AND status='0' Order by id DESC";
         $result = $this->db_handle->runBaseQuery($query);
         return $result;
     }
@@ -133,12 +133,31 @@ class Teacher {
         return $result;
     }   
 
+
+    //-- get all on going batches
     function get_all_batches($syear,$branch)
     {
-        $query="select * from batch where branch='$branch' AND session='$syear' ORDER by id DESC ";
+        $query="select * from batch where branch='$branch' AND session='$syear' AND status='0' ORDER by id DESC ";
         $result = $this->db_handle->runBaseQuery($query);
         return $result;
     } 
+    //-- get all on going awaited
+      function get_all_batches_awaited($syear,$branch)
+    {
+        $query="select * from batch where branch='$branch' AND session='$syear' AND status='1' ORDER by id DESC ";
+        $result = $this->db_handle->runBaseQuery($query);
+        return $result;
+    } 
+    
+    //-- get all on going closed
+      function get_all_batches_completed($syear,$branch)
+    {
+        $query="select * from batch where branch='$branch' AND session='$syear' AND status='2' ORDER by id DESC ";
+        $result = $this->db_handle->runBaseQuery($query);
+        return $result;
+    } 
+    
+    
 
     function get_student_count_in_batch($batchid)
     {
@@ -166,11 +185,48 @@ class Teacher {
         //$query="select * from class_schedule where branchid ='$branchid' OR teacherid='$teacherid' OR duration='$duration' Order by timing";
          
          
-         
+        
         $dataarray=array("branchid"=>$branchid,"teacherid "=>$teacher,"duration"=>$duration);
         
         $data=array_filter($dataarray);
-       
+
+        
+
+        $output = implode(', ', array_map(
+            function ($v, $k) { return sprintf("%s='%s'", $k, $v); },
+            $data,
+            array_keys($data)
+        ));
+        
+       $output = str_replace(","," AND ",$output);
+
+        if(empty($output))
+        { $query = "select * from `class_schedule` where status='0' "; }
+        else
+        {$query = "select * from `class_schedule` where $output  AND status='0'";}
+       // echo $query;
+        
+        $result = $this->db_handle->runBaseQuery($query);
+        return $result;
+    }
+    
+    function get_list_by_teacher_id($branchid,$teacherid)
+    {
+        $query="select * from class_schedule where branchid ='$branchid' AND teacherid='$teacherid' AND status='0' Order by timing";
+        if($_SESSION['uid']=='1')
+        {
+            $query="select * from class_schedule where branchid ='$branchid' Order by timing";    
+        }
+        $result = $this->db_handle->runBaseQuery($query);
+        return $result;
+    }
+
+    function get_list_by_teacher_id_filter($branchid,$teacherid,$course,$duration)
+    {
+    	 $dataarray=array("branchid"=>$branchid,"teacherid "=>$teacherid,"courseid"=>$course,"duration"=>$duration);
+        
+        
+        $data=array_filter($dataarray);
        
         $output = implode(', ', array_map(
             function ($v, $k) { return sprintf("%s='%s'", $k, $v); },
@@ -181,22 +237,10 @@ class Teacher {
         $output = str_replace(","," AND ",$output);
 
         if(empty($output))
-        { $query = "select * from `class_schedule`  "; }
+        { $query = "select * from class_schedule where branchid ='$branchid'"; }
         else
-        {$query = "select * from `class_schedule` where $output  ";}
+        {$query = "select * from class_schedule where branchid ='$branchid' AND $output  ";}
         
-        
-        $result = $this->db_handle->runBaseQuery($query);
-        return $result;
-    }
-    
-    function get_list_by_teacher_id($branchid,$teacherid)
-    {
-        $query="select * from class_schedule where branchid ='$branchid' AND teacherid='$teacherid' Order by timing";
-        if($_SESSION['uid']=='1')
-        {
-            $query="select * from class_schedule where branchid ='$branchid' Order by timing";    
-        }
         $result = $this->db_handle->runBaseQuery($query);
         return $result;
     }
@@ -260,19 +304,33 @@ class Teacher {
         return $result;
 
     }
-
-    function student_attendence($ids,$batch,$teacherid,$subjectid,$classid,$chapterid,$topicid,$remark)
+    
+    function get_class_student_forattendence($id,$subject)
     {
-        $date = date('Y-m-d h:i:s');
-        $date_now = date('Y-m-d');
+        $query="select * from class_schedule where id = '$id' ";
+        $result = $this->db_handle->runBaseQuery($query);
+        //-- get student
+         $query="select * from student where syear = '".$_SESSION['syear']."' AND '".$result[0]['batchid']."' IN (batchid, batchid2) AND FIND_IN_SET($subject, subject) ORDER BY uname ASC";
+        $result = $this->db_handle->runBaseQuery($query);
+        return $result;
+
+    }
+
+    function student_attendence($ids,$batch,$teacherid,$subjectid,$classid,$chapterid,$topicid,$remark,$date)
+    {
+        /*$date = date('Y-m-d h:i:s');
+        $date_now = date('Y-m-d');*/
+        
         //-- check by date if already added
-        $query0="select * from student_attendence where teacherid='$teacherid' AND subjectid='$subjectid' AND batch='$batch' AND date_time LIKE '%$date_now%' AND classid='$classid' ";
+        //$query0="select * from student_attendence where teacherid='$teacherid' AND subjectid='$subjectid' AND batch='$batch' AND date_time LIKE '%$date_now%' AND classid='$classid' ";
+        
+        $query0="select * from student_attendence where teacherid='$teacherid' AND subjectid='$subjectid' AND batch='$batch' AND date_time LIKE '%$date%' AND classid='$classid' ";
         $result0 = $this->db_handle->runBaseQuery($query0);
         
         if(count($result0)<1)
 				{
                     
-                    echo $query="insert into student_attendence(stu_ids,batch,session,added_by,date_time,teacherid,subjectid,classid,chapterid,topicid,remark)Values('$ids','$batch','".$_SESSION['syear']."','".$_SESSION['uid']."','$date','$teacherid','$subjectid','$classid','$chapterid','$topicid','$remark')";
+                     $query="insert into student_attendence(stu_ids,batch,session,added_by,date_time,teacherid,subjectid,classid,chapterid,topicid,remark)Values('$ids','$batch','".$_SESSION['syear']."','".$_SESSION['uid']."','$date','$teacherid','$subjectid','$classid','$chapterid','$topicid','$remark')";
                     $result = $this->db_handle->runSingleQuery($query);
                     
 					echo "<div class='alert alert-success'>Attendence Saved Successfully</div>";
@@ -285,6 +343,14 @@ class Teacher {
 				}
     }
     
+    function student_edit_attendence($ids,$attid)
+    {
+        $query = "update student_attendence SET stu_ids='$ids' where id = '$attid' ";
+      
+        $result = $this->db_handle->runSingleQuery($query);
+        return $result;
+    }
+    
     function check_attendence($batchid,$subjectid,$teacherid,$stuid,$classid)
     {
         $date_now = date('Y-m-d');
@@ -294,11 +360,28 @@ class Teacher {
         return $result0;
     }
     
+     function check_attendence_foredit($batchid,$subjectid,$teacherid,$stuid,$classid,$date)
+    {
+        //-- check by date if already added
+        $query0="select * from student_attendence where teacherid='$teacherid' AND subjectid='$subjectid' AND batch='$batchid' AND date_time LIKE '%$date%' AND find_in_set('$stuid',stu_ids) AND classid='$classid'  ";
+        $result0 = $this->db_handle->runBaseQuery($query0);
+        return $result0;
+    }
+    
     function get_attendence_details($class_id)
     {
         $date_now = date('Y-m-d');
         //-- check by date if already added
         $query0="select * from student_attendence where classid='$class_id' AND date_time LIKE '%$date_now%' ";
+        $result0 = $this->db_handle->runBaseQuery($query0);
+        return $result0;
+    }
+    
+   function get_attendence_details_for_edit($class_id,$date)
+    {
+        $date_now = $date;
+        //-- check by date if already added
+        echo $query0="select * from student_attendence where classid='$class_id' AND date_time LIKE '%$date_now%' ";
         $result0 = $this->db_handle->runBaseQuery($query0);
         return $result0;
     }
@@ -354,7 +437,36 @@ class Teacher {
         $result0 = $this->db_handle->runBaseQuery($query0);
         return $result0;
     }
-
+    
+    function close_batch($id,$close_date)
+    {
+        $query = "update batch SET close_date='$close_date', status='1' where id = '$id' ";
+        $result = $this->db_handle->runSingleQuery($query);
+        if(!$result)
+        {
+            //-- set status 1 to all classes of this batch
+             $query = "update class_schedule SET status='1' where batchid = '$id' ";
+                 $result = $this->db_handle->runSingleQuery($query);
+            
+            
+            echo "<div class='alert alert-success'>Status Changed to RESULT AWAITED !!!</div>";
+            echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=teacher_createbatch';</script>";
+        }
+        else
+        {echo "<div class='alert alert-success'>Something Wrong !!!</div>";}
+        
+    }
+    
+    function get_attendece_details_one($date,$batch,$subject,$teacher)
+    {
+        if(empty($date) ||empty($batch) ||empty($subject) ||empty($teacher)) 
+        {echo "<div class='alert alert-info'>All Fields are Mendetory !!!</div>";}
+        $query0="select * from student_attendence where date_time LIKE '$date%' AND subjectid='$subject' AND teacherid='$teacher'   ";
+        $result0 = $this->db_handle->runBaseQuery($query0);
+        if(count($result0)<1)
+        {echo "<div class='alert alert-info'>No Data Found !!!</div>";}
+        else {return $result0;}
+    }
 }    
 
  

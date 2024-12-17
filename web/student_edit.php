@@ -228,7 +228,7 @@
 
                            <select class="form-control" id="courseid" name="course" onchange="get_details('course_name','courseid','subject')">
 
-                              <option disabled="" selected="">-- Select Course --</option>
+                              <option selected="">-- Select Course --</option>
 
                               <?php $allcourses = $course->viewall();  foreach ($allcourses as $key => $value) {?>
 
@@ -426,7 +426,7 @@
 
                             <div class="form-group row">
 
-                              <label class="col-sm-3 col-form-label">School</label>
+                              <label class="col-sm-3 col-form-label">School / College</label>
 
                               <div class="col-sm-9">
 
@@ -508,7 +508,7 @@
 
                           <div class="col-sm-9">
 
-                            <input type="email" name="email" class="form-control" value="<?php echo $edit[0]['email'];?>" required/>
+                            <input type="email" name="email" class="form-control" value="<?php echo $edit[0]['email'];?>" />
 
                           </div>
 

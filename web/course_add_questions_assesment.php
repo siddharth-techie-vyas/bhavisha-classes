@@ -2,6 +2,9 @@
 
                                     $sname = $course->get_one($topic[0]['subject'],'id'); 
                                     $sname = $sname[0]['subject'];
+                                    
+                                     $Chapter = $course->get_one($topic[0]['chapter'],'id'); 
+                                     $Chapter = $Chapter[0]['chapter'];
                                   
       $level = $admin->getonetype_meta_data('topic_level');
       $qused = $admin->getonetype_meta_data('question_used');  
@@ -16,7 +19,7 @@
 </style>
 
 <div class='card-header'>
-                        <h4>Add New Question for Topic :- <?php echo $topic[0]['topic'].' ( '.$sname.' ) ';?></h4>
+                        <h4>Add New Question for :- <?php echo '( Subject :- '.$sname.' ) '.' ( Chapter :- '.$Chapter.' ) (Topic :-'.$topic[0]['topic'].' )';?></h4>
                     </div>
 
 <div class="row">
@@ -68,7 +71,7 @@
                                     <input type="hidden" name="qtype" value="1">
                                   <div id="addmore_fill"></div>
                                   <input type="button" name="fill_btn"  class="btn btn-xs btn-warning" value="Add Questions" id="fill_btn">
-                                  <input type="button" id="save_fill" onclick="form_submit('create_fill')" class="btn btn-success btn-xs" value="Save Fill In the Blank Questions">
+                                  <input type="button" onclick="form_submit('create_fill')" id="save_fill" class="btn btn-success btn-xs" value="Save Fill In the Blank Questions">
 
                                   <a href="<?php echo $base_url.'theme/images/fill_data.csv'?>" class="btn btn-xs btn-primary">Download CSV</a>
 

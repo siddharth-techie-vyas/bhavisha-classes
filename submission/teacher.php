@@ -1,10 +1,39 @@
+
+<link rel="stylesheet" type="text/css" href="https://www.bhavishaclasses.com/theme/plugins/datatable/dataTables.bootstrap4.min.css">
 <?php 
 include('class_calls.php');
 
 if($_REQUEST['page']=='all_batch')
 
 {?>
+<!-- <div class='row'>
+	<form name="filer_class" id="filter_class" action="">
+	<div class="col-sm-3">
+		<label>Course</label>
+		<select name="course_name" class="form-control">
+			<option>-- Select --</select>
+		</select>
+	</div>
+	<div class="col-sm-3">
+		<label>Faculty</label>
+		<select name="teacherid" class="form-control">
+			<option>-- Select --</select>
+		</select>
 
+	</div>
+	<div class="col-sm-3">
+		<label>Duration</label>
+		<select name="duration" class="form-control">
+			<option>-- Select --</select>
+		</select>
+
+	</div>
+	<div class="col-sm-3"><br>
+		<input type="button" onclick="form_result('filter_class')" name="submit" value="Search" class="btn btn-sm btn-primary"/>
+	</div>
+	</form>
+</div> -->
+<div id="msgfilter_class">
 
 <table class="table" id="data-table">
 
@@ -23,7 +52,7 @@ if($_REQUEST['page']=='all_batch')
 						<th>Starts From</th>
 						<th># As Batch 1</th>
 						<th># As Batch 2</th>
-						<th>Utility</th>
+						<th colspan='2'>Utility</th>
 
 					</tr>
 
@@ -70,9 +99,16 @@ if($_REQUEST['page']=='all_batch')
 								<td>
 									<a class='btn btn-sm btn-success' href="<?php echo $base_url.'index.php?action=dashboard&page=teacher_createbatch2&id='.$classes[$k]['id'];?>"><i class="fa fa-user-plus fa-2x"></i>  </a>
 
-									<span class='btn btn-xs btn-danger' onclick="deleteme('teacher','delete_batch','<?php echo $classes[$k]['id'];?>')"><i class="fa fa-trash" ></i></span> 
+									<span class='btn btn-xs btn-primary' onclick="show_page_model('index.php?action=nocss_pages&page=teacher_batch_allstudent&id=<?php echo $classes[$k]['id'];?>')" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye" ></i></span> 
+									
 									
 									<span class='btn btn-xs btn-warning' onclick="show_page_model('index.php?action=nocss_pages&page=teacher_batch_edit&id=<?php echo $classes[$k]['id'];?>')" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil" ></i></span> 
+									
+								</td>	
+								<td>	
+									<span class='btn btn-xs btn-danger' onclick="deleteme('teacher','delete_batch','<?php echo $classes[$k]['id'];?>')"><i class="fa fa-trash" ></i></span> 
+									
+									<a class='btn btn-xs btn-info' href="<?php echo $base_url.'index.php?action=dashboard&page=teacher_closebatch&id='.$classes[$k]['id'];?>" alt="Close Batch"><i class="fa fa-xmark"></i>  </a>
 								</td>	
 								
 
@@ -83,7 +119,7 @@ if($_REQUEST['page']=='all_batch')
 				</tbody>
 
 			</table>
-
+</div>
 <?php }
 
 
@@ -317,12 +353,12 @@ if($_REQUEST['page']=='class_list')
 
 <?php } if($_REQUEST['page']=='student_attendence'){
                     $class_id=$_REQUEST['id'];
-                    $result=$teacher->get_class_student($class_id);
+                    
                     $counter=1;
                     
 //-- get class details from class_schedule
 $class_details = $teacher->get_one_class($class_id);
-
+$result=$teacher->get_class_student_forattendence($class_id,$class_details[0]['subjectid']);
 
 echo "<div id='student_data'>";
 echo "<div id='msgstudent_attendence'></div>";
@@ -333,6 +369,7 @@ echo "<input type='hidden' name='teacherid' value='".$class_details[0]['teacheri
 echo "<input type='hidden' name='classid' value='".$class_id."'/>";
 
 $att_details = $teacher->get_attendence_details($class_id,$class_details[0]['subjectid'],$class_details[0]['teacherid']);
+echo '<div class="">';
 echo "<table class='table'>";
 ?>
 <tr>
@@ -359,32 +396,46 @@ echo "<table class='table'>";
                           
 
     </td>
+    <td><label>Date Of Attendence</label>
+    <input type="date" name="date" value="<?php echo date("Y-m-d");?>" class="form-control" <?php if($_SESSION['utype'] != '1'){?>readonly="readonly"<?php }?> />
+    </td>
     <td>
         <label>Remark</label>
         <input type='text' name='remark' class='form-control' value='<?php echo $att_details[0]['remark']; ?>'/>
     </td>
+</tr>
+<tr>
 <?php
 if(count($att_details)<1){
 ?>
-
-    <td><br><input type='button' name='submit' class='btn btn-md btn-primary' onclick="form_submit2('student_attendence')" value="Save Student Attendence for <?php echo date('d-m-Y');?>" /></td></tr>
+    <td><br><input type='button' name='submit' class='btn btn-md btn-primary' onclick="form_submit2('student_attendence')" value="Save Student Attendence" /></td></tr>
 <?php
 }
 else
 {?>
-<td><br><input type='button' name='submit' class='btn btn-md btn-success' onclick="form_submit2('student_attendence')" value="Update Student Attendence for <?php echo date('d-m-Y');?>" /></td>
+<td><br><input type='button' name='submit' class='btn btn-md btn-success' onclick="form_submit2('student_attendence')" value="Update Student Attendence" /></td>
 <?php 
 }?>
 </tr>
 <?php
+echo "</table>";
+echo "<table class='table table-bordered'>";
 echo "<tr>";
+echo "<th>S.No.</th>";
 echo "<th>Not Available / Available</th>";
 echo "<th>Student Name</th>";
 echo "<th>Registration #</th>";
+if($_SESSION['uid']=='1')
+		{echo "<th>Activation</th>";}
 echo "</tr>";
+$sno=1;
 foreach($result as $k => $value)
 {	
-	echo "<tr><td>";?>
+	echo "<tr>";
+echo "<td>".$sno++."</td>";
+	echo "<td>";
+
+	?>
                         <label class="switch">
                         <?php 
                         //-- check from attendence checked or not
@@ -407,10 +458,23 @@ foreach($result as $k => $value)
 	echo "</td>";
 	echo "<td>".$result[$k]['uname'].'</td>';
 	echo "<td>#BHA00".$result[$k]['id'].'</td>';
+	//activation shortcut for batch
+	if($_SESSION['uid']=='1')
+		{echo "<td>";
+
+// 		echo "<select class='form-control'>";
+// 		echo "<option disabled='disbaled'>-- Select --</option>";
+// 		echo "<option value='1'>Active</option>";
+// 		echo "<option value='0'>In Active</option>";
+// 		echo "</select>";
+	echo "</td>";}
+
+
 	echo "</tr>";
 	$counter++;
 }
 echo "</table>";
+echo "</div>";
 echo "</form>";
 
 echo "</div>";
@@ -543,6 +607,9 @@ if($_REQUEST['page']=='daily_dose')
 //--- student report
 if($_REQUEST['page']=='student_report')
 {
+
+	
+	
 	$counter =1; 
 	
 	$monthNum  = date('m');
@@ -551,9 +618,15 @@ if($_REQUEST['page']=='student_report')
 	//-- get month days
 	$d=cal_days_in_month(CAL_GREGORIAN,$monthNum,date('Y'));
 	$colspan = $d+2;
+	
+	
 	//-- get month
+	echo "<span class='bg-danger' style='padding:5px;'>Holiday</span>";
+	echo "<span class='bg-info' style='padding:5px;'>Sunday</span>";
+	
     echo "<table class='table table-bordered'>";
     echo "<tr><th colspan='".$colspan."' style='text-align:center; font-size:16px;'>'".$monthName." ".date('Y')." Attendence'</th></tr>";
+    
     echo "<tr>";
     	echo "<th>S.No.</th>";
     	echo "<th>Name</th>";
@@ -569,6 +642,9 @@ if($_REQUEST['page']=='student_report')
     	echo "<tr>";
     		echo "<th>".$counter++."</th>";
     		echo "<th>".$result[$row]['uname'].'</th>';
+			//-- get attendece
+			$attendece=$student->attendece_month($result[$row]['id'],$monthNum,$_REQUEST['id']);
+			//echo "<th>".$attendece)."</th>";
     	echo "</tr>";
     }
     echo "</table>";
@@ -682,9 +758,122 @@ if($_REQUEST['page']=='student_report')
 
 
 
+<?php }if($_REQUEST['page']=='get_student_attendence_filter') {
+    
+    
+    
+                        $counter=1; 
+                        $result = $teacher->get_list_by_teacher_id_filter($_SESSION['branch'], $_POST['teacher'],$_POST['course_name'],$_POST['duration']); 
+
+                        if(empty($result))
+                        {
+                            echo "<div class='alert alert-info'><h4>No class has been alloted. !!!</h4></div>";
+                        }
+                                
+                     foreach($result as $k => $value)
+                            {
+                            $randcolor = str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT);
+                            $time = date("d-m-Y H:i:s", strtotime($result[$k]['timing']));
+                            $cname=$course->get_one($result[$k]['courseid'],'id'); 
+                            $cname = $cname[0]['course_name'];
+                            
+                            $batch = $teacher->get_batch_details($result[$k]['batchid']);
+                            $batch = $batch[0]['batch_name'];
+                            
+                            $sname=$course->get_one($result[$k]['subjectid'],'id'); 
+                            $sname=$sname[0]['subject'];
+                            
+                            $minutes=$result[$k]['duration'].' Minutes';
+                            
+                            $teachername = $admin->getone_user($result[$k]['teacherid']);
+                            ?>
+                            <div class="col-sm-3" style="  padding:10px;">
+                                <div style="text-align:left; padding-left:10px; border:2px solid #d8d8d8; border-radius:2px;">
+                                    <a href="<?php echo $base_url.'index.php?action=dashboard&page=student_attendence2&id='.$result[$k]['id']; ?>" style="text-decoration:none; color:#000;">
+                                    <h4><?php echo 'Lecture '.$counter++;?></h4>
+                                    <?php echo '<b>Batch</b> : '.$batch;?><br>
+                                    <?php echo '<b>Course</b> : '.$cname;?><br>
+                                    <?php echo '<b>Subject</b> : '.$sname;?><br>
+                                    <?php echo '<b>Time</b> : '.$result[$k]['timing'];?> To <?php $time2 = strtotime(''.$time.' + '.$result[$k]['duration'].' minute'); echo date("H:i:s", $time2);?><br>
+                                    <?php echo '<b>Duration</b> : '.$minutes.' Minutes';?><br>
+                                    <?php echo '<b>Teacher</b> : '.$teachername[0]['uname'];?>
+                                    </a>
+                                 </div>   
+                            </div>    
+                            
+                            
+                            <?php }
+                            ?>
 <?php }?>
 
-<?php include('../web/footer.php');
 
+
+<!---------- close batch page-------->
+<?php if($_REQUEST['page']=='close_batch') { 
+    
+$batchd=$teacher->get_one_batch($_POST['id']);
+
+
+//--batch details table
+echo "<span id='msgclose_batch_status'></span>";
 ?>
+<form method='post' action="<?php echo $base_url;?>index.php?action=teacher&query=close_batch" name='close_batch_status' id='close_batch_status'>
+<?php
+echo "<table class='table'>";
+echo "<tr>";
+        echo "<th>Nu Of Days Till Today</th>";
+        echo "<th>Attendence</th>";
+        echo "<th>Subject</th>";
+        echo "<th>Duration</th>";
+echo "</tr>";
+echo "<tr>";
+        echo "<td>".date('d-m-Y',strtotime($batchd[0]['start_date']))."</td>";
+        echo "<td></td>";
+        echo "<td></td>";
+        echo "<td></td>";
+echo "</tr>";
+echo "<tr>";
+    echo "<th></th>";
+    echo "<th><label>Change Status</label><select class='form-control' name='status'><option disabled='disabled'>--Select--</option><option value='1'>Result Awaited</option></select></th>";
+    echo "<td><label>Close Date</label><input type='date' name='close_date' class='form-control' required></td>";?>
+    <td>
+        <input type='hidden' name='id' value='<?php echo $batchd[0]['id'];?>'>
+        <input type='button' name='close_btn' value='Close Batch' class='btn btn-success' onclick="onConfirm()" ></td>
+    <script>
+    function onConfirm()
+    {
+        if (!confirm('Are you sure? Your action will not resume after click OK !!!')) 
+          {}
+        else
+            form_result('close_batch_status');
+    
+    };
+    </script>
+    <?php
+echo "</tr>";
+echo "</table>";
 
+}?>
+
+
+
+
+
+
+
+<?php //include('../web/footer.php');?>
+
+
+
+<script type="text/javascript" src="https://www.bhavishaclasses.com/theme/plugins/datatable/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+
+    $('#data-table').DataTable();
+
+
+} );
+
+</script>
