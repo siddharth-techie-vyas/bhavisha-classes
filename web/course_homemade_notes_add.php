@@ -80,14 +80,21 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
                                                       </div>
                                                       <div class="col-md-8">                                
                                                                       <label>Description</label>                                    
-                                                                      <textarea name="tcontent" id="editor55"></textarea>
-                                                                      <script type="text/javascript">
+                                                                      <textarea name="tcontent" class="editor1" id="editor55"></textarea>
+                                                                      <!-- <script type="text/javascript">
                                                                             $(document).ready(function() {
                                                                                        ck_config('editor55');
                                                                                       }
                                                                             
                                                                             });
-                                                                    </script>
+                                                                    </script> -->
+
+                                                                    <script>
+    $('.editor1').each(function () {
+        CKEDITOR.replace($(this).prop('id'));
+    });
+</script>
+
                                                       </div>
                                               </div>
                       
