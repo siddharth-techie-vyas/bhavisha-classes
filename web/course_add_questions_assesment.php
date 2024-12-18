@@ -423,7 +423,9 @@ $(add_button).click(function(e)
           //  ck_config('editor1'+x+'');
           //  ck_config('editor2'+x+'');
          
-        
+          $('.editor_all').each(function () {
+        CKEDITOR.replace($(this).prop('id'));
+    });
 
         }
       
