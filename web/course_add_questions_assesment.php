@@ -463,13 +463,16 @@ $(add_button).click(function(e)
     e.preventDefault();
     if(x < max_fields){ 
         x++; 
-    $(wrapper).append('<div id="addmore_short'+x+'"  class="row"><hr><div class="col-sm-12"><h4>Short Question '+x+'</h4></div><div class="col-sm-4"><label>Question</label><textarea class="form-control" name="part1[]" id="editor12'+x+'" ></textarea></div> <div class="col-sm-8"><label>Solution</label><textarea class="form-control" name="solution[]" id="editor11'+x+'" ></textarea></div><div class="col-sm-12"><div class="col-sm-4"><label>Level</label><select class="form-control" name="level[]"><option disabled="" selected="">--Select--</option><?php foreach ($level as $key => $value) { ?><option value="<?php echo $level[$key]['meta_value2'];?>"><?php echo $level[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-4"><label>Used For</label><select class="form-control" name="qused[]"><option disabled="" selected="">--Select--</option><?php foreach ($qused as $key => $value) { ?><option value="<?php echo $qused[$key]['meta_value2'];?>"><?php echo $qused[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-3"><label>Marks</label><input type="number" min="0" max="100" name="marks[]" class="form-control"/></div><div class="col-sm-1"><input type="button" onclick=removeme("addmore_short'+x+'") class="btn btn-xs btn-danger" value="X"></div></div></div></hr></div>'); 
+    $(wrapper).append('<div id="addmore_short'+x+'"  class="row"><hr><div class="col-sm-12"><h4>Short Question '+x+'</h4></div><div class="col-sm-4"><label>Question</label><textarea class="form-control" name="part1[]" id="editor12'+x+'" class="editor_all"></textarea></div> <div class="col-sm-8"><label>Solution</label><textarea class="form-control" name="solution[]" id="editor11'+x+'" class="editor_all"></textarea></div><div class="col-sm-12"><div class="col-sm-4"><label>Level</label><select class="form-control" name="level[]"><option disabled="" selected="">--Select--</option><?php foreach ($level as $key => $value) { ?><option value="<?php echo $level[$key]['meta_value2'];?>"><?php echo $level[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-4"><label>Used For</label><select class="form-control" name="qused[]"><option disabled="" selected="">--Select--</option><?php foreach ($qused as $key => $value) { ?><option value="<?php echo $qused[$key]['meta_value2'];?>"><?php echo $qused[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-3"><label>Marks</label><input type="number" min="0" max="100" name="marks[]" class="form-control"/></div><div class="col-sm-1"><input type="button" onclick=removeme("addmore_short'+x+'") class="btn btn-xs btn-danger" value="X"></div></div></div></hr></div>'); 
 
          if(x>'0')
            {$('#save_short').show();}
     
-           ck_config('editor11'+x+'');
-           ck_config('editor12'+x+'');
+          //  ck_config('editor11'+x+'');
+          //  ck_config('editor12'+x+'');
+          $('.editor_all').each(function () {
+        CKEDITOR.replace($(this).prop('id'));
+    });
                 
         }
       
@@ -506,13 +509,16 @@ $(add_button).click(function(e)
     e.preventDefault();
     if(x < max_fields){ 
         x++; 
-    $(wrapper).append('<div id="addmore_long'+x+'"  class="row"><hr><div class="col-sm-12"><h4>Long Question '+x+'</h4></div><div class="col-sm-4"><label>Question</label><textarea class="form-control" name="part1[]" id="editor22'+x+'" ></textarea></div> <div class="col-sm-8"><label>Solution</label><textarea class="form-control" name="solution[]" id="editor21'+x+'" ></textarea></div><div class="col-sm-12"><div class="col-sm-4"><label>Level</label><select class="form-control" name="level[]"><option disabled="" selected="">--Select--</option><?php foreach ($level as $key => $value) { ?><option value="<?php echo $level[$key]['meta_value2'];?>"><?php echo $level[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-4"><label>Used For</label><select class="form-control" name="qused[]"><option disabled="" selected="">--Select--</option><?php foreach ($qused as $key => $value) { ?><option value="<?php echo $qused[$key]['meta_value2'];?>"><?php echo $qused[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-3"><label>Marks</label><input type="number" min="0" max="100" name="marks[]" class="form-control"/></div><div class="col-sm-1"><input type="button" onclick=removeme("addmore_long'+x+'") class="btn btn-xs btn-danger" value="X"></div></div></div></hr></div>'); 
+    $(wrapper).append('<div id="addmore_long'+x+'"  class="row"><hr><div class="col-sm-12"><h4>Long Question '+x+'</h4></div><div class="col-sm-4"><label>Question</label><textarea class="form-control" name="part1[]" id="editor22'+x+'" class="editor_all"></textarea></div> <div class="col-sm-8"><label>Solution</label><textarea class="form-control" name="solution[]" id="editor21'+x+'" class="editor_all"></textarea></div><div class="col-sm-12"><div class="col-sm-4"><label>Level</label><select class="form-control" name="level[]"><option disabled="" selected="">--Select--</option><?php foreach ($level as $key => $value) { ?><option value="<?php echo $level[$key]['meta_value2'];?>"><?php echo $level[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-4"><label>Used For</label><select class="form-control" name="qused[]"><option disabled="" selected="">--Select--</option><?php foreach ($qused as $key => $value) { ?><option value="<?php echo $qused[$key]['meta_value2'];?>"><?php echo $qused[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-3"><label>Marks</label><input type="number" min="0" max="100" name="marks[]" class="form-control"/></div><div class="col-sm-1"><input type="button" onclick=removeme("addmore_long'+x+'") class="btn btn-xs btn-danger" value="X"></div></div></div></hr></div>'); 
 
          if(x>'0')
            {$('#save_long').show();}
 
-           ck_config('editor21'+x+'');
-           ck_config('editor22'+x+'');
+          //  ck_config('editor21'+x+'');
+          //  ck_config('editor22'+x+'');
+          $('.editor_all').each(function () {
+        CKEDITOR.replace($(this).prop('id'));
+    });
 
         }
       
@@ -548,16 +554,20 @@ $(add_button).click(function(e)
     e.preventDefault();
     if(x < max_fields){ 
         x++; 
-    $(wrapper).append('<div id="addmore_group'+x+'"  class="row"><div class="col-sm-3"><label>Question '+x+'</label><input type="text" class="form-control" name="part2[]"></div> <div class="col-sm-3"><label>Solution</label><textarea class="form-control" name="solution[]" id="editor3'+x+'"></textarea></div><div class="col-sm-3"><label>Explanation</label><input type="text" class="form-control" name="explanation[]"></div><div class="col-sm-2"><label>Marks</label><input type="number" min="0" max="100" name="marks[]" class="form-control"/></div><div class="col-sm-1"><input type="button" onclick=removeme("addmore_group'+x+'") class="btn btn-xs btn-danger" value="X"></div></div>'); 
+    $(wrapper).append('<div id="addmore_group'+x+'"  class="row"><div class="col-sm-3"><label>Question '+x+'</label><input type="text" class="form-control" name="part2[]"></div> <div class="col-sm-3"><label>Solution</label><textarea class="form-control" name="solution[]" id="editor3'+x+'" class="editor_all"></textarea></div><div class="col-sm-3"><label>Explanation</label><input type="text" class="form-control" name="explanation[]"></div><div class="col-sm-2"><label>Marks</label><input type="number" min="0" max="100" name="marks[]" class="form-control"/></div><div class="col-sm-1"><input type="button" onclick=removeme("addmore_group'+x+'") class="btn btn-xs btn-danger" value="X"></div></div>'); 
 
          if(x>'0')
            {$('#save_group').show();}
 
         }
-        var $ckfield =CKEDITOR.replace( 'editor3'+x );
-          $ckfield.on('change', function() {
-            $ckfield.updateElement();         
-          });
+        // var $ckfield =CKEDITOR.replace( 'editor3'+x );
+        //   $ckfield.on('change', function() {
+        //     $ckfield.updateElement();         
+        //   });
+
+        $('.editor_all').each(function () {
+        CKEDITOR.replace($(this).prop('id'));
+    });
 
         }
       
@@ -586,8 +596,3 @@ function removeme(x)
 
 
 
-<script>
-    $('.editor_all').each(function () {
-        CKEDITOR.replace($(this).prop('id'));
-    });
-</script>
