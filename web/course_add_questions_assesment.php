@@ -414,14 +414,14 @@ $(add_button).click(function(e)
     e.preventDefault();
     if(x < max_fields){ 
         x++; 
-    $(wrapper).append('<div id="addmore_mcq'+x+'"  class="row"><hr><div class="col-sm-12"><h4>MCQ '+x+'</h4></div><div class="col-sm-6"><label>Question</label><textarea name="part1[]" id="editor1'+x+'"></textarea></div><div class="col-sm-6"><div class="col-sm-6"><label>Option A</label><input type="text" class="form-control" name="opt1[]"></div><div class="col-sm-6"><label>Option B</label><input type="text" class="form-control" name="opt2[]"></div><div class="col-sm-6"><label>Option C</label><input type="text" class="form-control" name="opt3[]"></div><div class="col-sm-6"><label>Option D</label><input type="text" class="form-control" name="opt4[]"></div><div class="col-sm-6"><label>Solution</label><input type="text" class="form-control" name="solution[]"></div><div class="col-sm-6"><label>Level</label><select class="form-control" name="level[]"><option disabled="" selected="">--Select--</option><?php foreach ($level as $key => $value) { ?><option value="<?php echo $level[$key]['meta_value2'];?>"><?php echo $level[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-6"><label>Marks</label><input type="number" min="0" max="100" name="marks[]" class="form-control" value="1"/></div><div class="col-sm-5"><label>Used For</label><select class="form-control" name="qused[]"><option disabled="" selected="">--Select--</option><?php foreach ($qused as $key => $value) { ?><option value="<?php echo $qused[$key]['meta_value2'];?>"><?php echo $qused[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-1"><br><input type="button" onclick=removeme("addmore_mcq'+x+'") class="btn btn-xs btn-danger" value="X"></div> </div><div class="col-sm-12"><label>Explanation</label><textarea name="explanation[]" id="editor2'+x+'"></textarea></div></div>'); 
+    $(wrapper).append('<div id="addmore_mcq'+x+'"  class="row"><hr><div class="col-sm-12"><h4>MCQ '+x+'</h4></div><div class="col-sm-6"><label>Question</label><textarea name="part1[]" id="editor1'+x+'" class="editor_all"></textarea></div><div class="col-sm-6"><div class="col-sm-6"><label>Option A</label><input type="text" class="form-control" name="opt1[]"></div><div class="col-sm-6"><label>Option B</label><input type="text" class="form-control" name="opt2[]"></div><div class="col-sm-6"><label>Option C</label><input type="text" class="form-control" name="opt3[]"></div><div class="col-sm-6"><label>Option D</label><input type="text" class="form-control" name="opt4[]"></div><div class="col-sm-6"><label>Solution</label><input type="text" class="form-control" name="solution[]"></div><div class="col-sm-6"><label>Level</label><select class="form-control" name="level[]"><option disabled="" selected="">--Select--</option><?php foreach ($level as $key => $value) { ?><option value="<?php echo $level[$key]['meta_value2'];?>"><?php echo $level[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-6"><label>Marks</label><input type="number" min="0" max="100" name="marks[]" class="form-control" value="1"/></div><div class="col-sm-5"><label>Used For</label><select class="form-control" name="qused[]"><option disabled="" selected="">--Select--</option><?php foreach ($qused as $key => $value) { ?><option value="<?php echo $qused[$key]['meta_value2'];?>"><?php echo $qused[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-1"><br><input type="button" onclick=removeme("addmore_mcq'+x+'") class="btn btn-xs btn-danger" value="X"></div> </div><div class="col-sm-12"><label>Explanation</label><textarea name="explanation[]" id="editor2'+x+'"  class="editor_all"></textarea></div></div>'); 
 
          if(x>'0')
            {$('#save_mcq').show();}
 
           
-           ck_config('editor1'+x+'');
-           ck_config('editor2'+x+'');
+          //  ck_config('editor1'+x+'');
+          //  ck_config('editor2'+x+'');
          
         
 
@@ -580,4 +580,12 @@ function removeme(x)
     //get_subtotal(x);
 }    
 
+</script>
+
+
+
+<script>
+    $('.editor_all').each(function () {
+        CKEDITOR.replace($(this).prop('id'));
+    });
 </script>
