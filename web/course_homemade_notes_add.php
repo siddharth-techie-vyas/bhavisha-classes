@@ -80,10 +80,10 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
                                                       </div>
                                                       <div class="col-md-8">                                
                                                                       <label>Description</label>                                    
-                                                                      <textarea name="tcontent" id="editor"></textarea>
+                                                                      <textarea name="tcontent" id="editor55"></textarea>
                                                                       <script type="text/javascript">
                                                                             $(document).ready(function() {
-                                                                                       ck_config('editor');
+                                                                                       ck_config('editor55');
                                                                                       }
                                                                             
                                                                             });
