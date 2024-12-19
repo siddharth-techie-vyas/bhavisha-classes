@@ -1,8 +1,8 @@
 
 @font-face {
-  font-family: "Bookman Old Style Regular";
-  src: url("Bookman Old Style Regular.ttf") format("tff");
-  }
+  font-family: 'Bookman Old Style Regular';
+  src: url('Bookman Old Style Regular.ttf');
+}
   body{font-family: "Bookman Old Style Regular"; padding:0 1% 0 1%;}
   
   html *{font-family: "Bookman Old Style Regular";}
@@ -208,7 +208,6 @@ margin:2%;
   
   
   
-  //---------- tabs
   .season_tabs {
     position: relative;   
     

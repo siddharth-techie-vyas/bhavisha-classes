@@ -668,7 +668,7 @@ if($_REQUEST['page']=='student_report')
 			src: url('../theme/css/Bookman Old Style Regular.ttf');
 		}
 		th{font-size:12px;}
-		th{font-size:10px;}
+		td{font-size:10px;}
 	</style>
 <table class='table' id='class_list' border="1">
 
