@@ -662,7 +662,15 @@ if($_REQUEST['page']=='student_report')
 
 <hr>
 <div class="html-content" id="class_list_pdf">
-<table class='table' id='class_list'>
+	<style>
+		@font-face {
+			font-family: 'Bookman Old Style Regular';
+			src: url('../theme/css/Bookman Old Style Regular.ttf');
+		}
+		th{font-size:12px;}
+		th{font-size:10px;}
+	</style>
+<table class='table' id='class_list' border="1">
 
 	<thead>
 
