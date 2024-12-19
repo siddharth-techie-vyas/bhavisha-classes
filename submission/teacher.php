@@ -656,7 +656,9 @@ if($_REQUEST['page']=='student_report')
 <hr>
 <button type='button' name='class_list_btn' class="btn btn-primary btn-xs"  onclick="fnExcelReport('class_list')"><i class='fa fa-file-excel'></i> Download Excel</button>
 
-<button type='button' name='class_list_btn' class="btn btn-default btn-xs"  onclick="generate_pdf('class_list')"><i class='fa fa-file-pdf'></i> Download Pdf</button>
+<button type='button' name='class_list_btn' class="btn btn-default btn-xs"  onclick="htmlget('class_list','Class List')"><i class='fa fa-file-pdf'></i> Download Pdf</button>
+
+<div id="pdf_editor"></div>
 
 <hr>
 

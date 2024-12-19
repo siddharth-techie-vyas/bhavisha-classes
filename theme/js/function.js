@@ -533,3 +533,16 @@ function drop_down_populate(action,query_type,result_input,fetch_input)
      });
 
 }
+
+
+//-- download pdf
+function htmlget(id,filename)
+      {
+          var html = $("#"+id).html();
+          //alert(html);
+          var final_html = "<hr><form name='pdf' id='htmlpdf' target='_blank' action='"+base_url+"plugins/dompdf/test.php' method='post'><input type='hidden' id='myhtml' name='html'><select name='page'><option disabled='disbaled' selected='selected'>--Page--</option><option>letter</option><option>A2</option><option>A3</option><option>A4</option></select><select name='orientation'><option disabled='disbaled' selected='selected'>--Type--</option><option value='landscape'>Landscape</option><option value='portrait'>Portrait</option></select><input type='hidden' name='filename' value='"+filename+"'><input type='submit' name='submit' value='Generate PDF'></form>";
+          $("#pdf_editor").html(final_html);
+          $("#myhtml").val(html);
+          
+
+      }

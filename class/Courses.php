@@ -290,9 +290,6 @@ class Courses {
 	//---- questions
 	function save_questions($part1,$part2,$opt1,$opt2,$opt3,$opt4,$solution,$topic,$qtype,$level,$explanation,$qused,$marks)
 	{
-		   
-		
-		    
 		   $query = "insert into questions(part1,part2,opt1,opt2,opt3,opt4,solution,topic,qtype,level,explanation,qused,marks)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	        $paramType = "sssssssssssss";
 
