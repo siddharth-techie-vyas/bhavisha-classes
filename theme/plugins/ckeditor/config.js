@@ -3,7 +3,7 @@ Copyright (c) 2003-2012, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.html or http://ckeditor.com/license
 */
 
-CKEDITOR.plugins.addExternal('ckeditor_wiris', 'plugins/ckeditor_wiris/', 'package.js');
+//CKEDITOR.plugins.addExternal('ckeditor_wiris', 'plugins/ckeditor_wiris/', 'package.js');
 CKEDITOR.editorConfig = function( config )
 {
 	// Define changes to default configuration here. For example:
@@ -17,7 +17,7 @@ CKEDITOR.editorConfig = function( config )
 		['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
 		['Format','Font','FontSize']
 	];
-	config.extraPlugins = 'ckeditor_wiris';
+	//config.extraPlugins = 'ckeditor_wiris';
 	  
 	
 };
