@@ -27,6 +27,7 @@
                 <div class="card-body">
                   
                 <?php 
+                  $to_replace=array('\r','\n');
                   if(isset($_GET['status']))
                   {
                     if($_GET['status']=='1')
@@ -63,9 +64,7 @@
                               </li>
                               <li><a href="#4" data-toggle="tab">Long Questions</a>
                               </li>
-                              <!--<li><a href="#5" data-toggle="tab">Group Questions</a>
-                              </li>-->
-                              <li><a href="#6" data-toggle="tab">Bulk Upload</a>
+                              <li><a href="#5" data-toggle="tab">Bulk Upload</a>
                               </li>
                             </ul>
 
@@ -78,7 +77,9 @@
                                     <input type="hidden" name="tid" value="<?php echo $_GET['id'];?>">
                                     <input type="hidden" name="qtype" value="1">
                                   <div id="addmore_fill"></div>
+
                                   <input type="button" name="fill_btn"  class="btn btn-xs btn-warning" value="Add Questions" id="fill_btn">
+                                  
                                   <input type="submit"  id="save_fill" class="btn btn-success btn-xs" value="Save Fill In the Blank Questions">
 
                                   <a href="<?php echo $base_url.'theme/images/fill_data.csv'?>" class="btn btn-xs btn-primary">Download CSV</a>
@@ -154,12 +155,13 @@
                                       else
                                       {$fill_question = $course->viewall_questions($_GET['id'],'2');}
 
+                                      
 
                                       foreach ($fill_question as $key => $value) {
                                         
                                         ?>
                                         <tr id="<?php echo $fill_question[$key]['id']; ?>">
-                                          <td><?php print $fill_question[$key]['part1']; ?></td>
+                                          <td><?php echo str_replace($to_replace,"",$fill_question[$key]['part1']); ?></td>
                                           <td><?php echo $fill_question[$key]['opt1']; ?><br>
                                               <?php echo $fill_question[$key]['opt2']; ?><br>
                                               <?php echo $fill_question[$key]['opt3']; ?><br>
@@ -183,9 +185,9 @@
                                   <form action="<?php echo $base_url.'index.php?action=course&query=course_add_questions_assesment';?>" method="post" name="create_short" id="create_short" class="form-sample">
                                     <input type="hidden" name="tid" value="<?php echo $_GET['id'];?>">
                                     <input type="hidden" name="qtype" value="3">
-                                  <div id="addmore_short"></div>
-                                  <input type="button" name="fill_short" class="btn btn-xs btn-danger" value="Add Short Questions" id="short_btn">
-                                  <input type="submit" id="save_short" class="btn btn-success btn-xs" value="Save Short Questions">
+                                    <div id="addmore_short"></div>
+                                    <input type="button" name="fill_short" class="btn btn-xs btn-danger" value="Add Short Questions" id="short_btn">
+                                    <input type="submit" id="save_short" class="btn btn-success btn-xs" value="Save Short Questions">
                                   <a href="<?php echo $base_url.'theme/images/short_data.csv'?>" class="btn btn-xs btn-primary">Download CSV</a>
                                   </form>
 
@@ -210,7 +212,7 @@
                                         
                                         ?>
                                         <tr id="<?php echo $fill_question[$key]['id']; ?>">
-                                          <td><?php echo $fill_question[$key]['part1']; ?></td>
+                                        <td><?php echo str_replace($to_replace,"",$fill_question[$key]['part1']); ?></td>
                                           <td><?php echo $fill_question[$key]['solution']; ?></td>
                                           <td><?php echo $fill_question[$key]['explanation']; ?></td>
                                           <td><?php $fqused = $admin->getone_meta_data('question_used',$fill_question[$key]['qused']); echo $fqused[0]['meta_value1']; ?></td>
@@ -267,68 +269,20 @@
                                 </div>
 
 
-                                 <!--- Group QUESTIONS--->
-                                <div class="tab-pane" id="5">
-                                  <form action="<?php echo $base_url.'index.php?action=course&query=course_add_questions_assesment';?>" method="post" name="create_group" id="create_group" class="form-sample">
-                                    <input type="hidden" name="tid" value="<?php echo $_GET['id'];?>">
-                                    <input type="hidden" name="qtype" value="5">
-                                    
-                                    <div class="row">
-                                    <div class="col-sm-7">
-                                    <label>Primary Question</label>
-                                    <input type="text"  name="part1" class="form-control">
-                                    </div>
-                                    <div class="col-sm-4"><label>Level</label><select class="form-control" name="level[]"><option disabled="" selected="">--Select--</option><?php foreach ($level as $key => $value) { ?><option value="<?php echo $level[$key]['meta_value2'];?>"><?php echo $level[$key]['meta_value1'];?></option><?php } ?></select></div>
-                                    </div>
-
-                                  <div id="addmore_group"></div>
-                                  <input type="button" name="fill_group" class="btn btn-xs btn-secondary" value="Add Long Questions" id="group_btn">
-                                  <input type="submit" class="btn btn-success btn-xs" value="Save Group Questions">
-                                  </form>
-
-                                  <div  class="col-sm-12" >
-                                    <hr>
-                                    <table class="table">
-                                      <thead>
-                                        <th>Part 1</th>
-                                        <th>Solution</th>
-                                        <th>Part 2</th>
-                                        <th>Utility</th>
-                                      </thead>
-                                      <tbody>
-                                    <?php 
-                                    if(isset($_GET['notes']))
-                                      {$fill_question = $course->viewall_questions_notes($_GET['id'],'5');}
-                                      else
-                                      {$fill_question = $course->viewall_questions($_GET['id'],'5');}
- 
-                                      foreach ($fill_question as $key => $value) {
-                                        
-                                        ?>
-                                        <tr>
-                                          <td><?php echo $fill_question[$key]['part1']; ?></td>
-                                          <td><?php echo $fill_question[$key]['part2']; ?></td>
-                                          <td><?php echo $fill_question[$key]['solution']; ?></td>
-                                          <td><input type="button" name="delete" value="Delete" class="btn btn-xs btn-danger" onclick="deleteme('course','question_delete','<?php echo $fill_question[$key]['id'];?>')"> <input type="button" name="edit" value="Edit" class="btn btn-xs btn-info"></td>
-                                        </tr>
-
-                                      <?php } ?>
-                                      </tbody>
-                                      </table>
-                                  </div>
-                                </div>
-
+                                
                                  <!--- bulk upload--->
-                                <div class="tab-pane" id="6">
-                                 
+                                <div class="tab-pane" id="5">
+                                <span class="text-danger">Download Every Bulk Template From Related Question Tab & Upload Here !!!</span>
                                   <form class="form-horizontal" action="<?php echo $base_url.'index.php?action=course&query=csvupload_question';?>" method="post" name="frmCSVImport" id="frmCSVImport" enctype="multipart/form-data">
                                     <div class="row">
+                                      
                                       <div class="col-sm-4">
                                         <label class="control-label">Choose CSV File</label>
                                         <input type="hidden" name="url" value="<?php echo $base_url.'index.php?action=dashboard&page=course_add_questions_assesment&id='.$_GET['id'];?>">
                                         <input type="hidden" name="tid" value="<?php echo $_GET['id'];?>">
                                         <input class="form-control" type="file" name="file" id="file" accept=".csv">
                                       </div>
+
                                       <div class="col-sm-4">
                                         <label>Question Type</label>
                                         <select class="form-control" name="qtype" required>
@@ -343,9 +297,11 @@
                                           <option value="4">Long Question</option>
                                         </select>
                                       </div>  
+
                                       <div class="col-sm-4">  
                                         <button type="submit" id="submit" name="import"  class="btn btn-success btn-md">Import</button>
                                       </div>  
+                                      
                                     </div>
                                   </form>
 
