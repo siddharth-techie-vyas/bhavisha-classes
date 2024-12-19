@@ -340,6 +340,8 @@ case "course":
 					        	//=== save
 					        	$course->save_questions($part1,$part2,$opt1,$opt2,$opt3,$opt4,$solution,$topic,$qtype,$level,$explanation,$qused,$marks);
 					        }	
+
+				//echo "<script>window.location.href='".$base_url."/index.php?action=dashboard&page=course_add_questions_assesment&id=".$topic."&status=1';</script>";
  			}
 
  			//--- edit question
@@ -522,7 +524,7 @@ case "course":
  			//--- sort courses
  			if($_GET['query']='sort_set')
  			{
- 			    $sort_update = $course->sort_update($_POST['id'],$_POST['sort']);
+ 			   // $sort_update = $course->sort_update($_POST['id'],$_POST['sort']);
  			}
  			
  			//--- delete hand made notes 

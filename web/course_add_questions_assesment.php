@@ -25,7 +25,15 @@
 <div class="row">
 <div class="col-sm-12">
                 <div class="card-body">
-                        
+                  
+                <?php 
+                  if(isset($_GET['status']))
+                  {
+                    if($_GET['status']=='1')
+                    {echo "<div class='alert alert-success'>Question added successfully !!!</div>";}
+                  }
+                ?>
+
                         <div id="msgcreate_assessment"></div>
                         <div id="msgcreate_fill"></div>
                         <div id="msgcreate_mcq"></div>
@@ -71,7 +79,7 @@
                                     <input type="hidden" name="qtype" value="1">
                                   <div id="addmore_fill"></div>
                                   <input type="button" name="fill_btn"  class="btn btn-xs btn-warning" value="Add Questions" id="fill_btn">
-                                  <input type="button" onclick="form_submit('create_fill')" id="save_fill" class="btn btn-success btn-xs" value="Save Fill In the Blank Questions">
+                                  <input type="submit"  id="save_fill" class="btn btn-success btn-xs" value="Save Fill In the Blank Questions">
 
                                   <a href="<?php echo $base_url.'theme/images/fill_data.csv'?>" class="btn btn-xs btn-primary">Download CSV</a>
 
@@ -121,9 +129,10 @@
                                   <form action="<?php echo $base_url.'index.php?action=course&query=course_add_questions_assesment';?>" method="post" name="create_mcq" id="create_mcq" class="form-sample">
                                     <input type="hidden" name="tid" value="<?php echo $_GET['id'];?>">
                                     <input type="hidden" name="qtype" value="2">
+                                    
                                   <div id="addmore_mcq"></div>
                                   <input type="button" name="fill_mcq" class="btn btn-xs btn-info" value="Add MCQ Questions" id="mcq_btn">
-                                  <input type="button" id="save_mcq" onclick="form_submit('create_mcq')" class="btn btn-success btn-xs" value="Save MCQ Questions">
+                                  <input type="submit" id="save_mcq" class="btn btn-success btn-xs" value="Save MCQ Questions">
 
                                   <a href="<?php echo $base_url.'theme/images/mcq_data.csv'?>" class="btn btn-xs btn-primary">Download CSV</a>
                                   </form>
@@ -150,7 +159,7 @@
                                         
                                         ?>
                                         <tr id="<?php echo $fill_question[$key]['id']; ?>">
-                                          <td><?php echo $fill_question[$key]['part1']; ?></td>
+                                          <td><?php print $fill_question[$key]['part1']; ?></td>
                                           <td><?php echo $fill_question[$key]['opt1']; ?><br>
                                               <?php echo $fill_question[$key]['opt2']; ?><br>
                                               <?php echo $fill_question[$key]['opt3']; ?><br>
@@ -176,7 +185,7 @@
                                     <input type="hidden" name="qtype" value="3">
                                   <div id="addmore_short"></div>
                                   <input type="button" name="fill_short" class="btn btn-xs btn-danger" value="Add Short Questions" id="short_btn">
-                                  <input type="button" id="save_short" onclick="form_submit('create_short')" class="btn btn-success btn-xs" value="Save Short Questions">
+                                  <input type="submit" id="save_short" class="btn btn-success btn-xs" value="Save Short Questions">
                                   <a href="<?php echo $base_url.'theme/images/short_data.csv'?>" class="btn btn-xs btn-primary">Download CSV</a>
                                   </form>
 
@@ -221,7 +230,7 @@
                                     <input type="hidden" name="qtype" value="4">
                                   <div id="addmore_long"></div>
                                   <input type="button" name="fill_long" class="btn btn-xs btn-primary" value="Add Long Questions" id="long_btn">
-                                  <input type="button" id="save_long" onclick="form_submit('create_long')" class="btn btn-success btn-xs" value="Save Long Questions">
+                                  <input type="submit"  class="btn btn-success btn-xs" value="Save Long Questions">
                                   <a href="<?php echo $base_url.'theme/images/long_data.csv'?>" class="btn btn-xs btn-primary">Download CSV</a>
                                   </form>
 
@@ -274,7 +283,7 @@
 
                                   <div id="addmore_group"></div>
                                   <input type="button" name="fill_group" class="btn btn-xs btn-secondary" value="Add Long Questions" id="group_btn">
-                                  <input type="button" id="save_group" onclick="form_submit('create_group')" class="btn btn-success btn-xs" value="Save Group Questions">
+                                  <input type="submit" class="btn btn-success btn-xs" value="Save Group Questions">
                                   </form>
 
                                   <div  class="col-sm-12" >
@@ -414,7 +423,7 @@ $(add_button).click(function(e)
     e.preventDefault();
     if(x < max_fields){ 
         x++; 
-    $(wrapper).append('<div id="addmore_mcq'+x+'"  class="row"><hr><div class="col-sm-12"><h4>MCQ '+x+'</h4></div><div class="col-sm-6"><label>Question</label><textarea name="part1[]" id="editor1'+x+'" class="editor_all"></textarea></div><div class="col-sm-6"><div class="col-sm-6"><label>Option A</label><input type="text" class="form-control" name="opt1[]"></div><div class="col-sm-6"><label>Option B</label><input type="text" class="form-control" name="opt2[]"></div><div class="col-sm-6"><label>Option C</label><input type="text" class="form-control" name="opt3[]"></div><div class="col-sm-6"><label>Option D</label><input type="text" class="form-control" name="opt4[]"></div><div class="col-sm-6"><label>Solution</label><input type="text" class="form-control" name="solution[]"></div><div class="col-sm-6"><label>Level</label><select class="form-control" name="level[]"><option disabled="" selected="">--Select--</option><?php foreach ($level as $key => $value) { ?><option value="<?php echo $level[$key]['meta_value2'];?>"><?php echo $level[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-6"><label>Marks</label><input type="number" min="0" max="100" name="marks[]" class="form-control" value="1"/></div><div class="col-sm-5"><label>Used For</label><select class="form-control" name="qused[]"><option disabled="" selected="">--Select--</option><?php foreach ($qused as $key => $value) { ?><option value="<?php echo $qused[$key]['meta_value2'];?>"><?php echo $qused[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-1"><br><input type="button" onclick=removeme("addmore_mcq'+x+'") class="btn btn-xs btn-danger" value="X"></div> </div><div class="col-sm-12"><label>Explanation</label><textarea name="explanation[]" id="editor2'+x+'"  class="editor_all"></textarea></div></div>'); 
+    $(wrapper).append('<div id="addmore_mcq'+x+'"  class="row"><hr><div class="col-sm-12"><h4>MCQ '+x+'</h4></div><div class="col-sm-6"><label>Question</label><textarea name="part1[]" id="editor1'+x+'" ></textarea></div><div class="col-sm-6"><div class="col-sm-6"><label>Option A</label><input type="text" class="form-control" name="opt1[]"></div><div class="col-sm-6"><label>Option B</label><input type="text" class="form-control" name="opt2[]"></div><div class="col-sm-6"><label>Option C</label><input type="text" class="form-control" name="opt3[]"></div><div class="col-sm-6"><label>Option D</label><input type="text" class="form-control" name="opt4[]"></div><div class="col-sm-6"><label>Solution</label><input type="text" class="form-control" name="solution[]"></div><div class="col-sm-6"><label>Level</label><select class="form-control" name="level[]"><option disabled="" selected="">--Select--</option><?php foreach ($level as $key => $value) { ?><option value="<?php echo $level[$key]['meta_value2'];?>"><?php echo $level[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-6"><label>Marks</label><input type="number" min="0" max="100" name="marks[]" class="form-control" value="1"/></div><div class="col-sm-5"><label>Used For</label><select class="form-control" name="qused[]"><option disabled="" selected="">--Select--</option><?php foreach ($qused as $key => $value) { ?><option value="<?php echo $qused[$key]['meta_value2'];?>"><?php echo $qused[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-1"><br><input type="button" onclick=removeme("addmore_mcq'+x+'") class="btn btn-xs btn-danger" value="X"></div> </div><div class="col-sm-12"><label>Explanation</label><textarea name="explanation[]" id="editor2'+x+'"  ></textarea></div></div>'); 
 
          if(x>'0')
            {$('#save_mcq').show();}
@@ -423,9 +432,10 @@ $(add_button).click(function(e)
           //  ck_config('editor1'+x+'');
           //  ck_config('editor2'+x+'');
          
-          $('.editor_all').each(function () {
-        CKEDITOR.replace($(this).prop('id'));
-    });
+          
+              CKEDITOR.replace('editor1'+x+'');
+              CKEDITOR.replace('editor2'+x+'');              
+          
 
         }
       
@@ -463,16 +473,15 @@ $(add_button).click(function(e)
     e.preventDefault();
     if(x < max_fields){ 
         x++; 
-    $(wrapper).append('<div id="addmore_short'+x+'"  class="row"><hr><div class="col-sm-12"><h4>Short Question '+x+'</h4></div><div class="col-sm-4"><label>Question</label><textarea class="form-control" name="part1[]" id="editor12'+x+'" class="editor_all"></textarea></div> <div class="col-sm-8"><label>Solution</label><textarea class="form-control" name="solution[]" id="editor11'+x+'" class="editor_all"></textarea></div><div class="col-sm-12"><div class="col-sm-4"><label>Level</label><select class="form-control" name="level[]"><option disabled="" selected="">--Select--</option><?php foreach ($level as $key => $value) { ?><option value="<?php echo $level[$key]['meta_value2'];?>"><?php echo $level[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-4"><label>Used For</label><select class="form-control" name="qused[]"><option disabled="" selected="">--Select--</option><?php foreach ($qused as $key => $value) { ?><option value="<?php echo $qused[$key]['meta_value2'];?>"><?php echo $qused[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-3"><label>Marks</label><input type="number" min="0" max="100" name="marks[]" class="form-control"/></div><div class="col-sm-1"><input type="button" onclick=removeme("addmore_short'+x+'") class="btn btn-xs btn-danger" value="X"></div></div></div></hr></div>'); 
+    $(wrapper).append('<div id="addmore_short'+x+'"  class="row"><hr><div class="col-sm-12"><h4>Short Question '+x+'</h4></div><div class="col-sm-4"><label>Question</label><textarea class="form-control" name="part1[]" id="editor12'+x+'" ></textarea></div> <div class="col-sm-8"><label>Solution</label><textarea class="form-control" name="solution[]" id="editor11'+x+'" ></textarea></div><div class="col-sm-12"><div class="col-sm-4"><label>Level</label><select class="form-control" name="level[]"><option disabled="" selected="">--Select--</option><?php foreach ($level as $key => $value) { ?><option value="<?php echo $level[$key]['meta_value2'];?>"><?php echo $level[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-4"><label>Used For</label><select class="form-control" name="qused[]"><option disabled="" selected="">--Select--</option><?php foreach ($qused as $key => $value) { ?><option value="<?php echo $qused[$key]['meta_value2'];?>"><?php echo $qused[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-3"><label>Marks</label><input type="number" min="0" max="100" name="marks[]" class="form-control"/></div><div class="col-sm-1"><input type="button" onclick=removeme("addmore_short'+x+'") class="btn btn-xs btn-danger" value="X"></div></div></div></hr></div>'); 
 
          if(x>'0')
            {$('#save_short').show();}
     
           //  ck_config('editor11'+x+'');
           //  ck_config('editor12'+x+'');
-          $('.editor_all').each(function () {
-        CKEDITOR.replace($(this).prop('id'));
-    });
+          CKEDITOR.replace('editor11'+x+'');
+          CKEDITOR.replace('editor12'+x+'');        
                 
         }
       
@@ -509,17 +518,15 @@ $(add_button).click(function(e)
     e.preventDefault();
     if(x < max_fields){ 
         x++; 
-    $(wrapper).append('<div id="addmore_long'+x+'"  class="row"><hr><div class="col-sm-12"><h4>Long Question '+x+'</h4></div><div class="col-sm-4"><label>Question</label><textarea class="form-control" name="part1[]" id="editor22'+x+'" class="editor_all"></textarea></div> <div class="col-sm-8"><label>Solution</label><textarea class="form-control" name="solution[]" id="editor21'+x+'" class="editor_all"></textarea></div><div class="col-sm-12"><div class="col-sm-4"><label>Level</label><select class="form-control" name="level[]"><option disabled="" selected="">--Select--</option><?php foreach ($level as $key => $value) { ?><option value="<?php echo $level[$key]['meta_value2'];?>"><?php echo $level[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-4"><label>Used For</label><select class="form-control" name="qused[]"><option disabled="" selected="">--Select--</option><?php foreach ($qused as $key => $value) { ?><option value="<?php echo $qused[$key]['meta_value2'];?>"><?php echo $qused[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-3"><label>Marks</label><input type="number" min="0" max="100" name="marks[]" class="form-control"/></div><div class="col-sm-1"><input type="button" onclick=removeme("addmore_long'+x+'") class="btn btn-xs btn-danger" value="X"></div></div></div></hr></div>'); 
+    $(wrapper).append('<div id="addmore_long'+x+'"  class="row"><hr><div class="col-sm-12"><h4>Long Question '+x+'</h4></div><div class="col-sm-4"><label>Question</label><textarea class="form-control" name="part1[]" id="editor22'+x+'" ></textarea></div> <div class="col-sm-8"><label>Solution</label><textarea class="form-control" name="solution[]" id="editor21'+x+'" ></textarea></div><div class="col-sm-12"><div class="col-sm-4"><label>Level</label><select class="form-control" name="level[]"><option disabled="" selected="">--Select--</option><?php foreach ($level as $key => $value) { ?><option value="<?php echo $level[$key]['meta_value2'];?>"><?php echo $level[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-4"><label>Used For</label><select class="form-control" name="qused[]"><option disabled="" selected="">--Select--</option><?php foreach ($qused as $key => $value) { ?><option value="<?php echo $qused[$key]['meta_value2'];?>"><?php echo $qused[$key]['meta_value1'];?></option><?php } ?></select></div><div class="col-sm-3"><label>Marks</label><input type="number" min="0" max="100" name="marks[]" class="form-control"/></div><div class="col-sm-1"><input type="button" onclick=removeme("addmore_long'+x+'") class="btn btn-xs btn-danger" value="X"></div></div></div></hr></div>'); 
 
          if(x>'0')
            {$('#save_long').show();}
 
           //  ck_config('editor21'+x+'');
           //  ck_config('editor22'+x+'');
-          $('.editor_all').each(function () {
-        CKEDITOR.replace($(this).prop('id'));
-    });
-
+          CKEDITOR.replace('editor21'+x+'');
+          CKEDITOR.replace('editor22'+x+'');     
         }
       
     
@@ -554,7 +561,7 @@ $(add_button).click(function(e)
     e.preventDefault();
     if(x < max_fields){ 
         x++; 
-    $(wrapper).append('<div id="addmore_group'+x+'"  class="row"><div class="col-sm-3"><label>Question '+x+'</label><input type="text" class="form-control" name="part2[]"></div> <div class="col-sm-3"><label>Solution</label><textarea class="form-control" name="solution[]" id="editor3'+x+'" class="editor_all"></textarea></div><div class="col-sm-3"><label>Explanation</label><input type="text" class="form-control" name="explanation[]"></div><div class="col-sm-2"><label>Marks</label><input type="number" min="0" max="100" name="marks[]" class="form-control"/></div><div class="col-sm-1"><input type="button" onclick=removeme("addmore_group'+x+'") class="btn btn-xs btn-danger" value="X"></div></div>'); 
+    $(wrapper).append('<div id="addmore_group'+x+'"  class="row"><div class="col-sm-3"><label>Question '+x+'</label><input type="text" class="form-control" name="part2[]"></div> <div class="col-sm-3"><label>Solution</label><textarea class="form-control" name="solution[]" id="editor3'+x+'" ></textarea></div><div class="col-sm-3"><label>Explanation</label><input type="text" class="form-control" name="explanation[]"></div><div class="col-sm-2"><label>Marks</label><input type="number" min="0" max="100" name="marks[]" class="form-control"/></div><div class="col-sm-1"><input type="button" onclick=removeme("addmore_group'+x+'") class="btn btn-xs btn-danger" value="X"></div></div>'); 
 
          if(x>'0')
            {$('#save_group').show();}
@@ -565,9 +572,8 @@ $(add_button).click(function(e)
         //     $ckfield.updateElement();         
         //   });
 
-        $('.editor_all').each(function () {
-        CKEDITOR.replace($(this).prop('id'));
-    });
+        CKEDITOR.replace('editor3'+x+'');
+        
 
         }
       
@@ -587,7 +593,7 @@ $(add_button).click(function(e)
 
 function removeme(x)
 {
-  alert(x);
+  //alert(x);
   $('#'+x).remove();
     //get_subtotal(x);
 }    
