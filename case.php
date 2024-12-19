@@ -341,7 +341,7 @@ case "course":
 					        	$course->save_questions($part1,$part2,$opt1,$opt2,$opt3,$opt4,$solution,$topic,$qtype,$level,$explanation,$qused,$marks);
 					        }	
 
-				//echo "<script>window.location.href='".$base_url."/index.php?action=dashboard&page=course_add_questions_assesment&id=".$topic."&status=1';</script>";
+				echo "<script>window.location.href='".$base_url."/index.php?action=dashboard&page=course_add_questions_assesment&id=".$topic."&status=1';</script>";
  			}
 
  			//--- edit question
