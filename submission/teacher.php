@@ -667,8 +667,8 @@ if($_REQUEST['page']=='student_report')
 			font-family: 'Bookman Old Style Regular';
 			src: url('../theme/css/Bookman Old Style Regular.ttf');
 		}
-		th{font-size:12px;}
-		td{font-size:10px;}
+		th{font-size:14px;}
+		td{font-size:12px;}
 	</style>
 <table class='table' id='class_list' border="1">
 
