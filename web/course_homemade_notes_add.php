@@ -151,7 +151,7 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
                                                   <?php } ?>
                                               </td>
                                               <td>
-                                              <!-- to do - edit ->
+                                              <!-- to do - edit -->
                                                 <input type="button" name="delete" value="Delete" onclick="deleteme('course','delete_handmade_detail_one','<?php echo $topics[$row]['id'];?>')" class="btn btn-sm btn-danger" >
                                               </td>
                                             </tr>
