@@ -20,10 +20,10 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
                         <?php if(isset($_GET['status']))
                         {
                             if($_GET['status']=='success')
-                            {echo "<div class='alert alert-success'>Notes Addess Successfully !!!</div>";}
+                            {echo "<div class='alert alert-success'>Notes Added Successfully !!!</div>";}
                             
                             if($_GET['status']=='danger')
-                            {echo "<div class='alert alert-danger'>Notes Addess failed !!!</div>";}
+                            {echo "<div class='alert alert-danger'>Notes Added failed !!!</div>";}
                             
                         }
                         
