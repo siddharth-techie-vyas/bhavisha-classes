@@ -80,9 +80,10 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
                                                       <div class="col-md-4">
                                                                       <label>Topic Name 1</label>
                                                                       <input type='hidden' value='<?php echo $_GET['id']; ?>' name='hid'/>
-                                                                      <option disabled="disabled" selected="selected">-Select-</option>
+                                                                     
                                                                       <select name="tid" class="form-control" required>
-                                                                      <?php 
+                                                                      <option disabled="disabled" selected="selected">-Select-</option>
+                                                                     <?php 
                                                                           $topicid = $course->viewall_topic_single_chapter($get_details[0]['chapterid']); 
                                                                           foreach($topicid as $row => $value)
                                                                           {
@@ -150,7 +151,7 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
                                                   <?php } ?>
                                               </td>
                                               <td>
-                                                <?php if(!empty($tname)){ ?><input type="button" name="edit" value="Edit" class="btn btn-sm btn-warning" ><?php }?>
+                                              <!-- to do - edit ->
                                                 <input type="button" name="delete" value="Delete" onclick="deleteme('course','delete_handmade_detail_one','<?php echo $topics[$row]['id'];?>')" class="btn btn-sm btn-danger" >
                                               </td>
                                             </tr>
