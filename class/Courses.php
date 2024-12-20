@@ -544,6 +544,13 @@ class Courses {
 		}
 	}
 
+	function delete_handmade_detail_one($id)
+	{
+		echo $query0 = "delete from handmade_notes_detail where id='$id'";
+		$result0 = $this->db_handle->runSingleQuery($query0);
+		echo "<script>alert('Notes Deleted !!!)</script>";
+	}
+
 	function create_handmade_notes_add($hid,$tid,$tcontent)
 	{
 			$query = "insert into handmade_notes_detail(hid,tid,tcontent)VALUES(?,?,?)";

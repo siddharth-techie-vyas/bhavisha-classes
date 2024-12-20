@@ -1,4 +1,4 @@
-//var base_url = window.location.origin;
+//var base_url = 'localhost/bhavisha-classes/';
 var base_url = 'https://www.bhavishaclasses.com/';
 var loading_img = base_url+'theme/images/loading.gif';
 
@@ -175,6 +175,7 @@ function form_result(x)
 function deleteme(h,i,j)
 {
   var r = confirm("Are you sure you want to delete  ??");
+  
   if (r == true) 
   {
      $.ajax({
@@ -182,10 +183,10 @@ function deleteme(h,i,j)
            url: base_url+'index.php?action='+h+'&query='+i+'&id='+j,
            success: function(data)
            {
-               //alert(base_url+'index.php?action='+h+'&query='+i+'&id='+j);
+               alert(base_url+'index.php?action='+h+'&query='+i+'&id='+j);
                $('#'+j).toggle(750); 
                location.reload();
-              // alert(base_url+'index.php?action='+h+'&delete='+i+'&id='+j);
+              
            }
        }); 
   } 

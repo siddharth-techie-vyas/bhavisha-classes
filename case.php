@@ -467,7 +467,7 @@ case "course":
  			}
 
  			//--------- csv upload
- 			if($_GET['query']='csvupload_question')
+ 			if($_GET['query']=='csvupload_question')
  			{
  				
  				$tid = $_POST['tid'];
@@ -520,16 +520,18 @@ case "course":
 		 		//echo "<script>location.href='".$url."'</script>";
  			}
  			
- 			
- 			//--- sort courses
- 			if($_GET['query']='sort_set')
- 			{
- 			   // $sort_update = $course->sort_update($_POST['id'],$_POST['sort']);
- 			}
- 			
  			//--- delete hand made notes 
  			if($_GET['query']=='delete_handmade_detail_one')
- 			{ $delete = $course->delete_handmade($_GET['id']);}
+ 			{ $course->delete_handmade_detail_one($_GET['id']);}
+
+
+ 			//--- sort courses
+ 			// if($_GET['query']='sort_set')
+ 			// {
+ 			//    // $sort_update = $course->sort_update($_POST['id'],$_POST['sort']);
+ 			// }
+ 			
+ 			
  }		
 break;
 //================= L E A D S
