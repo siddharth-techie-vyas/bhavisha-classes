@@ -183,10 +183,10 @@ function deleteme(h,i,j)
            url: base_url+'index.php?action='+h+'&query='+i+'&id='+j,
            success: function(data)
            {
-               alert(base_url+'index.php?action='+h+'&query='+i+'&id='+j);
+               //alert(base_url+'index.php?action='+h+'&query='+i+'&id='+j);
                $('#'+j).toggle(750); 
-               location.reload();
-              
+            //    location.reload();
+            //   alert(data);
            }
        }); 
   } 
