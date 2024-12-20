@@ -45,11 +45,23 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
                                       <span id="msghandmade_file"></span>
                                       <form action="<?php echo $base_url.'index.php?action=course&query=create_handmade_notes_add_file';?>" method="post" name="create_handmade_notes_add_file" id="handmade_file" enctype="multipart/form-data">
                                         <div class='col-sm-12'>
-                                          <div class='col-sm-4'>
-                                            <label>File Upload (Doc / Docx / PDF)</label>
+                                        <div class="col-md-4">
+                                            <label>Topic Name 1</label>
+                                            <input type='hidden' value='<?php echo $_GET['id']; ?>' name='hid'/>
+                                            <select name="tid" class="form-control" required>
+                                              <option disabled="disabled" selected="selected">-Select-</option>
+                                            <?php 
+                                                $topicid = $course->viewall_topic_single_chapter($get_details[0]['chapterid']); 
+                                                foreach($topicid as $row => $value)
+                                                {
+                                                    echo "<option value='".$topicid[$row]['id']."'>".$topicid[$row]['topic']."</option>";
+                                                }
+                                            ?>
+                                            </select> 
                                           </div>
                                           <div class='col-sm-4'>
-                                          <input type='hidden' value='<?php echo $_GET['id']; ?>' name='hid'/>
+                                            <label>File Upload (Doc / Docx / PDF)</label>
+                                            <input type='hidden' value='<?php echo $_GET['id']; ?>' name='hid'/>
                                             <input type='file' name='topic_file' class='form-control' accept="application/pdf,application/doc" required/>
                                           </div>
                                           <div class='col-sm-4'>
@@ -68,6 +80,7 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
                                                       <div class="col-md-4">
                                                                       <label>Topic Name 1</label>
                                                                       <input type='hidden' value='<?php echo $_GET['id']; ?>' name='hid'/>
+                                                                      <option disabled="disabled" selected="selected">-Select-</option>
                                                                       <select name="tid" class="form-control" required>
                                                                       <?php 
                                                                           $topicid = $course->viewall_topic_single_chapter($get_details[0]['chapterid']); 
@@ -129,9 +142,13 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
                                             <tr id="<?php echo $topics[$row]['id'];?>">
                                               <td><?php echo $counter++; ?></td>
                                               <td><?php $tname = $course->get_one($topics[$row]['tid'],'id'); 
-                                                   if(!empty($tname)){echo $tname[0]['topic'];}else{echo "<em>File Upload</em>";}?></td>
+                                                   echo $tname[0]['topic'];?></td>
                                               <td><?php echo $topics[$row]['tcontent'];?></td>
-                                              <td><?php if(empty($tname)){ ?><a target="_blank" href="<?php echo $base_url.'theme/images/'.$topics[$row]['file_upload']; ?>" class='btn btn-info btn-xs'>View</a><?php } ?></td>
+                                              <td>
+                                                  <?php if(!empty($topics[$row]['file_upload'])){ ?>
+                                                  <a target="_blank" href="<?php echo $base_url.'theme/images/'.$topics[$row]['file_upload']; ?>" class='btn btn-info btn-xs'>View</a>
+                                                  <?php } ?>
+                                              </td>
                                               <td>
                                                 <?php if(!empty($tname)){ ?><input type="button" name="edit" value="Edit" class="btn btn-sm btn-warning" ><?php }?>
                                                 <input type="button" name="delete" value="Delete" onclick="deleteme('course','delete_handmade_detail_one','<?php echo $topics[$row]['id'];?>')" class="btn btn-sm btn-danger" >

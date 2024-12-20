@@ -560,11 +560,11 @@ class Courses {
 	       	return $insertId;
 	}
 
-	function create_handmade_notes_add_file($hid,$file)
+	function create_handmade_notes_add_file($tid,$hid,$file)
 	{
-			$query = "insert into handmade_notes_detail(hid,file_upload)VALUES(?,?)";
-	        $paramType = "is";
-	        $paramValue = array($hid,$file);
+			$query = "insert into handmade_notes_detail(tid,hid,file_upload)VALUES(?,?,?)";
+	        $paramType = "iis";
+	        $paramValue = array($tid,$hid,$file);
 	        $insertId = $this->db_handle->insert($query, $paramType, $paramValue);
 	       	return $insertId;
 	}

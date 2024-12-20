@@ -258,7 +258,7 @@ case "course":
  	    	    
  	    	    if(!empty($file))
 			    {   
-			        $course->create_handmade_notes_add_file($_POST['hid'],$file);
+			        $course->create_handmade_notes_add_file($_POST['tid'],$_POST['hid'],$file);
 			        echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=course_homemade_notes_add&id=".$_POST['hid']."&status=success';</script>";
 			    }
 			    else
