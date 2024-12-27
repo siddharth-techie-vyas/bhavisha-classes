@@ -52,7 +52,7 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
 </div>
 
 
-<script src="<?php echo $base_url.'theme/plugins/html2pdf.bundle.min';?>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.0/html2pdf.bundle.min.js"></script>
 <script>
 function getpdf()
 {
