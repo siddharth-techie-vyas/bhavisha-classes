@@ -50,3 +50,14 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
                                             <?php }?>
                                             </table> 
 </div>
+
+
+<script src="<?php echo $base_url.'theme/plugins/html2pdf.bundle.min';?>"></script>
+<script>
+function getpdf()
+{
+ var element = document.getElementById('canvas_div_pdf');
+ html2pdf(element);
+}
+
+</script>
