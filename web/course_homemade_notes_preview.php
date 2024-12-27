@@ -5,16 +5,26 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
                                     $sname = $course->get_one($get_details[0]['subjectid'],'id'); 
                                     $subject = $sname[0]['subject'];                                 
                                     $chname = $course->get_one($get_detail[0]['chapterid'],'id'); 
+                                    $topic = $chname[0]['chapter'];                              
                                     ?>
 <div class="content">
                                             
-                                            <table border="1">
+                                            <table border="1" valign="top" style="max-width:800px;">
                                                 <thead>
                                                     <tr>
                                                         <td colspan="2"> <img src="<?php echo $base_url.'theme/images/logo.png'?>"></td>
                                                         <td>
                                                         410 – Nandanwan, Aakhaliya Circle, Chopasni Road, Jodhpur (Raj.)<br>Contact : 0291–2760178, 9810060308, 9829524103<br>www.bhavisha.co.in Email : info@bhavisha.co.in
                                                         </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th colspan="2">Topic : </th>
+                                                        <td>
+                                                            <?php echo "<h5>".$topic."</h5><br>";
+                                                                    echo "<span>".$course0." / ".$subject;
+                                                            ?>
+                                                        </td>
+
                                                     </tr>
                                                 </thead>
                                             <?php 
@@ -23,8 +33,8 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
                                               foreach($topics as $row=> $value){
                                             ?>
                                             <tr id="<?php echo $topics[$row]['id'];?>">
-                                              <td><?php echo $counter++; ?></td>
-                                              <td><?php $tname = $course->get_one($topics[$row]['tid'],'id'); 
+                                              <td style="vertical-align:top"><?php echo $counter++; ?></td>
+                                              <td style="vertical-align:top"><?php $tname = $course->get_one($topics[$row]['tid'],'id'); 
                                                    echo $tname[0]['topic'];?></td>
                                               <td><?php echo $topics[$row]['tcontent'];?></td>
                                               
