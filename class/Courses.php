@@ -571,9 +571,17 @@ class Courses {
 	        $insertId = $this->db_handle->insert($query, $paramType, $paramValue);
 	       	return $insertId;
 	}
+
 	function get_one_handmade_notes_content($hid)
 	{
 		 $query = "select * from handmade_notes_detail where hid='$hid'";
+		$result = $this->db_handle->runBaseQuery($query);
+        return $result;
+	}
+
+	function get_one_handmade_notes_content_preview($hid)
+	{
+		$query = "select * from handmade_notes_detail where hid='$hid' AND file_upload ='' ";
 		$result = $this->db_handle->runBaseQuery($query);
         return $result;
 	}
