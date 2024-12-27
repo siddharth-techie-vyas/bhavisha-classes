@@ -8,13 +8,12 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
                                     ?>
 <div class="content">
                                             
-                                            <table>
+                                            <table border="1">
                                                 <thead>
                                                     <tr>
                                                         <td colspan="2"> <img src="<?php echo $base_url.'theme/images/logo.png'?>"></td>
                                                         <td>
                                                         410 – Nandanwan, Aakhaliya Circle, Chopasni Road, Jodhpur (Raj.)<br>Contact : 0291–2760178, 9810060308, 9829524103<br>www.bhavisha.co.in Email : info@bhavisha.co.in
-
                                                         </td>
                                                     </tr>
                                                 </thead>
