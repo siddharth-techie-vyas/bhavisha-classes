@@ -14,7 +14,7 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
 
 <div id="pdf_editor"></div>
 
-<div class="content">
+<div id="content">
 
                                             
                                             <table border="1" valign="top" style="max-width:700px;">
