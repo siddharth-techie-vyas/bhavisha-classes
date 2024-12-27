@@ -108,8 +108,11 @@
                         <td><a href="<?php echo $base_url;?>index.php?action=dashboard&page=course_homemade_notes_add&id=<?php echo $allsubject[$key]['id'];?>"  class="btn btn-xs btn-warning">Add Notes</a></td>
                        
                         <td>
-                        <a href="index.php?action=nocss_pages&page=course_homemade_notes_add&id=<?php echo $allsubject[$key]['id'];?>" class="btn btn-info btn-xs">View / Print</a>  
+                          
+                        <button type="button" class="btn btn-info btn-xs" onclick="show_page_model('index.php?action=nocss_pages&page=course_homemade_notes_preview&id=<?php echo $allsubject[$key]['id'];?>')" data-toggle="modal" data-target="#myModal">View / Print</button>  
+
                         <input type="button" class="btn btn-xs btn-danger" name="delete" value="Delete" onclick="deleteme_checking('action=course&query=delete_handmade_notes&delid=<?php echo $allsubject[$key]['id'];?>','tr<?php echo $allsubject[$key]['id'];?>')">
+                        
                         </td>
 
                       </tr>
