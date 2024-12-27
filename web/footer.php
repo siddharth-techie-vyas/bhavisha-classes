@@ -137,7 +137,12 @@ $('.select2').select2();
 </div>
 
 <!-- Modal -->
-
+<style>
+  .modal-dialog {
+  width: auto;
+  max-width: 860px; // Optional, maximum width
+}
+</style>
 <div id="myModal2" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
