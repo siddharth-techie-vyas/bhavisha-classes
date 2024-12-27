@@ -7,9 +7,17 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
                                     $chname = $course->get_one($get_detail[0]['chapterid'],'id'); 
                                     $topic = $chname[0]['chapter'];                              
                                     ?>
+
+<span class="text-danger">You can only print text content. For Uploaded content view go for detailed view *</span>
+
+<button type='button' name='class_list_btn' class="btn btn-default btn-xs"  onclick="htmlget('content','Notes for student')"><i class='fa fa-file-pdf'></i> Download Pdf</button>
+
+<div id="pdf_editor"></div>
+
 <div class="content">
+
                                             
-                                            <table border="1" valign="top" style="max-width:800px;">
+                                            <table border="1" valign="top" style="max-width:700px;">
                                                 <thead>
                                                     <tr>
                                                         <td colspan="2"> <img src="<?php echo $base_url.'theme/images/logo.png'?>"></td>
