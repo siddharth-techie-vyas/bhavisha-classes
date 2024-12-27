@@ -385,8 +385,11 @@ class Courses {
 	{
 		$query = "select * from questions where topic = $topicid";
 		$result = $this->db_handle->runBaseQuery($query);
-		$count = count($result);
-		return $count;
+		
+		if($result)
+		{$count = count($result); return $count;}
+		else
+		{return "0";}
 	}
 
 	function count_question_frm_chapter($chapterid)
