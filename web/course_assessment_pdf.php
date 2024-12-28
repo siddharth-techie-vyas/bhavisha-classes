@@ -1,8 +1,8 @@
 
 
 <?php   $asses = $course->get_assessment_details_papers($_GET['id']);
-$details = $course->viewone_course($_GET['asid']);
-$sub_details = $course->viewone_course($ass_details[0]['subject']);
+$details = $course->viewone_course($_GET['id']);
+$sub_details = $course->viewone_course($details[0]['subject']);
 ?>
 
 <input type="button" onclick="getpdf()" id="save_pdf" name="Download PDF" class="no-print btn btn-mini btn-info" value="Download PDF">
