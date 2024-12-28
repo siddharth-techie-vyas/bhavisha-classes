@@ -228,7 +228,7 @@ $answers=array();
 				if($tr=='1')
 				{echo "<tr>";}
 				echo "<th>Ans. ".$j." :- ".$qcount_array[$i]."</th>";
-				if($tr=='4')
+				if($tr=='8')
 				{echo "</tr>"; $tr='1';}
 				
 			}
