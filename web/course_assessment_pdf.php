@@ -3,6 +3,7 @@
 <?php   $asses = $course->get_assessment_details_papers($_GET['id']);
 $details = $course->viewone_course($_GET['id']);
 $sub_details = $course->viewone_course($details[0]['subject']);
+$answer=array();
 ?>
 
 <input type="button" onclick="htmlget('canvas_div_pdf','Assessment - <?php echo $details[0]['assessment'];?>')" id="save_pdf" name="Download PDF" class="no-print btn btn-mini btn-info" value="Download PDF">
