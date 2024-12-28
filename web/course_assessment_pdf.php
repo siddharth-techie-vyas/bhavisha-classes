@@ -132,6 +132,7 @@ $answer=array();
 				echo "</tr>";
 
 				//-- add answer into array 
+				echo $fill[$key]['solution'];
 				array_push($answers,$fill[$key]['solution']);
  			}
 			?>
