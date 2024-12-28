@@ -14,7 +14,7 @@ $answers=array();
 
 <input type="button" name="edit" value="Delete" class="no-print btn btn-mini btn-danger"> 
 
-<div id="editor"></div>
+<div id="pdf_editor"></div>
 
 <div id="canvas_div_pdf">
 
