@@ -14,13 +14,19 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
 
 <div id="pdf_editor"></div>
 
-<div id="canvas_div_pdf" style="width:100%; margin:2px; border:1px solid #000;">
+<div id="canvas_div_pdf" style="width:100%; margin:2px; border:1px solid #000; text-align:justyify;">
 
                                             
                                             <table border="1" valign="top" style="max-width:700px;">
                                                 <thead>
                                                     <tr>
-                                                        <td colspan="2"> <img src="<?php echo $base_url.'theme/images/logo.png'?>"></td>
+                                                    <?php 
+                                                    $item = 'theme/images/logo.png';
+                                                    $type = pathinfo($item, PATHINFO_EXTENSION);
+                                                    $data = file_get_contents($item);
+                                                    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+                                                            ?>
+                                                        <td colspan="2"><img src="<?php echo $base64;?>" height="40" width="auto"></td>
                                                         <td>
                                                         410 – Nandanwan, Aakhaliya Circle, Chopasni Road, Jodhpur (Raj.)<br>Contact : 0291–2760178, 9810060308, 9829524103<br>www.bhavisha.co.in Email : info@bhavisha.co.in
                                                         </td>

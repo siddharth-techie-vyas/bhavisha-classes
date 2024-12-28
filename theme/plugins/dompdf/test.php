@@ -12,7 +12,7 @@ if(empty($_POST['orientation']))
 {$orientation='portrait';}else{$orientation=$_POST['orientation'];}
 
 $options = new Options();
-$options->set('defaultFont', 'Helvetica');
+$options->set('defaultFont', 'Bookman Old Style Regular');
 $dompdf = new Dompdf($options);
 
 // instantiate and use the dompdf class
