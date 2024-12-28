@@ -216,15 +216,22 @@ $answers=array();
 <h4>Answer Sheet</h4>
 		<hr>
 		<?php 
-			print_r($answers);
+			//print_r($answers);
 			$qcount_array = $answers;
-
+			echo "<table border='1' style='width:100%;'>";
 			//$qcount_array = explode(",", $qcount);
 			$qcount = count($qcount_array);
-
+			$tr='1';
 			for($i=0; $i<$qcount; $i++) {
 				$j=$i+1;
-				echo "<div class='col-sm-3' style='height:30px; border:1px solid #000'>Ans. ".$j." :- ".$qcount_array[$i]."</div>";
+				$tr++;
+				if($tr=='1')
+				{echo "<tr>";}
+				echo "<th>Ans. ".$j." :- ".$qcount_array[$i]."</th>";
+				if($tr=='4')
+				{echo "</tr>"; $tr='1';}
+				
 			}
+			echo "</table>";
 		?>
 	</div>
