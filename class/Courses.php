@@ -223,7 +223,7 @@ class Courses {
 	
 	function viewone_course($id)
 	{
-		echo $query = "select * from courses where id= '$id'";
+		$query = "select * from courses where id= '$id'";
 		$result = $this->db_handle->runBaseQuery($query);
         return $result;
 	}
