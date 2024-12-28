@@ -3,7 +3,7 @@
 <?php   $asses = $course->get_assessment_details_papers($_GET['id']);
 $details = $course->viewone_course($_GET['id']);
 $sub_details = $course->viewone_course($details[0]['subject']);
-$answer=array();
+$answers=array();
 ?>
 
 <input type="button" onclick="htmlget('canvas_div_pdf','Assessment - <?php echo $details[0]['assessment'];?>')" id="save_pdf" name="Download PDF" class="no-print btn btn-mini btn-info" value="Download PDF">
@@ -137,7 +137,7 @@ $answer=array();
 			?>
 		</table>
 	</div>
-	<?php print_r($answers); }?>
+	<?php }?>
 
 
 
@@ -216,7 +216,7 @@ $answer=array();
 <h4>Answer Sheet</h4>
 		<hr>
 		<?php 
-			print_r($answers);
+			print_r($answer);
 			$qcount_array = $answers;
 
 			//$qcount_array = explode(",", $qcount);
