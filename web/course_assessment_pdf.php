@@ -129,10 +129,11 @@ $answer=array();
 				else
 				{echo "<td>................................................</td>";}
 				echo "<th>(Marks : ".$fill[$key]['marks']." )</th>";
+				echo "<th>(Marks : ".$fill[$key]['solution']." )</th>";
 				echo "</tr>";
 
 				//-- add answer into array 
-				echo $fill[$key]['solution'];
+				
 				array_push($answers,$fill[$key]['solution']);
  			}
 			?>
