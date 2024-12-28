@@ -7,7 +7,7 @@ $sub_details = $course->viewone_course($details[0]['subject']);
 
 <input type="button" onclick="htmlget('canvas_div_pdf','Assessment - <?php echo $details[0]['assessment'];?>')" id="save_pdf" name="Download PDF" class="no-print btn btn-mini btn-info" value="Download PDF">
 
-<input type="button" name="print" value="Download Anwer Key" class="no-print btn btn-mini btn-success"> 
+<input type="button" name="print" value="Download Anwer Key" class="no-print btn btn-mini btn-success" onclick="htmlget('answer_sheet','Assessment - Answer Sheet - <?php echo $details[0]['assessment'];?>')"> 
 
 <input type="button" name="edit" value="Edit" class="no-print btn btn-mini btn-primary"> 
 
@@ -187,31 +187,11 @@ $sub_details = $course->viewone_course($details[0]['subject']);
 	<?php }?>
 
 
-	<!--- answer sheet--->
-	<div class="col-sm-12">
-		<hr>
-		<h4>Answer Sheet</h4>
-		<hr>
-		<?php 
-			$qcount = $answers;
-			$qcount_array = explode(",", $qcount);
-			$qcount = count($qcount_array);
-
-			for($i=0; $i<$qcount; $i++) {
-				$j=$i+1;
-				echo "<div class='col-sm-3' style='height:30px; border:1px solid #000'>Ans. ".$j." :- </div>";
-			}
-		?>
-	</div>	
+		
 
 
 
 </div>
-
-
-
-
-
 
 <!--- footer--->
 <hr>
@@ -226,12 +206,22 @@ $sub_details = $course->viewone_course($details[0]['subject']);
 
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.0/html2pdf.bundle.min.js"></script>
-<script>
-function getpdf()
-{
- var element = document.getElementById('canvas_div_pdf');
- html2pdf(element);
-}
 
-</script>
+<!--- answer sheet--->
+<hr>
+<div class="col-sm-12" id="answer_sheet">
+<h2><?php echo $details[0]['assessment'];?></h2>
+<h3><?php $subjects = explode(',', $details[0]['subject']); ?></h3>
+<h4>Answer Sheet</h4>
+		<hr>
+		<?php 
+			$qcount = $answers;
+			$qcount_array = explode(",", $qcount);
+			$qcount = count($qcount_array);
+
+			for($i=0; $i<$qcount; $i++) {
+				$j=$i+1;
+				echo "<div class='col-sm-3' style='height:30px; border:1px solid #000'>Ans. ".$j." :- </div>";
+			}
+		?>
+	</div>
