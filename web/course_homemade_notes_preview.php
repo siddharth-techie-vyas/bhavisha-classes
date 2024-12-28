@@ -61,12 +61,3 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
 </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.0/html2pdf.bundle.min.js"></script>
-<script>
-function getpdf()
-{
- var element = document.getElementById('canvas_div_pdf');
- html2pdf(element);
-}
-
-</script>
