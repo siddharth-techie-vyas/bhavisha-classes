@@ -443,7 +443,7 @@ class Courses {
 	
 	function get_pdf_questions($qids,$qtype)
 	{
-		echo $query = "select * from questions where id IN ($qids) AND qtype ='$qtype' ";
+		$query = "select * from questions where id IN ($qids) AND qtype ='$qtype' ";
 		$result = $this->db_handle->runBaseQuery($query);
 		return $result;
 	}

@@ -132,7 +132,7 @@ $answer=array();
 				echo "</tr>";
 
 				//-- add answer into array 
-				array_push($answers,$mcq[$key]['solution']);
+				array_push($answers,$fill[$key]['solution']);
  			}
 			?>
 		</table>
@@ -156,7 +156,7 @@ $answer=array();
 				echo "</tr>";
 
 				//-- add answer into array 
-				array_push($answers,$mcq[$key]['solution']);
+				array_push($answers,$short[$key]['solution']);
  			}
 			?>
 		</table>
@@ -180,7 +180,7 @@ $answer=array();
 				echo "</tr>";
 
 				//-- add answer into array 
-				array_push($answers,$mcq[$key]['solution']);
+				array_push($answers,$long[$key]['solution']);
  			}
 			?>
 		</table>
@@ -216,7 +216,7 @@ $answer=array();
 <h4>Answer Sheet</h4>
 		<hr>
 		<?php 
-			print_r($answer);
+			//print_r($answer);
 			$qcount_array = $answers;
 
 			//$qcount_array = explode(",", $qcount);
