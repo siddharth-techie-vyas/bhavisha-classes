@@ -132,12 +132,12 @@ $answer=array();
 				echo "</tr>";
 
 				//-- add answer into array 				
-				array_push($answers,$fill[$key]['id']);
+				array_push($answers,$fill[$key]['solution']);
  			}
 			?>
 		</table>
 	</div>
-	<?php }?>
+	<?php print_r($answers); }?>
 
 
 
