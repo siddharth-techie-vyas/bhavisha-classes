@@ -223,7 +223,7 @@ $sub_details = $course->viewone_course($details[0]['subject']);
 
 			for($i=0; $i<$qcount; $i++) {
 				$j=$i+1;
-				echo "<div class='col-sm-3' style='height:30px; border:1px solid #000'>Ans. ".$j." :- </div>";
+				echo "<div class='col-sm-3' style='height:30px; border:1px solid #000'>Ans. ".$j." :- ".$qcount_array[$i]."</div>";
 			}
 		?>
 	</div>
