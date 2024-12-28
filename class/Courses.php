@@ -223,7 +223,7 @@ class Courses {
 	
 	function viewone_course($id)
 	{
-		$query = "select * from courses where id= '$id'";
+		echo $query = "select * from courses where id= '$id'";
 		$result = $this->db_handle->runBaseQuery($query);
         return $result;
 	}
@@ -436,14 +436,14 @@ class Courses {
 
 	function get_assessment_details_papers($id)
 	{
-	echo	$query = "select * from assessment_pdf where id = $id";
+		echo $query = "select * from assessment_pdf where id = $id";
 		$result = $this->db_handle->runBaseQuery($query);
 		return $result;
 	}
 	
 	function get_pdf_questions($qids,$qtype)
 	{
-		$query = "select * from questions where id IN ($qids) AND qtype ='$qtype' ";
+		echo $query = "select * from questions where id IN ($qids) AND qtype ='$qtype' ";
 		$result = $this->db_handle->runBaseQuery($query);
 		return $result;
 	}

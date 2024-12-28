@@ -1,4 +1,4 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.0/html2pdf.bundle.min.js"></script>
+
 
 <?php   $asses = $course->get_assessment_details_papers($_GET['id']);
 $details = $course->viewone_course($_GET['asid']);
@@ -18,7 +18,13 @@ $sub_details = $course->viewone_course($ass_details[0]['subject']);
 <div class="row" >
 	<div class="col-sm-12">
 		<div class="col-sm-5">
-			<img src="<?php echo $base_url.'theme/images/logo.png';?>"/>
+		<?php 
+			$item = 'theme/images/logo.png';
+			$type = pathinfo($item, PATHINFO_EXTENSION);
+			$data = file_get_contents($item);
+			$base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+		?>
+			<img src="<?php echo $base64;?>"/>
 		</div>
 		<div class="col-sm-7">
 			<h4>Bhavisha - The Commerce & Law Institute</h4>
