@@ -10,11 +10,11 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
 
 <span class="text-danger">You can only print text content. For Uploaded content view go for detailed view *</span>
 
-<button type='button' name='class_list_btn' class="btn btn-default btn-xs"  onclick="getpdf()"><i class='fa fa-file-pdf'></i> Download Pdf</button>
+<button type='button' name='class_list_btn' class="btn btn-default btn-xs"  onclick="htmlget('canvas_div_pdf','Notes')"><i class='fa fa-file-pdf'></i> Download Pdf</button>
 
 <div id="pdf_editor"></div>
 
-<div id="canvas_div_pdf">
+<div id="canvas_div_pdf" style="max-width:700px; margin:2px;">
 
                                             
                                             <table border="1" valign="top" style="max-width:700px;">
@@ -35,20 +35,23 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
 
                                                     </tr>
                                                 </thead>
+                                            </table>    
+
+
                                             <?php 
                                             $counter=1;
                                               $topics =$course->get_one_handmade_notes_content_preview($_GET['id']);
                                               foreach($topics as $row=> $value){
                                             ?>
-                                            <tr id="<?php echo $topics[$row]['id'];?>">
-                                              <td style="vertical-align:top"><?php echo $counter++; ?></td>
-                                              <td style="vertical-align:top"><?php $tname = $course->get_one($topics[$row]['tid'],'id'); 
-                                                   echo $tname[0]['topic'];?></td>
-                                              <td><?php echo $topics[$row]['tcontent'];?></td>
-                                              
-                                            </tr>
+                                           <h4>
+                                                <?php echo $counter++; ?>
+                                                <?php $tname = $course->get_one($topics[$row]['tid'],'id'); echo $tname[0]['topic'];?>
+                                            </h4>
+
+                                            <p><?php echo $topics[$row]['tcontent'];?></p>
+                                            <hr>
                                             <?php }?>
-                                            </table> 
+                                            
 </div>
 
 
