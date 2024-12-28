@@ -436,7 +436,7 @@ class Courses {
 
 	function get_assessment_details_papers($id)
 	{
-		echo $query = "select * from assessment_pdf where id = $id";
+		$query = "select * from assessment_pdf where asid = $id";
 		$result = $this->db_handle->runBaseQuery($query);
 		return $result;
 	}
