@@ -5,7 +5,7 @@ $details = $course->viewone_course($_GET['id']);
 $sub_details = $course->viewone_course($details[0]['subject']);
 ?>
 
-<input type="button" onclick="getpdf()" id="save_pdf" name="Download PDF" class="no-print btn btn-mini btn-info" value="Download PDF">
+<input type="button" onclick="htmlget('canvas_div_pdf','Assessment - <?php echo $details[0]['assessment'];?>')" id="save_pdf" name="Download PDF" class="no-print btn btn-mini btn-info" value="Download PDF">
 
 <input type="button" name="print" value="Download Anwer Key" class="no-print btn btn-mini btn-success"> 
 
@@ -13,8 +13,13 @@ $sub_details = $course->viewone_course($details[0]['subject']);
 
 <input type="button" name="edit" value="Delete" class="no-print btn btn-mini btn-danger"> 
 
+<div id="editor"></div>
 
-<div id="canvas_div_pdf" style="padding:20px 10px 20px 10px;">
+<div id="canvas_div_pdf">
+
+<div style="border:1px solid #0000;">
+
+
 <div class="row" >
 	<div class="col-sm-12">
 		<div class="col-sm-5">
@@ -94,6 +99,9 @@ $sub_details = $course->viewone_course($details[0]['subject']);
 				echo "<td> (C) ".$mcq[$key]['opt3']."</td>";
 				echo "<td> (D) ".$mcq[$key]['opt4']."</td>";
 				echo "</tr>";
+
+				//-- add answer into array 
+				array_push($answers,$mcq[$key]['solution']);
  			}
 			?>
 		</table>
@@ -121,6 +129,9 @@ $sub_details = $course->viewone_course($details[0]['subject']);
 				{echo "<td>................................................</td>";}
 				echo "<th>(Marks : ".$fill[$key]['marks']." )</th>";
 				echo "</tr>";
+
+				//-- add answer into array 
+				array_push($answers,$mcq[$key]['solution']);
  			}
 			?>
 		</table>
@@ -142,6 +153,9 @@ $sub_details = $course->viewone_course($details[0]['subject']);
 				echo "<td width='70%'>".$short[$key]['part1']."</td>";
 				echo "<th>(Marks : ".$short[$key]['marks']." )</th>";
 				echo "</tr>";
+
+				//-- add answer into array 
+				array_push($answers,$mcq[$key]['solution']);
  			}
 			?>
 		</table>
@@ -163,6 +177,9 @@ $sub_details = $course->viewone_course($details[0]['subject']);
 				echo "<td width='70%'>".$long[$key]['part1']."</td>";
 				echo "<th>(Marks : ".$long[$key]['marks']." )</th>";
 				echo "</tr>";
+
+				//-- add answer into array 
+				array_push($answers,$mcq[$key]['solution']);
  			}
 			?>
 		</table>
@@ -176,7 +193,7 @@ $sub_details = $course->viewone_course($details[0]['subject']);
 		<h4>Answer Sheet</h4>
 		<hr>
 		<?php 
-			$qcount = $questions;
+			$qcount = $answers;
 			$qcount_array = explode(",", $qcount);
 			$qcount = count($qcount_array);
 
@@ -204,9 +221,10 @@ $sub_details = $course->viewone_course($details[0]['subject']);
 	</div>	
 </div>	
 
-<div id="editor"></div>
+
 </div>
 
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.0/html2pdf.bundle.min.js"></script>
 <script>
