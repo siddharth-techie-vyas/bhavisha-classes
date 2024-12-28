@@ -129,11 +129,9 @@ $answer=array();
 				else
 				{echo "<td>................................................</td>";}
 				echo "<th>(Marks : ".$fill[$key]['marks']." )</th>";
-				echo "<th>(Marks : ".$fill[$key]['solution']." )</th>";
 				echo "</tr>";
 
-				//-- add answer into array 
-				
+				//-- add answer into array 				
 				array_push($answers,$fill[$key]['solution']);
  			}
 			?>
@@ -218,7 +216,7 @@ $answer=array();
 <h4>Answer Sheet</h4>
 		<hr>
 		<?php 
-			print_r($answer);
+			print_r($answers);
 			$qcount_array = $answers;
 
 			//$qcount_array = explode(",", $qcount);
