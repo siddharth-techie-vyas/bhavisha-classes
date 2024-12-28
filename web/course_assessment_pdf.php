@@ -215,8 +215,8 @@ $sub_details = $course->viewone_course($details[0]['subject']);
 <h4>Answer Sheet</h4>
 		<hr>
 		<?php 
-			$qcount = $answers;
-			$qcount_array = explode(",", $qcount);
+			$qcount_array = $answers;
+			//$qcount_array = explode(",", $qcount);
 			$qcount = count($qcount_array);
 
 			for($i=0; $i<$qcount; $i++) {
