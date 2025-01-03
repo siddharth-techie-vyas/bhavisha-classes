@@ -125,10 +125,11 @@ case "get_rand_question":
 			<input type="hidden" name="asid" value="'.$_GET['asses_id'].'" >
 			<input type="hidden" name="posturl" value="'.$base_url.'index.php?action=dashboard&page=course_add_questions_assesment_pdf&id='.$_GET['asses_id'].'" >
 			<br><input type="button" onclick="select_all_checkbox()" id="selectall" class="btn btn-primary btn-sm" name="selectall" value="Select All"></td>';
-			echo "<td colspan='3'><label>Maximum Marks</label><input type='number' min='10' max='500' class='form-control' id='totalmarks' name='max_marks' required></td>";
+			echo "<td colspan='3'><label>Maximum Marks</label><input type='number' min='0' max='500' class='form-control' id='totalmarks' name='max_marks' required></td>";
 			echo "<td><label>Hours</label><input type='number' max='5' min='0'  class='form-control' name='hours' value='0'></td>";
 			echo "<td><label>Minutes</label><input type='number' max='60' min='0'  class='form-control' name='minutes' value='0'></td>";
-			echo "<td><label>Negative Marks (%) Per Question</label><input type='number' max='50' min='1'  class='form-control' name='neg_marks' value='0'>
+			echo "<td><label>Negative Marks (%) Per Question</label>
+				<input type='number' max='50' min='0'  class='form-control' name='neg_marks' value='0'>
 				<input type='checkbox' name='neg_mark_mcq' value='1' checked='checked'> MCQ
 				<input type='checkbox' name='neg_mark_mcq' value='1'> Fill In The Blanks
 				<input type='checkbox' name='neg_mark_mcq' value='1'> Short Question
