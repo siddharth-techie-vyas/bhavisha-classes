@@ -1,5 +1,5 @@
-//var base_url = 'localhost/bhavisha-classes/';
-var base_url = 'https://www.bhavishaclasses.com/';
+var base_url = 'localhost/bhavisha-classes/';
+//var base_url = 'https://www.bhavishaclasses.com/';
 var loading_img = base_url+'theme/images/loading.gif';
 
 //-- disable datepicker for previous dates
@@ -309,7 +309,7 @@ function get_related_data(class_name,function_name,inputid,outputid)
 //-- show model
 function show_page_model(page)
 {
-  //alert(base_url+page);
+  alert(base_url+page);
   $('#modal-body').html('<img src='+loading_img+'>');
   
   $('#modal-body').load(base_url+page); 

@@ -154,6 +154,7 @@
                           (<?php echo $course->count_question($allsubject[$key]['id']);?>)
                         </td>
                         <td><input type="button" name="edit" value="Edit" class="btn btn-xs btn-warning" onclick="show_page_model('index.php?action=nocss_pages&page=course_edit_topic&id=<?php echo $allsubject[$key]['id'];?>')" data-toggle="modal" data-target="#myModal"></td>
+                        
                         <td><input type="button" class="btn btn-xs btn-danger" name="delete" value="Delete" onclick="deleteme('course','delete','<?php echo $allsubject[$key]['id'];?>')"></td>
                       </tr>
                     <?php } ?>

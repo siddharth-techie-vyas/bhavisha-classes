@@ -4,13 +4,14 @@
 $details = $course->viewone_course($_GET['id']);
 $sub_details = $course->viewone_course($details[0]['subject']);
 $answers=array();
+$special_char=array('\r','\n');
 ?>
 
 <input type="button" onclick="htmlget('canvas_div_pdf','Assessment - <?php echo $details[0]['assessment'];?>')" id="save_pdf" name="Download PDF" class="no-print btn btn-mini btn-info" value="Download PDF">
 
 <input type="button" name="print" value="Download Anwer Key" class="no-print btn btn-mini btn-success" onclick="htmlget('answer_sheet','Assessment - Answer Sheet - <?php echo $details[0]['assessment'];?>')"> 
 
-<input type="button" name="edit" value="Edit" class="no-print btn btn-mini btn-primary"> 
+<a href="" name="edit" value="Edit" class="no-print btn btn-mini btn-primary"> 
 
 <input type="button" name="edit" value="Delete" class="no-print btn btn-mini btn-danger"> 
 
@@ -91,14 +92,14 @@ $answers=array();
 			<?php 
 			foreach ($mcq as $key => $value) {
 				echo "<tr><th>".$count++."</th>";
-				echo "<th colspan='2'>".$mcq[$key]['part1']."</th>";
-				echo "<th>(Marks : ".$mcq[$key]['marks']." )</th>";
+				echo "<th colspan='2'>".str_replace($special_char," ",$mcq[$key]['part1'])."</th>";
+				echo "<th>(Marks : ".str_replace($special_char," ",$mcq[$key]['marks'])." )</th>";
 				echo "</tr>";
 
-				echo "<tr><td> (A) ".$mcq[$key]['opt1']."</td>";
-				echo "<td> (B) ".$mcq[$key]['opt2']."</td>";
-				echo "<td> (C) ".$mcq[$key]['opt3']."</td>";
-				echo "<td> (D) ".$mcq[$key]['opt4']."</td>";
+				echo "<tr><td> (A) ".str_replace($special_char," ",$mcq[$key]['opt1'])."</td>";
+				echo "<td> (B) ".str_replace($special_char," ",$mcq[$key]['opt2'])."</td>";
+				echo "<td> (C) ".str_replace($special_char," ",$mcq[$key]['opt3'])."</td>";
+				echo "<td> (D) ".str_replace($special_char," ",$mcq[$key]['opt4'])."</td>";
 				echo "</tr>";
 
 				//-- add answer into array 
@@ -121,11 +122,11 @@ $answers=array();
 			foreach ($fill as $key => $value) {
 				echo "<tr><th>".$count++."</th>";
 				if($fill[$key]['part1'] !='')
-				{echo "<td>".$fill[$key]['part1']."</td>";}
+				{echo "<td>".str_replace($special_char," ",$fill[$key]['part1'])."</td>";}
 				else
 				{echo "<td>...............................................</td>";}	
 				if($fill[$key]['part2'] !='')
-				{echo "<td>".$fill[$key]['part2']."</td>";}
+				{echo "<td>".str_replace($special_char," ",$fill[$key]['part2'])."</td>";}
 				else
 				{echo "<td>................................................</td>";}
 				echo "<th>(Marks : ".$fill[$key]['marks']." )</th>";
@@ -151,8 +152,8 @@ $answers=array();
 			<?php 
 			foreach ($short as $key => $value) {
 				echo "<tr><th>".$count++."</th>";
-				echo "<td width='70%'>".$short[$key]['part1']."</td>";
-				echo "<th>(Marks : ".$short[$key]['marks']." )</th>";
+				echo "<td width='70%'>".str_replace($special_char," ",$short[$key]['part1'])."</td>";
+				echo "<th>(Marks : ".str_replace($special_char," ",$short[$key]['marks'])." )</th>";
 				echo "</tr>";
 
 				//-- add answer into array 
@@ -175,8 +176,8 @@ $answers=array();
 			<?php 
 			foreach ($long as $key => $value) {
 				echo "<tr><th>".$count++."</th>";
-				echo "<td width='70%'>".$long[$key]['part1']."</td>";
-				echo "<th>(Marks : ".$long[$key]['marks']." )</th>";
+				echo "<td width='70%'>".str_replace($special_char," ",$long[$key]['part1'])."</td>";
+				echo "<th>(Marks : ".str_replace($special_char," ",$long[$key]['marks'])." )</th>";
 				echo "</tr>";
 
 				//-- add answer into array 
@@ -218,18 +219,18 @@ $answers=array();
 		<?php 
 			//print_r($answers);
 			$qcount_array = $answers;
-			echo "<table border='1' style='width:100%;'>";
+			echo "<table border='1' style='width:100%;' cellpadding='5'>";
 			//$qcount_array = explode(",", $qcount);
 			$qcount = count($qcount_array);
 			$tr='1';
 			for($i=0; $i<$qcount; $i++) {
 				$j=$i+1;
 				$tr++;
-				if($tr=='1')
+				if($tr=='0')
 				{echo "<tr>";}
-				echo "<th>Ans. ".$j." :- ".$qcount_array[$i]."</th>";
-				if($tr=='8')
-				{echo "</tr>"; $tr='1';}
+				echo "<td valign='top'><b>Ans. ".$j." :- </b><hr>".str_replace($special_char," ",$qcount_array[$i])."</td>";
+				if($tr=='4')
+				{echo "</tr>"; $tr='0';}
 				
 			}
 			echo "</table>";

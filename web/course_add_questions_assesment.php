@@ -1,4 +1,7 @@
-<?php $topic = $course->viewone_course($_GET['id']);
+<?php 
+
+$special_char=array('\r','\n');
+$topic = $course->viewone_course($_GET['id']);
 
                                     $sname = $course->get_one($topic[0]['subject'],'id'); 
                                     $sname = $sname[0]['subject'];
@@ -27,7 +30,7 @@
                 <div class="card-body">
                   
                 <?php 
-                  $to_replace=array('\r','\n');
+                  
                   if(isset($_GET['status']))
                   {
                     if($_GET['status']=='1')
@@ -43,10 +46,14 @@
                         <div id="msgcreate_group"></div>
                         <div id="msgfrmCSVImport">
                           <?php 
-                          if($_GET['type']=='success')
-                          {echo "<div class='alert alert-success'>CSV Uploaded Successfully</div>";}
-                          if($_GET['type']=='danger')
-                          {echo "<div class='alert alert-danger'>CSV Uploaded Failed !!! Please try again</div>";}
+                          if(isset($_GET['type']))
+                          {
+                            if($_GET['type']=='success')
+                            {echo "<div class='alert alert-success'>CSV Uploaded Successfully</div>";}
+                            if($_GET['type']=='danger')
+                            {echo "<div class='alert alert-danger'>CSV Uploaded Failed !!! Please try again</div>";}
+                          }
+                          
                           ?>
                         </div>
 
@@ -161,12 +168,12 @@
                                         
                                         ?>
                                         <tr id="<?php echo $fill_question[$key]['id']; ?>">
-                                          <td><?php echo str_replace($to_replace,"",$fill_question[$key]['part1']); ?></td>
-                                          <td><?php echo $fill_question[$key]['opt1']; ?><br>
-                                              <?php echo $fill_question[$key]['opt2']; ?><br>
-                                              <?php echo $fill_question[$key]['opt3']; ?><br>
-                                              <?php echo $fill_question[$key]['opt4']; ?></td>
-                                          <td><?php echo $fill_question[$key]['solution']; ?></td>
+                                          <td><?php echo str_replace($special_char,"",$fill_question[$key]['part1']); ?></td>
+                                          <td><?php echo str_replace($special_char,"",$fill_question[$key]['opt1']); ?><br>
+                                              <?php echo str_replace($special_char,"",$fill_question[$key]['opt2']); ?><br>
+                                              <?php echo str_replace($special_char,"",$fill_question[$key]['opt3']); ?><br>
+                                              <?php echo str_replace($special_char,"",$fill_question[$key]['opt4']); ?></td>
+                                          <td><?php echo str_replace($special_char,"",$fill_question[$key]['solution']); ?></td>
                                           <td><?php $fqused = $admin->getone_meta_data('question_used',$fill_question[$key]['qused']); echo $fqused[0]['meta_value1']; ?></td>
                                           <td><input type="button" name="delete" value="Delete" class="btn btn-xs btn-danger" onclick="deleteme('course','question_delete','<?php echo $fill_question[$key]['id'];?>')"> 
 
@@ -213,8 +220,8 @@
                                         ?>
                                         <tr id="<?php echo $fill_question[$key]['id']; ?>">
                                         <td><?php echo str_replace($to_replace,"",$fill_question[$key]['part1']); ?></td>
-                                          <td><?php echo $fill_question[$key]['solution']; ?></td>
-                                          <td><?php echo $fill_question[$key]['explanation']; ?></td>
+                                          <td><?php echo str_replace($special_char,' ',$fill_question[$key]['solution']); ?></td>
+                                          <td><?php echo str_replace($special_char,"",$fill_question[$key]['explanation']); ?></td>
                                           <td><?php $fqused = $admin->getone_meta_data('question_used',$fill_question[$key]['qused']); echo $fqused[0]['meta_value1']; ?></td>
                                           <td><input type="button" name="delete" value="Delete" class="btn btn-xs btn-danger" onclick="deleteme('course','question_delete','<?php echo $fill_question[$key]['id'];?>')"> <input type="button" name="edit" value="Edit" class="btn btn-xs btn-info"></td>
                                         </tr>
@@ -256,8 +263,8 @@
                                         
                                         ?>
                                         <tr>
-                                          <td><?php echo $fill_question[$key]['part1']; ?></td>
-                                          <td><?php echo $fill_question[$key]['solution']; ?></td>
+                                          <td><?php echo str_replace($special_char,"",$fill_question[$key]['part1']); ?></td>
+                                          <td><?php echo str_replace($special_char,"",$fill_question[$key]['solution']); ?></td>
                                           <td><?php $fqused = $admin->getone_meta_data('question_used',$fill_question[$key]['qused']); echo $fqused[0]['meta_value1']; ?></td>
                                           <td><input type="button" name="delete" value="Delete" class="btn btn-xs btn-danger" onclick="deleteme('course','question_delete','<?php echo $fill_question[$key]['id'];?>')"> <input type="button" name="edit" value="Edit" class="btn btn-xs btn-info"></td>
                                         </tr>

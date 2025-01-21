@@ -15,7 +15,7 @@
 
 
 
-<script>tinymce.init({selector:'textarea'});</script>
+<!-- <script>tinymce.init({selector:'textarea'});</script> -->
 
 <script type="text/javascript" src="<?php echo $base_url;?>theme/js/menu.js"></script>
 
@@ -25,25 +25,74 @@
 
 <!--------- data table-------->
 
-<script type="text/javascript" src="<?php echo $base_url;?>theme/plugins/datatable/dataTables.bootstrap4.min.js"></script>
+<style>
+.dt-length{display:inline; float:left; width:33%; text-align:left;}
+.dt-info{display:inline; float:left; text-align:left;}
 
-<script type="text/javascript" src="<?php echo $base_url;?>theme/plugins/datatable/jquery.dataTables.min.js"></script>
+.dt-buttons {display:inline; float:none; width:33%; text-align:center;}
+.dt-search{display:inline; float:right; width:33%; text-align:right;}
+
+.dt-paging{display:inline; float:right; text-align:right;}
+</style>
+<script type="text/javascript" src="<?php echo $base_url;?>theme/plugins/datatable/datatables.min.js"></script>
+
+<script type="text/javascript" src="<?php echo $base_url;?>theme/plugins/datatable/datatables.min.js"></script>
 
 <script type="text/javascript">
 
 	$(document).ready(function() {
 
-    $('#data-table').DataTable();
+    
+      $('#data-table').DataTable({
+        dom: 'lBfrtip',
+            buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ]
+    });
 
-    $('#data-table1').DataTable();
 
-    $('#data-table2').DataTable();
+  new DataTable('#data-table1', {
+    layout: {
+        topStart: {
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        }
+    }
+  });
 
-    $('#data-table3').DataTable();
+  new DataTable('#data-table4', {
+    layout: {
+        topStart: {
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        }
+    }
+  });
 
-    $('#data-table4').DataTable();
+  new DataTable('#data-table3', {
+    layout: {
+        topStart: {
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        }
+    }
+  });
 
-    $('#data-table5').DataTable();
+  new DataTable('#data-table4', {
+    layout: {
+        topStart: {
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        }
+    }
+  });
+
+  new DataTable('#data-table5', {
+    layout: {
+        topStart: {
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        }
+    }
+  });
 
 } );
 
@@ -140,7 +189,7 @@ $('.select2').select2();
 <style>
   .modal-dialog {
   width: auto;
-  max-width: 860px; // Optional, maximum width
+  max-width: 900px; // Optional, maximum width
 }
 </style>
 <div id="myModal2" class="modal fade" role="dialog">

@@ -1,7 +1,7 @@
 <div class='card-header'>
                         <h4>Add New Assessment</h4>
                     </div>
-<div class="content">
+<div class="">
 <div class="col-sm-12"><br>
 
                   <div id="msgcreate_assessment"></div>
@@ -85,7 +85,7 @@
 
             <div class="col-sm-12">
                 <div class="row">
-                  <table class="table">
+                  <table class="table" id="data-table">
                     <thead>
                       <tr>
                         <th>S.No.</th>
@@ -119,7 +119,7 @@
                      
                         <td>
                           <i title="Delete Assessment" class="fa fa-trash text-danger" onclick="deleteme('course','delete','<?php echo $allsubject[$key]['id'];?>')"></i>
-                          <i title="View PDF" class="fa fa-file-pdf text-info" onclick="show_page_model('index.php?action=nocss_pages&page=course_assessment_pdf&id=<?php echo $allsubject[$key]['id'];?>')" data-toggle="modal" data-target="#myModal"></i>
+                          <i title="View PDF" class="fa fa-file-pdf text-info" onclick="window.open('<?php echo $base_url;?>index.php?action=dashboard&page=course_assessment_pdf&id=<?php echo $allsubject[$key]['id'];?>','Edit Assessment','height=500,width=400,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes')"></i>
 
                           <a title="Add Question" href="<?php echo $base_url.'index.php?action=dashboard&page=course_add_questions_assesment_pdf&id='.$allsubject[$key]['id'];?>"><i class="fa fa-question text-success"></i></a>
                         </td>
