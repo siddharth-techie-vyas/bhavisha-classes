@@ -233,16 +233,23 @@ class Student {
         
 	}
 	
-	function get_student_as_primary($batchid)
+	function get_student_as_primary($stuid,$batchid)
 	{
-	    $query = "select * from student where batchid='$batchid'";
+	    $query = "select * from student where batchid='$batchid' AND id='$stuid' ";
 		$result = $this->db_handle->runBaseQuery($query);
         return $result;
 	}
 	
-	function get_student_as_secondary($batchid)
+	function get_student_as_secondary($stuid,$batchid)
 	{
-	    $query = "select * from student where batchid2='$batchid'";
+	    $query = "select * from student where batchid2='$batchid' AND id='$stuid' ";
+		$result = $this->db_handle->runBaseQuery($query);
+        return $result;
+	}
+
+	function get_student_common_bacth($batchid)
+	{
+	    $query = "select * from student where batchid2='$batchid' OR batchid='$batchid' ";
 		$result = $this->db_handle->runBaseQuery($query);
         return $result;
 	}
