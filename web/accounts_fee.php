@@ -9,7 +9,7 @@
 
                           <label>Branch</label>
 
-                           <select name="branchid" class="form-control" id="branchid" onchange="get_related_data('teacher','get_all_branch_batches','branchid','batchid')">
+                           <select name="branchid" class="form-control" id="branchid" onchange="get_related_data('teacher','get_all_branch_batches','branchid','batchid0')">
 
                               <option disabled='disabled' selected='selected'>-- Select --</option>
 
@@ -37,7 +37,7 @@
 
                           <label>Batch</label>
 
-                            <select name="batchid" id="batchid" class="form-control" required>
+                            <select name="batchid" id="batchid0" class="form-control" required>
                               
                             </select>
 

@@ -30,11 +30,6 @@
                     { name: 'wirisplugins', items: ['ckeditor_wiris_formulaEditor', 'ckeditor_wiris_formulaEditorChemistry'] },
                     { name: 'other', items: ['Bold','Italic','Underline','RemoveFormat','NumberedList','BulletedList','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','UIColor','TextColor'] }
                 ],
-                // language: 'de',
-                // mathTypeParameters: {
-                //   editorParameters: { language: 'es' }, // MathType config, including language
-                // },
-              
                 
               });
               
@@ -57,7 +52,7 @@
 
 <script src="<?php echo $base_url;?>theme/js/jquery-2.1.3.min.js"></script>
 <script src="<?php echo $base_url;?>theme/js/bootstrap-3.3.2.min.js"></script>
-<script  src="<?php echo $base_url;?>theme/js/function.js"></script>
+<script type="text/javascript" src="<?php echo $base_url;?>theme/js/function.js?ver=<?php echo rand(0,9999);?>"></script>
 
 <!--- multiselect-->
 <script type="text/javascript" src="<?php echo $base_url;?>theme/js/bootstrap-multiselect.js"></script>
