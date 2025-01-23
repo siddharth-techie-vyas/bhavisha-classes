@@ -19,7 +19,7 @@
                                    <input type='hidden' name='page' value='student_createex'>
                                    <input type='hidden' name='action' value='dashboard'>
                                     <label>Enter Mobile Number</label>
-                                    <select id='exstudent' name='id' class='select2'>
+                                    <select id='exstudent'  name='id' class="form-control">
                                       <option disabled='' selected='selected'>-- Select -- </option>
                                     <?php $exstudent = $student->view_exstudent($_SESSION['syear']);
                                     foreach($exstudent as $row => $value){?>
