@@ -88,7 +88,8 @@ class Student {
 
 	function view_exstudent($syear)
 	{
-		$query = "select * from student where syear < '$syear'  Order by id DESC";
+		//$query = "select * from student where syear < '$syear'  Order by id DESC";
+		$query = "select * from student Order by id DESC";
 		$result = $this->db_handle->runBaseQuery($query);
         return $result;
 	}
