@@ -88,25 +88,32 @@
                                 else if($t_type=='2'){ echo "Debit";}
                                 else{ echo "Both";}
                          ?></td>
-                         <td><?php echo $t_type1[$row]['type_name'];?></td>
+                         <td>
+                          <?php if($t_type1[$row]['status']==1){echo '<span class".text-decoration-line-through">'.$t_type1[$row]['type_name'].'</span>';}else{echo $t_type1[$row]['type_name'];}?></td>
                          <td><?php $subcat = $accounts->get_all_transaction_type_subcat($t_type1[$row]['id']);
                                 if($subcat)
                                 {echo "<ul>";
                                     foreach($subcat as $k => $value)
                                     {
-                                        echo "<li>";
+                                        
                                         echo $subcat[$k]['type_name'];
-                                        ?> <i data-toggle='modal' data-target='#myModal' onclick='show_page_model("index.php?action=nocss_pages&page=acc_transaction_type_edit&id=<?php echo $t_type1[$row]['id'];?>")'  class='fa fa-pencil'></i><?php
-                                        echo "</li>";
-                                    }
-                                echo "</ul>";
-                                }
-                         ?></td>
+                                        ?> 
+                                        <li>
+
+                                        <i data-toggle="modal" data-target="#myModal" onclick="show_page_model('index.php?action=nocss_pages&page=acc_transaction_type_edit&id=<?php echo $t_type1[$row]['id'];?>')"  class="fa fa-pencil"></i>
+
+                                        <i class="fa fa-trash btn btn-danger btn-sm" onclick="deleteme('accounts','delete_transaction_type','<?php echo $subcat[$k]['id'];?>')></i>
+                                        
+                                        </li>
+                                    <?php }  ?>
+                                  </ul>
+                                  <?php }?>    
+                              </td>
                          
                          <td>
                              <button type='button' class='btn btn-sm btn-warning'data-toggle="modal" data-target="#myModal" onclick="show_page_model('index.php?action=nocss_pages&page=acc_transaction_type_edit&id=<?php echo $t_type1[$row]['id'];?>')"><i class="fa fa-pencil"></i></button> 
                                   
-                            <i class='btn btn-danger btn-sm fa fa-trash'></i>
+                            <i class='fa fa-trash btn btn-danger btn-sm' onclick="deleteme('accounts','delete_transaction_type','<?php echo $classes[$k]['id'];?>')></i>
                          </td>
                      </tr>
                         

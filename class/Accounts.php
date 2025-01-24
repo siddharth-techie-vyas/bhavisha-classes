@@ -244,5 +244,11 @@ class Accounts {
             else
                 {echo "<div class='alert alert-danger'>Something went wrong !!! Please try again !!!</div>";}
     }
-	
+
+    function delete_transaction_type($id)
+    {
+        $query = "update acc_fee_other SET status='1' where id='$id'";
+        $result = $this->db_handle->update($query);
+        return $result;
+    }
 }
