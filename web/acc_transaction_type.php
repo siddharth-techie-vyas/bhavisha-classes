@@ -24,10 +24,10 @@
               $t_type=$accounts->get_all_transaction_type_main();
                foreach ($t_type as $key => $value) 
               {
-				$mainid=$t_type[$key]['id'];
+				        $mainid=$t_type[$key]['id'];
                 echo "<option value='".$mainid."'>".$t_type[$key]['type_name']."</option>";
                 
-			$accounts->get_all_transaction_type_loop($mainid);
+			          $accounts->get_all_transaction_type_loop($mainid);
                    
               }
             ?>

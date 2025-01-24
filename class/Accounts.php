@@ -71,7 +71,7 @@ class Accounts {
     function add_transaction_type($tid,$type_name,$transaction_type)
     {
         $query = "insert into acc_master_transaction_type(tid,type_name,type_transaction)VALUES(?,?,?)";
-            $paramType = "iss";
+            $paramType = "isi";
             $paramValue = array($tid,$type_name,$transaction_type);
             $insertId = $this->db_handle->insert($query, $paramType, $paramValue);
             if($insertId)
