@@ -102,7 +102,7 @@
 
                                         <i data-toggle="modal" data-target="#myModal" onclick="show_page_model('index.php?action=nocss_pages&page=acc_transaction_type_edit&id=<?php echo $t_type1[$row]['id'];?>')"  class="fa fa-pencil"></i>
 
-                                        <i class="fa fa-trash btn btn-danger btn-sm" onclick="deleteme('accounts','delete_transaction_type','<?php echo $subcat[$k]['id'];?>')></i>
+                                        <i class="fa fa-trash btn btn-danger btn-sm" onclick="deleteme('accounts','delete_transaction_type','<?php echo $subcat[$k]['id'];?>')"</i>
                                         
                                         </li>
                                     <?php }  ?>
