@@ -113,7 +113,7 @@
                          <td>
                              <button type='button' class='btn btn-sm btn-warning'data-toggle="modal" data-target="#myModal" onclick="show_page_model('index.php?action=nocss_pages&page=acc_transaction_type_edit&id=<?php echo $t_type1[$row]['id'];?>')"><i class="fa fa-pencil"></i></button> 
                                   
-                            <i class='fa fa-trash btn btn-danger btn-sm' onclick="deleteme('accounts','delete_transaction_type','<?php echo $classes[$k]['id'];?>')></i>
+                            <i class='fa fa-trash btn btn-danger btn-sm' onclick="deleteme('accounts','delete_transaction_type','<?php echo $classes[$k]['id'];?>')"></i>
                          </td>
                      </tr>
                         
