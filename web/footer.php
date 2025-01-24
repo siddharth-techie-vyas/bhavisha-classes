@@ -94,12 +94,25 @@
 </script>
 
 <!-- select 2 -->
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
 $(document).ready(function() {
-$('.select2').select2();
+  $('.select2').select2({
+  placeholder: 'Select an option'
 });
+});
+</script> -->
+
+
+<link href="<?php echo $base_url.'theme/plugins/select2/';?>select2.css" rel="stylesheet" />
+<script src="<?php echo $base_url.'theme/plugins/select2/';?>select2.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.select2').select2({
+  placeholder: 'Select an option'
+}); 
+  });  
 </script>
 
 <!-- ck editor-->
@@ -203,8 +216,6 @@ $('.select2').select2();
     </div>
   </div>
 </div>
-
-
 <div class='text-center col-sm-12'>Developed & Maintained by <a href="https://www.prodhyogiki.com" target="_blank">Prodhyogiki</a></div>
 </body>
 

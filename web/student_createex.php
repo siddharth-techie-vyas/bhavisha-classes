@@ -1,9 +1,10 @@
 
+
 <div class='card-header'>
                   <h4>Enroll Existing Student In a New Batch</h4>
                     </div>
 
-
+                    
                     
                     <div id="simpleModal" class="modal" tabindex="-1" role="dialog" >
                         <div class="modal-dialog" role="document">
@@ -19,7 +20,7 @@
                                    <input type='hidden' name='page' value='student_createex'>
                                    <input type='hidden' name='action' value='dashboard'>
                                     <label>Enter Mobile Number</label>
-                                    <select id='exstudent'  name='id' class="form-control">
+                                    <select class="select2" class="form-control" style="width:50%;" name='id'>
                                       <option disabled='' selected='selected'>-- Select -- </option>
                                     <?php $exstudent = $student->view_exstudent($_SESSION['syear']);
                                     foreach($exstudent as $row => $value){?>
@@ -739,3 +740,7 @@
     }
   }
 </script>
+
+
+
+
