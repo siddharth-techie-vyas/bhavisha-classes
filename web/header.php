@@ -19,7 +19,7 @@
 
 <!-- ckeditor --->
 <script src="<?php echo $base_url.'theme/plugins/ckeditor/ckeditor.js' ?>"></script>
-<script>
+<!-- <script>
         function ck_config(id)
         {
             var $ckfield =CKEDITOR.replace( id, { //eslint-disable-line
@@ -42,7 +42,7 @@
               
              // $ckfield.skin = 'moonocolor';*/
         }
-    </script>
+    </script> -->
 
 <!-- chart -->
 <script type="text/javascript" src="<?php echo $base_url;?>theme/js/Chart.js"></script>
