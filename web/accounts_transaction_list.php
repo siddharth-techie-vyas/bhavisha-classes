@@ -53,7 +53,7 @@ if(count($tra)>1)
             <td>
                 <?php 
                 //-- if student 
-                if($tra[$row]!='0'){ $stu_name=$student->get_one_student($tra[$row]['stu_id']); echo $stu_name[0]['uname'].' ( BHA00'.$stu_name[0]['id'].')';}
+                if($tra[$row]!='0'){ $stu_name=$student->get_one_student($tra[$row]['stu_id']); echo $stu_name[0]['uname'].' ( BHA00'.$stu_name[0]['id'].' )';}
                 ?>
             </td>
             <td><?php echo date("d-m-Y h:i A", strtotime($tra[$row]['date_time']));?></td>
