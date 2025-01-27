@@ -376,3 +376,11 @@ margin:2%;
   .switch-field label:last-of-type {
     border-radius: 0 4px 4px 0;
   }
+
+
+  @media print {
+    #noprint {
+      visibility: hidden;
+    }
+   
+  }

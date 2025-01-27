@@ -126,14 +126,20 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
 
 
 
-                                  <div class="tab-pane fade" id="tab3default"><h4>View / Print</h4>
-                                      <table class='table'>
+                                  <div class="tab-pane fade" id="tab3default">
+                                    
+                                  
+                                  <input type="button" onclick="printDiv('tab3default')" value="Print" class="btn btn-info" />
+
+                                  <h3 class="text-center"><?php echo $course0.' / '.$subject.' / '.$chapter;?></h3>
+                                 
+                                      <table border="1"id="notes_table">
                                             <tr>
                                               <th>S.No.</th>
                                               <th>Topic</th>
                                               <th>Content</th>
-                                              <th>File</th>
-                                              <th>Utility</th>
+                                              <th id="noprint">File</th>
+                                              <th id="noprint">Utility</th>
                                             </tr>
                                             <?php 
                                             $counter=1;
@@ -145,12 +151,12 @@ $get_details = $course->get_one_handmade_notes($_GET['id']);
                                               <td><?php $tname = $course->get_one($topics[$row]['tid'],'id'); 
                                                    echo $tname[0]['topic'];?></td>
                                               <td><?php echo $topics[$row]['tcontent'];?></td>
-                                              <td>
+                                              <td id="noprint">
                                                   <?php if(!empty($topics[$row]['file_upload'])){ ?>
                                                   <a target="_blank" href="<?php echo $base_url.'theme/images/'.$topics[$row]['file_upload']; ?>" class='btn btn-info btn-xs'>View</a>
                                                   <?php } ?>
                                               </td>
-                                              <td>
+                                              <td id="noprint">
                                               <!-- to do - edit -->
                                                 <input type="button" name="delete" value="Delete" onclick="deleteme('course','delete_handmade_detail_one','<?php echo $topics[$row]['id'];?>')" class="btn btn-sm btn-danger" >
                                               </td>
