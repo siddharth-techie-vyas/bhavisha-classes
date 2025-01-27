@@ -35,6 +35,7 @@ if(count($tra)>1)
         <tr>
             <th>S.No.</th>
             <th>Type</th>
+            <th>Beneficiery</th>
             <th>Date & Time</th>
             <th>Dr. / Cr.</th>
             <th>Amount</th>
@@ -49,6 +50,12 @@ if(count($tra)>1)
         <tr>
             <td><?php echo $counter++;?></td>
             <td><?php $t_type=$accounts->get_transaction_type_one($tra[$row]['transaction_type']); echo $t_type[0]['type_name'];?></td>
+            <td>
+                <?php 
+                //-- if student 
+                if($tra[$row]!='0'){ $stu_name=$student->get_one_student($tra[$row]['stu_id']); echo $stu_name[0]['uname'];}
+                ?>
+            </td>
             <td><?php echo date("d-m-Y h:i A", strtotime($tra[$row]['date_time']));?></td>
             <td><?php if($tra[$row]['debit_credit']==1){echo "Cr.";}else{echo "Dr.";}?></td>
             <td><span class='btn btn-success btn-sm'><?php echo $tra[$row]['amt'];?></span></td>
