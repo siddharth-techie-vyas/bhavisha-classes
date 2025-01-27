@@ -169,10 +169,10 @@ $topic = $course->viewone_course($_GET['id']);
                                         ?>
                                         <tr id="<?php echo $fill_question[$key]['id']; ?>">
                                           <td><?php echo str_replace($special_char,"",$fill_question[$key]['part1']); ?></td>
-                                          <td><?php echo str_replace($special_char,"",$fill_question[$key]['opt1']); ?><br>
-                                              <?php echo str_replace($special_char,"",$fill_question[$key]['opt2']); ?><br>
-                                              <?php echo str_replace($special_char,"",$fill_question[$key]['opt3']); ?><br>
-                                              <?php echo str_replace($special_char,"",$fill_question[$key]['opt4']); ?></td>
+                                          <td>A. <?php echo str_replace($special_char,"",$fill_question[$key]['opt1']); ?><br>
+                                              B. <?php echo str_replace($special_char,"",$fill_question[$key]['opt2']); ?><br>
+                                              C. <?php echo str_replace($special_char,"",$fill_question[$key]['opt3']); ?><br>
+                                              D. <?php echo str_replace($special_char,"",$fill_question[$key]['opt4']); ?></td>
                                           <td><?php echo str_replace($special_char,"",$fill_question[$key]['solution']); ?></td>
                                           <td><?php $fqused = $admin->getone_meta_data('question_used',$fill_question[$key]['qused']); echo $fqused[0]['meta_value1']; ?></td>
                                           <td><input type="button" name="delete" value="Delete" class="btn btn-xs btn-danger" onclick="deleteme('course','question_delete','<?php echo $fill_question[$key]['id'];?>')"> 
