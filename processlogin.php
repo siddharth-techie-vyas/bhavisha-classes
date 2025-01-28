@@ -43,40 +43,40 @@ else{
                $_SESSION['phone'] = $found_user['phone'];
               
               //== if admin then select session 
-               if($_SESSION['uid']=='1')
-                {
+              //  if($_SESSION['uid']=='1')
+              //   {
            
              ?>    <script type="text/javascript">
                       //then it will be redirected to index.php
                       window.location = "session_select.php";
                   </script>
              <?php        
-                }
-                else {
-                    //== giv session and branch id
-                   $year_now= date('Y');
-                    $year_next= date('y',strtotime('+1 years'));
-                    $year_latest=$year_now.'-'.$year_next;
+                // }
+                // else {
+                //     //== giv session and branch id
+                //    $year_now= date('Y');
+                //     $year_next= date('y',strtotime('+1 years'));
+                //     $year_latest=$year_now.'-'.$year_next;
                     
-                    //== get session id
-                     $year = "SELECT * FROM  session WHERE syear='$year_latest' ";
-                     $result_y = mysqli_query($conn, $year);
-                     $result_y  = mysqli_fetch_array($result_y);
-                     $syear_id = $result_y['id'];
+                //     //== get session id
+                //      $year = "SELECT * FROM  session WHERE syear='$year_latest' ";
+                //      $result_y = mysqli_query($conn, $year);
+                //      $result_y  = mysqli_fetch_array($result_y);
+                //      $syear_id = $result_y['id'];
                     
                     
-                    $_SESSION['syear'] = $syear_id;
-                    $_SESSION['branch'] = $found_user['branchid'];
-                  //  exit();
+                //     $_SESSION['syear'] = $syear_id;
+                //     $_SESSION['branch'] = $found_user['branchid'];
+                //   //  exit();
                    
                 ?>
         
-                    <script type="text/javascript">
+                    <!-- <script type="text/javascript">
                       //then it will be redirected to index.php
                       window.location = "index.php?action=dashboard";
-                  </script>
+                  </script> -->
             <?php
-                    }
+                   // }
         
             } else {
             //IF theres no result
