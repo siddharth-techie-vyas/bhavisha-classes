@@ -145,8 +145,8 @@ case "get_rand_question":
  					echo "<tr id='".$get[$k]['id']."'>";
  						echo "<td>".$counter++."</td>";
  						echo "<td><input type='checkbox' onclick='get_summarks()' class='qcheck' name='qid[]' value='".$get[$k]['id']."'/></td>";
- 						echo "<td>".$get[$k]['part1']."</td>";
- 						echo "<td>".$get[$k]['part2']."</td>";
+ 						echo "<td>".preg_replace('/\s+/', '_', $get[$k]['part1'])."</td>";
+ 						echo "<td>".preg_replace('/\s+/', '_', $get[$k]['part2'])."</td>";
  						echo "<td><input type='number' onchange='get_summarks()'  min='0' class='marks' name='marks[]' value='".$get[$k]['marks']."' /></td>";
  						echo "<td>".$qtype[0]['meta_value1']."</td>";
  						echo "<td><button><i class='fa fa-trash' onclick='removetr(".$get[$k]['id'].")' ></i></td>";
@@ -1031,6 +1031,11 @@ break;
 			{
 			   	echo "<div class='alert alert-error'>Something went wrong, Please try again !!!</div>";
 			}
+		}
+
+		if($_GET['query']=='delete_transaction_type')
+		{
+			$delete=$accounts->delete_transaction_type($_GET['id']);
 		}
 	}
 }
