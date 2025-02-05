@@ -80,18 +80,21 @@ $special_char=array('\r','\n');
 			$fill = $course->get_pdf_questions($questions,'1');
 			$long = $course->get_pdf_questions($questions,'4');
 			$short = $course->get_pdf_questions($questions,'3');
+
+			//-- all question count
+			$question_nu=1;
 	?>
 
 	<!--- mcq--->
-	<?php $mcq_count = count($mcq); $count=1; if(!empty($mcq_count)){?>
+	<?php $mcq_count = count($mcq);  if(!empty($mcq_count)){?>
 	<div class="col-sm-12">
 		<table class="table">
-			<tr>
+			<!-- <tr>
 				<th colspan="4" class="text-center alert alert-danger">Multiple Choice Questions (<?php echo count($mcq).' Questions';?>) </th>
-			</tr>
+			</tr> -->
 			<?php 
 			foreach ($mcq as $key => $value) {
-				echo "<tr><th>".$count++."</th>";
+				echo "<tr><th>".$question_nu++."</th>";
 				echo "<th colspan='2'>".str_replace($special_char," ",$mcq[$key]['part1'])."</th>";
 				echo "<th>(Marks : ".str_replace($special_char," ",$mcq[$key]['marks'])." )</th>";
 				echo "</tr>";
@@ -112,15 +115,15 @@ $special_char=array('\r','\n');
 
 
 	<!--- fill--->
-	<?php $fill_count = count($fill); $count=1; if(!empty($fill_count)){?>
+	<?php $fill_count = count($fill); if(!empty($fill_count)){?>
 	<div class="col-sm-12">
 		<table class="table">
-			<tr>
+			<!-- <tr>
 				<th colspan="5" class="text-center alert alert-success">Fill In The Blanks (<?php echo count($fill).' Questions';?>) </th>
-			</tr>
+			</tr> -->
 			<?php 
 			foreach ($fill as $key => $value) {
-				echo "<tr><th>".$count++."</th>";
+				echo "<tr><th>".$question_nu++."</th>";
 				if($fill[$key]['part1'] !='')
 				{echo "<td>".str_replace($special_char," ",$fill[$key]['part1'])."</td>";}
 				else
@@ -143,15 +146,15 @@ $special_char=array('\r','\n');
 
 
 	<!--- short --->
-	<?php $short_count = count($short); $count=1; if(!empty($short_count)){?>
+	<?php $short_count = count($short);  if(!empty($short_count)){?>
 	<div class="col-sm-12">
 		<table class="table">
-			<tr>
+			<!-- <tr>
 				<th colspan="3" class="text-center alert alert-warning">Short Questions (<?php echo count($short).' Questions';?>) </th>
-			</tr>
+			</tr> -->
 			<?php 
 			foreach ($short as $key => $value) {
-				echo "<tr><th>".$count++."</th>";
+				echo "<tr><th>".$question_nu++."</th>";
 				echo "<td width='70%'>".str_replace($special_char," ",$short[$key]['part1'])."</td>";
 				echo "<th>(Marks : ".str_replace($special_char," ",$short[$key]['marks'])." )</th>";
 				echo "</tr>";
@@ -167,15 +170,15 @@ $special_char=array('\r','\n');
 
 
 	<!--- long --->
-	<?php $long_count = count($long); $count=1; if(!empty($long_count)){?>
+	<?php $long_count = count($long); if(!empty($long_count)){?>
 	<div class="col-sm-12">
 		<table class="table">
-			<tr>
+			<!-- <tr>
 				<th colspan="3" class="text-center alert alert-info">Long Questions (<?php echo count($long).' Questions';?>) </th>
-			</tr>
+			</tr> -->
 			<?php 
 			foreach ($long as $key => $value) {
-				echo "<tr><th>".$count++."</th>";
+				echo "<tr><th>".$question_nu++."</th>";
 				echo "<td width='70%'>".str_replace($special_char," ",$long[$key]['part1'])."</td>";
 				echo "<th>(Marks : ".str_replace($special_char," ",$long[$key]['marks'])." )</th>";
 				echo "</tr>";
