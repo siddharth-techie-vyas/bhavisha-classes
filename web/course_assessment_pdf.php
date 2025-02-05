@@ -11,7 +11,7 @@ $special_char=array('\r','\n');
 
 <input type="button" name="print" value="Download Anwer Key" class="no-print btn btn-mini btn-success" onclick="htmlget('answer_sheet','Assessment - Answer Sheet - <?php echo $details[0]['assessment'];?>')"> 
 
-<a href="" name="edit" value="Edit" class="no-print btn btn-mini btn-primary"> 
+<!-- <a href="" name="edit" value="Edit" class="no-print btn btn-mini btn-primary">Edit</a> -->
 
 <input type="button" name="edit" value="Delete" class="no-print btn btn-mini btn-danger"> 
 
