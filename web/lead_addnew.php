@@ -16,7 +16,7 @@
 
                   <div id="msgcreate_leads"></div>
 
-                  <form action="<?php echo $base_url.'index.php?action=lead&query=create_leads';?>" method="post" name="create_leads" id="create_leads" class="form-sample">
+                  <form action="<?php echo $base_url.'index.php?action=lead&query=create_leads';?>" method="post" name="create_leads" id="create_leads" class="form-sample" enctype='multipart/form-data'>
 
                    <input type="hidden" value="0" name="branch">
 
@@ -124,7 +124,7 @@
 
                     
 
-                    <div class="row">
+                    <!-- <div class="row">
 
                           <div class="col-md-6">
 
@@ -180,7 +180,7 @@
 
 
 
-                    </div>
+                    </div> -->
 
 
 
@@ -346,8 +346,15 @@
 
 
 
-
-
+                      <div class="row">
+                        <div class="col-sm-12" id="addmore_edu_div"></div>
+                        <div class="col-sm-12">
+                          <div class="col-sm-4">
+                            <input type="button" name="addmore_doc" value="Add More Education Detail(s)" class="btn btn-success btn-sm" id="addmore_edu_btn"/>
+                          </div>
+                        </div>
+                      </div>              
+                                    <hr>
                     
 
 
@@ -360,7 +367,7 @@
 
                           <div class="col-sm-6"><input type="reset" class="btn btn-info btn-md" value="Reset"></div>
 
-                          <div class="col-sm-6"><input type="button" onclick="form_submit('create_leads')" class="btn btn-success btn-md" value="Save"></div>
+                          <div class="col-sm-6"><input type="submit"  class="btn btn-success btn-md" value="Save"></div>
 
                           
 
@@ -383,3 +390,38 @@
          </div>   
 
     </div>   
+
+
+
+    
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+var max_fields      = 50; //maximum input boxes allowed
+var wrapper         =  $("#addmore_edu_div"); //Fields wrapper
+var add_button      =  $("#addmore_edu_btn"); //Add button ID
+var x = 0; //initlal text box count
+
+        
+$(add_button).click(function(e)
+{ //on add input button click
+    e.preventDefault();
+    if(x < max_fields){ 
+        x++; 
+    $(wrapper).append('<div class="col-sm-12" id="addmoreedu'+x+'"><div class="col-sm-2">Class '+x+'<input type="text" name="class[]" class="form-control"></div><div class="col-sm-2">Subject '+x+'<input type="text" name="subject[]" class="form-control"></div><div class="col-sm-2">Min Marks '+x+'<input type="text" name="min_marks[]" class="form-control"></div><div class="col-sm-2">Max Marks '+x+'<input type="text" name="max_marks[]" class="form-control"></div><div class="col-sm-2">File '+x+'<input type="file" name="marksheet[]" class="form-control"></div><div class="col-sm-2">School '+x+'<input type="text" name="school[]" class="form-control"></div><div class="col-sm-1"><input type="button" onclick=removeme("addmoreedu'+x+'") class="btn btn-xs btn-danger" value="X"></div></div>'); 
+
+        }
+      
+    
+    else
+    {alert("Sorry, you can add only 50 Items in this segment");}
+
+});
+
+
+
+});
+
+
+</script>	

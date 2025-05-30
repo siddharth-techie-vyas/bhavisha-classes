@@ -8,15 +8,15 @@ class Leads {
         $this->db_handle = new DBController();
     }
 
-    function create_lead($ldate,$uname,$course_name,$subject,$school,$xper,$xiiper,$contact,$email,$dob,$medium,$reference,$remark,$branch,$demo)
+    function create_lead($ldate,$uname,$course_name,$subject,$contact,$email,$dob,$medium,$reference,$remark,$branch,$demo,$education)
 	{
 		
 		$subject = implode(',',$subject);
-
 		$status = 'pending';
-		$query = "insert into leads(ldate,uname,course_name,subject,school,xper,xiiper,contact,email,dob,medium,reference,remark,status,branch,demo)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        $paramType = "ssssssssssssssss";
-        $paramValue = array($ldate,$uname,$course_name,$subject,$school,$xper,$xiiper,$contact,$email,$dob,$medium,$reference,$remark,$status,$branch,$demo);
+
+		$query = "insert into leads(ldate,uname,course_name,subject,contact,email,dob,medium,reference,remark,branch,demo,education,status)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $paramType = "ssssssssssssss";
+        $paramValue = array($ldate,$uname,$course_name,$subject,$contact,$email,$dob,$medium,$reference,$remark,$branch,$demo,$education,$status);
         $insertId = $this->db_handle->insert($query, $paramType, $paramValue);
         if($insertId)
 			{

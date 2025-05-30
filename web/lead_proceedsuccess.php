@@ -81,7 +81,14 @@ $udetail = $leads->viewone($_GET['leadid']);
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Father Occupation</label>
                           <div class="col-sm-9">
-                            <input name="focc" type="text" value="" class="form-control" required/>
+                            <select name="focc" class="form-control" required>
+                              <option disabled="disabled" selected="selected">-Select-</option>
+                              <?php $focc=$admin->getonetype_meta_data('father_occupation');
+                              foreach($focc as $fo=>$v)
+                              {?>
+                              <option value="<?php echo $focc[$fo]['meta_value1'];?>"><?php echo $focc[$fo]['meta_value1'];?></option>
+                              <?php }?>
+                            </select> 
                           </div>
                         </div>
                       </div>
@@ -89,7 +96,14 @@ $udetail = $leads->viewone($_GET['leadid']);
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Mother Occupation</label>
                           <div class="col-sm-9">                            
-                            <input name="mocc" type="text" value="" class="form-control" required/>
+                           <select name="mocc" class="form-control" required>
+                              <option disabled="disabled" selected="selected">-Select-</option>
+                              <?php $focc=$admin->getonetype_meta_data('mother_occupation');
+                              foreach($focc as $fo=>$v)
+                              {?>
+                              <option value="<?php echo $focc[$fo]['meta_value1'];?>"><?php echo $focc[$fo]['meta_value1'];?></option>
+                              <?php }?>
+                            </select> 
                           </div>
                         </div>
                       </div>
