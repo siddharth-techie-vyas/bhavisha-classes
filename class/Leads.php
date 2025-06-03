@@ -27,12 +27,14 @@ class Leads {
 
 	}
 
-	function edit_lead($ldate,$uname,$course_name,$subject,$school,$xper,$xiiper,$contact,$email,$dob,$medium,$reference,$remark,$branch,$demo,$id)
+	function edit_lead($ldate,$uname,$course_name,$subject0,$contact,$email,$dob,$medium,$reference,$remark,$branch,$demo,$education,$id)
 	{
 		
-		 $subject = implode(',',$subject);
-		$query = "update leads SET ldate='$ldate',uname='$uname',course_name='$course_name',subject='$subject',school='$school',xper='$xper',xiiper='$xiiper',contact='$contact',email='$email',dob='$dob',medium='$medium',reference='$reference',remark='$remark',branch='$branch',demo='$demo' where id = '$id' ";
-       $insertId = $this->db_handle->runSingleQuery($query);
+		$subject = implode(',',$subject0);
+		echo $query = "update leads SET ldate='?',uname='?',course_name='?',subject='?',contact='?',email='?',dob='?',medium='?',reference='?',remark='?',branch='?',demo='?',education='?' where id = '?' ";
+		$paramType = "sssssssssssss";
+        $paramValue = array($ldate,$uname,$course_name,$subject,$contact,$email,$dob,$medium,$reference,$remark,$branch,$demo,$education,$id);
+       	$insertId = $this->db_handle->update($query, $paramType, $paramValue);
         if(!$insertId)
 			{echo "<div class='alert alert-success'>Lead Updated Successfully !!!</div>";}
 		else
