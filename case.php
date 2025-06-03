@@ -548,14 +548,12 @@ case "lead":
 				$min_array = $_POST['min_marks'];
 				$max_array = $_POST['max_marks'];
 				$school_array = $_POST['school'];
-				$file_array = $_FILES['marksheet'];
+				//$file_array = $_FILES['marksheet'];
 
 				$education_array=array();
 				for ($i = 0; $i < count($class_array); $i++) 
 							{
-								//$marksheet=$admin->upload_files($file_array[$i]);
-								$marksheet=0;
-								$education0=array("class"=>$class_array[$i],"subject"=>$subject_array[$i],"min_marks"=>$min_array[$i],"max_marks"=>$max_array[$i],"school"=>$school_array[$i],"file"=>$marksheet);								
+								$education0=array("class"=>$class_array[$i],"subject"=>$subject_array[$i],"min_marks"=>$min_array[$i],"max_marks"=>$max_array[$i],"school"=>$school_array[$i]);								
 								array_push($education_array,$education0);
 					        }	
 				$education = json_encode($education_array);

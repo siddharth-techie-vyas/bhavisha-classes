@@ -409,7 +409,7 @@ $(add_button).click(function(e)
     e.preventDefault();
     if(x < max_fields){ 
         x++; 
-    $(wrapper).append('<div class="col-sm-12" id="addmoreedu'+x+'"><div class="col-sm-2">Class '+x+'<input type="text" name="class[]" class="form-control"></div><div class="col-sm-2">Subject '+x+'<input type="text" name="subject[]" class="form-control"></div><div class="col-sm-2">Min Marks '+x+'<input type="text" name="min_marks[]" class="form-control"></div><div class="col-sm-2">Max Marks '+x+'<input type="text" name="max_marks[]" class="form-control"></div><div class="col-sm-2">File '+x+'<input type="file" name="marksheet[]" class="form-control"></div><div class="col-sm-2">School '+x+'<input type="text" name="school[]" class="form-control"></div><div class="col-sm-1"><input type="button" onclick=removeme("addmoreedu'+x+'") class="btn btn-xs btn-danger" value="X"></div></div>'); 
+    $(wrapper).append('<div class="col-sm-12" id="addmoreedu'+x+'"><div class="col-sm-2">Class '+x+'<input type="text" name="class[]" class="form-control"></div><div class="col-sm-2">Subject '+x+'<input type="text" name="subject[]" class="form-control"></div><div class="col-sm-2">Min Marks '+x+'<input type="text" name="min_marks[]" class="form-control"></div><div class="col-sm-2">Max Marks '+x+'<input type="text" name="max_marks[]" class="form-control"></div><div class="col-sm-2">School '+x+'<input type="text" name="school[]" class="form-control" ></div><div class="col-sm-2"><input type="button" onclick=removeme("addmoreedu'+x+'") class="btn btn-xs btn-danger" value="X"></div></div>'); 
 
         }
       
